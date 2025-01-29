@@ -55,6 +55,3 @@ Contributions are welcome! Please follow these steps to contribute:
 
 ## License
 This repository is licensed under the MIT License. See the `LICENSE` file for more details.
-
-## Contact
-For any questions or inquiries, please contact the repository maintainer at [your-email@example.com].
