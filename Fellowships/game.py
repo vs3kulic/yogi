@@ -1,29 +1,20 @@
 import random
-from game_data import main_characters, antagonists
+from .game_data import main_characters, antagonists
 
 class Game: 
     def __init__(self):
         self.main_characters = main_characters 
         self.antagonists = antagonists
 
-    def select_character(self):
-        print("Select a main character:")
-        for index, character in enumerate(self.main_characters):
-            print(f"{index + 1}. {character.name} ({character.race})")
-        
-        choice = int(input("Enter the number of your choice: ")) -1 
+    def select_character(self, choice):
         if 0 <= choice < len(self.main_characters):
             fighter = self.main_characters[choice]
-            print(f"You picked {fighter.name} as your fighter!")
             return fighter
         else:
-            print("Invalid choice. Please try again.")
-            return self.select_character()
-        
+            return None
+    
     def select_opponent(self):
-        print("Your opponent will be chosen at random...") 
         opponent = random.choice(self.antagonists)
-        print(f"Your opponent is {opponent.name}!")
         return opponent
 
     def coin_toss(self): 
