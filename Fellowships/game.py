@@ -1,5 +1,5 @@
 import random
-from .game_data import main_characters, antagonists
+from Fellowships.game_data import main_characters, antagonists
 
 class Game: 
     def __init__(self):

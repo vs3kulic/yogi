@@ -1,4 +1,4 @@
-from .characters import MainCharacters, AntagonistCharacters
+from Fellowships.characters import MainCharacters, AntagonistCharacters
 
 main_characters = [
     MainCharacters("Aragorn", "Human", 15, 10, 90, ["For Gondor!"], "Andúril Strike"),
