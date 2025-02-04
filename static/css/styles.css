@@ -1,22 +1,74 @@
-/* filepath: /Users/vajosekulic/Documents/Programming/Fellowships/static/css/styles.css */
 body {
-    font-family: Arial, sans-serif;
-    background-color: white;
-    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+    color: #333333;
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
-.input-field {
-    border: none;
-    background-color: white;
-    color: black;
+.container {
+    max-width: 600px;
+    margin: 50px auto;
     padding: 20px;
-    font-size: 20px;
-    font-weight: bold;
-    width: 300px;
-    margin-top: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
-.input-field::placeholder {
-    color: grey;
+header {
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+p {
+    font-size: 1.2em;
+    color: #666666;
+}
+
+.character-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.character-button, .coin-button {
+    font-size: 1.5em;
+    padding: 20px 40px; /* Increased padding for larger buttons */
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    max-width: 300px;
+}
+
+.character-button:hover, .coin-button:hover {
+    background-color: #d0d0d0;
+}
+
+.next-button, .back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 30px; /* Increased padding for larger buttons */
+    font-size: 1.2em; /* Increased font size */
+    color: #ffffff;
+    background-color: #333333;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.next-button:hover, .back-button:hover {
+    background-color: #000000;
 }

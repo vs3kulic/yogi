@@ -1,4 +1,3 @@
-<!-- filepath: /Users/vajosekulic/Documents/Programming/Fellowships/templates/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,18 +8,23 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <h1>Welcome to The Fellowship</h1>
-    <p>Start your journey by picking your character:</p>
-    <form method="post" action="{% url 'select_character' %}">
-        {% csrf_token %}
-        <ul>
-            {% for hero in heroes %}
-                <li>{{ forloop.counter }}. {{ hero }}</li>
-            {% endfor %}
-        </ul>
-        <input type="number" class="input-field" name="character_number" placeholder="Enter character number" min="1" max="{{ heroes|length }}">
-        <br>
-        <button type="submit">Select Character</button>
-    </form>
+    <div class="container">
+        <header>
+            <h1>Welcome to The Fellowship</h1>
+            <p>Start your journey by picking your character:</p>
+        </header>
+        <main>
+            <form method="post" action="{% url 'select_character' %}">
+                {% csrf_token %}
+                <div class="character-list">
+                    {% for hero in heroes %}
+                        <button type="submit" name="character_number" value="{{ forloop.counter0 }}" class="character-button">
+                            {{ hero }}
+                        </button>
+                    {% endfor %}
+                </div>
+            </form>
+        </main>
+    </div>
 </body>
 </html>

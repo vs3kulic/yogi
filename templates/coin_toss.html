@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Toss</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Coin Toss</h1>
+        </header>
+        <main>
+            <p>Pick heads or tails:</p>
+            <form method="post" action="{% url 'coin_toss' %}">
+                {% csrf_token %}
+                <button type="submit" name="coin_choice" value="heads" class="back-button">Heads</button>
+                <button type="submit" name="coin_choice" value="tails" class="back-button">Tails</button>
+            </form>
+        </main>
+    </div>
+</body>
+</html>

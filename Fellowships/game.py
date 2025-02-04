@@ -1,12 +1,18 @@
 import random
-from Fellowships.game_data import main_characters, antagonists
+from .game_data import main_characters, antagonists
 
-class Game: 
+class Game:
+    """
+    A class to represent the game.
+    """
     def __init__(self):
-        self.main_characters = main_characters 
+        self.main_characters = main_characters
         self.antagonists = antagonists
 
     def select_character(self, choice):
+        """
+        Select a character from the list of main characters.
+        """
         if 0 <= choice < len(self.main_characters):
             fighter = self.main_characters[choice]
             return fighter
@@ -14,25 +20,24 @@ class Game:
             return None
     
     def select_opponent(self):
+        """
+        Select an opponent from the list of antagonists.
+        """
         opponent = random.choice(self.antagonists)
         return opponent
 
-    def coin_toss(self): 
-        print("A coin will be tossed to determine who goes first...")
-        pick = input("Heads or tails? ").lower()
-        print(f"You picked {pick}!")
-        print("The coin is in the air...")
+    def coin_toss(self, user_choice):
+        """
+        Simulate a coin toss and compare the result with the user's choice.
+        """
         coin = random.choice(["heads", "tails"])
-        print(f"The coin landed on {coin}!")
-        if pick == coin:
-            print("You won the toss and go first!")
-            return True
-        else:
-            print("You lost the toss and go second!")
-            return False 
+        return user_choice == coin
 
     def run_round(self, player, opponent):
-        player_turn = self.coin_toss()
+        """
+        Simulate a round of the game between the player and the opponent.
+        """
+        player_turn = self.coin_toss("heads")  # Example: player always chooses heads for simplicity
         
         while player.life_points > 0 and opponent.life_points > 0: 
             if player_turn:
@@ -45,12 +50,16 @@ class Game:
                 print(f"{player.name} has {player.life_points} life points left.")
             player_turn = not player_turn
         
-        if player.life_points > opponent.life_points:
-            winner = player
-            return winner
-        else: 
-            winner = opponent
-            return winner
+        return player.life_points, opponent.life_points
 
-    def declare_winner(self, winner):
-        print(f"{winner.name} wins the battle!")
+    def declare_winner(self, scores):
+        """
+        Declare the winner based on the scores of the player and the opponent.
+        """
+        player_life_points, opponent_life_points = scores
+        if player_life_points > opponent_life_points:
+            return "Player wins!"
+        elif player_life_points < opponent_life_points:
+            return "Opponent wins!"
+        else:
+            return "It's a tie!"

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opponent Selected</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Opponent Selected</h1>
+        </header>
+        <main>
+            <p>{{ message }}</p>
+            <a href="{% url 'coin_toss' %}" class="back-button">Proceed to Coin Toss</a>
+        </main>
+    </div>
+</body>
+</html>
