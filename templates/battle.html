@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coin Toss Result</title>
+    <title>Battle Result</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Coin Toss Result</h1>
+            <h1>Battle Result</h1>
         </header>
         <main>
-            <p>{{ coin_result }}</p>
-            <a href="{% url 'battle' %}" class="next-button">Proceed to Battle</a>
+            <div class="battle-steps">
+                {% for step in steps %}
+                    <p>{{ step }}</p>
+                {% endfor %}
+            </div>
+            <p>{{ result }}</p>
+            <a href="{% url 'index' %}" class="back-button">Back to Character Selection</a>
         </main>
     </div>
 </body>

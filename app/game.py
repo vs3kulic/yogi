@@ -37,26 +37,27 @@ class Game:
         """
         Simulate a round of the game between the player and the opponent.
         """
+        steps = []
         player_turn = self.coin_toss("heads")  # Example: player always chooses heads for simplicity
         
         while player.life_points > 0 and opponent.life_points > 0: 
             if player_turn:
                 damage = player.attack(opponent)
-                print(f"{player.name} attacks {opponent.name} for {damage} damage!")
-                print(f"{opponent.name} has {opponent.life_points} life points left.")
+                steps.append(f"{player.name} attacks {opponent.name} for {damage} damage!")
+                steps.append(f"{opponent.name} has {opponent.life_points} life points left.")
             else:
                 damage = opponent.attack(player)
-                print(f"{opponent.name} attacks {player.name} for {damage} damage!")
-                print(f"{player.name} has {player.life_points} life points left.")
+                steps.append(f"{opponent.name} attacks {player.name} for {damage} damage!")
+                steps.append(f"{player.name} has {player.life_points} life points left.")
             player_turn = not player_turn
         
-        return player.life_points, opponent.life_points
+        return player.life_points, opponent.life_points, steps
 
     def declare_winner(self, scores):
         """
         Declare the winner based on the scores of the player and the opponent.
         """
-        player_life_points, opponent_life_points = scores
+        player_life_points, opponent_life_points, _ = scores
         if player_life_points > opponent_life_points:
             return "Player wins!"
         elif player_life_points < opponent_life_points:
