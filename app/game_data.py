@@ -1,4 +1,8 @@
-from Fellowships.characters import MainCharacters, AntagonistCharacters
+#!/usr/bin/env python
+import os
+import sys
+
+from app.characters import MainCharacters, AntagonistCharacters
 
 main_characters = [
     MainCharacters("Aragorn", "Human", 15, 10, 90, ["For Gondor!"], "Andúril Strike"),
@@ -15,3 +19,15 @@ antagonists = [
     AntagonistCharacters("Lurtz", "Uruk-hai", 20, 15, 90, ["Find the halflings!"], "Brutal Slash"),
     AntagonistCharacters("Gollum", "Hobbit", 5, 5, 80, ["My precious!"], "Sneak Attack")
 ]
+
+if __name__ == "__main__":
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
+    try:
+        from django.core.management import execute_from_command_line
+    except ImportError as exc:
+        raise ImportError(
+            "Couldn't import Django. Are you sure it's installed and "
+            "available on your PYTHONPATH environment variable? Did you "
+            "forget to activate a virtual environment?"
+        ) from exc
+    execute_from_command_line(sys.argv)
