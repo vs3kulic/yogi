@@ -1,3 +1,6 @@
+import random
+from .utils import fetch_quotes
+
 # Characters class for the game
 
 class Characters:
@@ -42,6 +45,19 @@ class MainCharacters(Characters):
         return: str - the special ability used by the main character
         """
         return f"{self.name} uses {self.special_ability}!"
+
+    def fetch_and_assign_quotes(self):
+        """
+        Fetch and assign a random quote to the main character.
+
+        params: None
+        return: None
+        """
+        quotes = fetch_quotes(self.name)
+        if quotes and not quotes[0].startswith("Error"):
+            self.quotes = [random.choice(quotes)]  # Select one random quote
+        else:
+            self.quotes = quotes
 
 class AntagonistCharacters(Characters):
     """

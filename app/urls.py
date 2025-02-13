@@ -1,11 +1,13 @@
 from django.urls import path
 from . import views
+from .views import select_character
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('select_character/', views.select_character, name='select_character'),
+    path('character/<int:character_id>/', select_character, name='select_character'),
     path('opponent_selected/', views.opponent_selected, name='opponent_selected'),
     path('coin_toss/', views.coin_toss, name='coin_toss'),
+    path('coin_toss_result/<str:result>/', views.coin_toss_result, name='coin_toss_result'),
     path('battle/', views.battle, name='battle'),
     path('battle_results/', views.battle_results, name='battle_results')
 ]

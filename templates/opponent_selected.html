@@ -13,13 +13,11 @@
             <h1>Opponent Selected</h1>
         </header>
         <main>
-            <p>{{ message }}</p>
-            <h2>Quotes:</h2>
-            <ul>
-                {% for quote in quotes %}
-                    <li>{{ quote }}</li>
-                {% endfor %}
-            </ul>
+            <h2>{{ character.name }}</h2>
+            <form action="{% url 'coin_toss' %}" method="post">
+                {% csrf_token %}
+                <button class="next-button">Next Step</button>
+            </form>
         </main>
     </div>
 </body>

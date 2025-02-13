@@ -1,5 +1,6 @@
+import random
 from django.db import models
-from app.utils import fetch_quotes
+from .utils import fetch_quotes
 
 class Character(models.Model):
     name = models.CharField(max_length=100)
@@ -33,8 +34,13 @@ class Character(models.Model):
             return f"{self.name} uses {self.secret_weapon}!"
         return None
 
-    def get_quotes(self):
-        return fetch_quotes()
+    def fetch_and_assign_quotes(self):
+        quotes = fetch_quotes(self.name)
+        if quotes and not quotes[0].startswith("Error"):
+            self.quotes = [random.choice(quotes)]  # Select one random quote
+        else:
+            self.quotes = quotes
+        self.save()
 
 
 class BattleOutcome(models.Model):

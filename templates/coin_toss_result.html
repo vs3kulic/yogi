@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coin Toss Result</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <div class="container">
@@ -13,7 +13,7 @@
             <h1>Coin Toss Result</h1>
         </header>
         <main>
-            <p>{{ coin_result }}</p>
+            <p>You {{ result }} the coin toss!</p>
             <a href="{% url 'battle' %}" class="next-button">Proceed to Battle</a>
         </main>
     </div>
