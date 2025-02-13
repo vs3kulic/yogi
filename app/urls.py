@@ -6,5 +6,6 @@ urlpatterns = [
     path('select_character/', views.select_character, name='select_character'),
     path('opponent_selected/', views.opponent_selected, name='opponent_selected'),
     path('coin_toss/', views.coin_toss, name='coin_toss'),
-    path('battle/', views.battle, name='battle')
+    path('battle/', views.battle, name='battle'),
+    path('battle_results/', views.battle_results, name='battle_results'),
 ]

@@ -1,13 +1,24 @@
 import random
-from .game_data import main_characters, antagonists
+from .models import Character
+
+class GameCharacter:
+    def __init__(self, name, life_points, attack_points):
+        self.name = name
+        self.life_points = life_points
+        self.attack_points = attack_points
+
+    def attack(self, opponent):
+        damage = self.attack_points
+        opponent.life_points -= damage
+        return damage
 
 class Game:
     """
     A class to represent the game.
     """
     def __init__(self):
-        self.main_characters = main_characters
-        self.antagonists = antagonists
+        self.main_characters = Character.objects.filter(is_main_character=True)
+        self.antagonists = Character.objects.filter(is_antagonist=True)
 
     def select_character(self, choice):
         """

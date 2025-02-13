@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battle Result</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <div class="container">
@@ -13,13 +13,13 @@
             <h1>Battle Result</h1>
         </header>
         <main>
+            <p>{{ result }}</p>
             <div class="battle-steps">
                 {% for step in steps %}
                     <p>{{ step }}</p>
                 {% endfor %}
             </div>
-            <p>{{ result }}</p>
-            <a href="{% url 'index' %}" class="back-button">Back to Character Selection</a>
+            <a href="{% url 'battle_results' %}" class="next-button">View Battle Results</a>
         </main>
     </div>
 </body>

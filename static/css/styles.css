@@ -1,6 +1,6 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     color: #333333;
     text-align: center;
     margin: 0;
@@ -8,15 +8,16 @@ body {
 }
 
 .container {
-    max-width: 600px;
-    margin: 50px auto;
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
 
 header {
+    text-align: center;
     margin-bottom: 20px;
 }
 
@@ -27,20 +28,43 @@ h1 {
 }
 
 p {
-    font-size: 1.2em;
-    color: #666666;
+    text-align: center;
+    font-size: 16px;
+    color: #333;
 }
 
 .character-list {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
     padding: 0;
     margin: 20px 0;
 }
 
-.character-button, .coin-button {
+.character-button {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #333333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+}
+
+.character-button:hover {
+    background-color: #000000;
+}
+
+.character-button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.coin-button {
     font-size: 1.5em;
     padding: 20px 40px; /* Increased padding for larger buttons */
     background-color: #e0e0e0;
@@ -52,7 +76,7 @@ p {
     max-width: 300px;
 }
 
-.character-button:hover, .coin-button:hover {
+.coin-button:hover {
     background-color: #d0d0d0;
 }
 

@@ -18,12 +18,15 @@
                 {% csrf_token %}
                 <div class="character-list">
                     {% for hero in heroes %}
-                        <button type="submit" name="character_number" value="{{ forloop.counter0 }}" class="character-button">
-                            {{ hero }}
+                        <button type="submit" name="character_id" value="{{ hero.id }}" class="character-button">
+                            {{ hero.name }}
                         </button>
                     {% endfor %}
                 </div>
             </form>
+            {% if message %}
+                <p>{{ message }}</p>
+            {% endif %}
         </main>
     </div>
 </body>
