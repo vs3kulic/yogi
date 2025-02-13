@@ -1,8 +1,6 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    color: #333333;
-    text-align: center;
     margin: 0;
     padding: 0;
 }
@@ -13,7 +11,6 @@ body {
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
 }
 
 header {
@@ -100,4 +97,31 @@ p {
 .battle-steps {
     text-align: left;
     margin-top: 20px;
+}
+
+.coin-choice-buttons, .back-button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.coin-choice-button, .back-button {
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.coin-choice-button:hover, .back-button:hover {
+    background-color: #333;
+}
+
+.coin-choice-button:focus, .back-button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }

@@ -33,7 +33,8 @@ class Game:
         params: user_choice (str) - the user's choice for the coin toss
         return: bool - True if the user wins, False otherwise
         """
-        return user_choice == "heads"
+        coin_result = random.choice(["heads", "tails"])
+        return user_choice == coin_result
 
     def run_round(self, player, opponent):
         """

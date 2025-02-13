@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coin Toss</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <div class="container">
@@ -13,11 +13,12 @@
             <h1>Coin Toss</h1>
         </header>
         <main>
-            <p>Pick heads or tails:</p>
             <form method="post" action="{% url 'coin_toss' %}">
                 {% csrf_token %}
-                <button type="submit" name="coin_choice" value="heads" class="back-button">Heads</button>
-                <button type="submit" name="coin_choice" value="tails" class="back-button">Tails</button>
+                <div class="coin-choice-buttons">
+                    <button type="submit" name="coin_choice" value="heads" class="next-button">Heads</button>
+                    <button type="submit" name="coin_choice" value="tails" class="next-button">Tails</button>
+                </div>
             </form>
         </main>
     </div>

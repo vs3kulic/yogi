@@ -43,7 +43,8 @@ def opponent_selected(request):
 def coin_toss(request):
     if request.method == 'POST':
         user_choice = request.POST.get('coin_choice')
-        coin_result = "Heads" if random.choice([True, False]) else "Tails"
+        game = Game()
+        coin_result = "Heads" if game.coin_toss(user_choice) else "Tails"
         return render(request, 'coin_toss_result.html', {'coin_result': coin_result})
     return render(request, 'coin_toss.html')
 
@@ -64,7 +65,7 @@ def battle(request):
     # Simulate the battle
     game = Game()
     player_life, opponent_life, steps = game.run_round(player, opponent)
-    result = "Win" if player_life > 0 else "Lose"
+    result = game.declare_winner((player_life, opponent_life, steps))
 
     # Save the battle outcome to the database
     BattleOutcome.objects.create(
