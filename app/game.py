@@ -1,17 +1,6 @@
 import random
 from .models import Character
 
-class GameCharacter:
-    def __init__(self, name, life_points, attack_points):
-        self.name = name
-        self.life_points = life_points
-        self.attack_points = attack_points
-
-    def attack(self, opponent):
-        damage = self.attack_points
-        opponent.life_points -= damage
-        return damage
-
 class Game:
     """
     A class to represent the game.
@@ -38,13 +27,26 @@ class Game:
         return opponent
 
     def coin_toss(self, user_choice):
+        """
+        Toss a coin and return the result.
+
+        params: user_choice (str) - the user's choice for the coin toss
+        return: bool - True if the user wins, False otherwise
+        """
         return user_choice == "heads"
 
     def run_round(self, player, opponent):
+        """
+        Run a round of the game between the player and the opponent.
+
+        params: player (object) - the player character
+                opponent (object) - the opponent character
+        return: tuple - the scores of the player, the opponent and the steps of the game
+        """
         steps = []
         player_turn = self.coin_toss("heads")  # Example: player always chooses heads for simplicity
         
-        while player.life_points > 0 and opponent.life_points > 0: 
+        while player.life_points > 0 and opponent.life_points > 0:
             if player_turn:
                 damage = player.attack(opponent)
                 steps.append(f"{player.name} attacks {opponent.name} for {damage} damage!")
@@ -60,6 +62,9 @@ class Game:
     def declare_winner(self, scores):
         """
         Declare the winner based on the scores of the player and the opponent.
+
+        params: scores (tuple) - the scores of the player and the opponent
+        return: str - the result of the game
         """
         player_life_points, opponent_life_points, _ = scores
         if player_life_points > opponent_life_points:

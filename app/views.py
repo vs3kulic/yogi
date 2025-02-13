@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from .models import Character, BattleOutcome
-from .game import Game, GameCharacter  # Import the necessary classes and functions
+from .game import Game  # Import the necessary classes and functions
 import random
 
 def index(request):
@@ -61,13 +61,9 @@ def battle(request):
     except ObjectDoesNotExist:
         return HttpResponse("Opponent not found.", status=404)
 
-    # Create game characters using values from the database
-    player_character = GameCharacter(player.name, player.life_points, player.attacks)
-    opponent_character = GameCharacter(opponent.name, opponent.life_points, opponent.attacks)
-
     # Simulate the battle
     game = Game()
-    player_life, opponent_life, steps = game.run_round(player_character, opponent_character)
+    player_life, opponent_life, steps = game.run_round(player, opponent)
     result = "Win" if player_life > 0 else "Lose"
 
     # Save the battle outcome to the database
