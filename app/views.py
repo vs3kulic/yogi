@@ -28,13 +28,16 @@ def select_character(request):
     return redirect('index')
 
 def opponent_selected(request):
+    selected_hero_name = request.session.get('selected_hero')
+    if not selected_hero_name:
+        return HttpResponse("No hero selected.", status=400)
 
     opponent = Character.objects.filter(is_antagonist=True).order_by('?').first()
     if not opponent:
         return HttpResponse("No opponent found.", status=404)
 
     request.session['opponent'] = opponent.name
-    message = f"Your opponent is {opponent.name}!"
+    message = f"You picked {selected_hero_name} as your fighter! Your opponent is {opponent.name}."
     return render(request, 'opponent_selected.html', {'message': message})
 
 def coin_toss(request):
@@ -58,9 +61,9 @@ def battle(request):
     except ObjectDoesNotExist:
         return HttpResponse("Opponent not found.", status=404)
 
-    # Create game characters
-    player_character = GameCharacter(player.name, 100, 10)  # Example life points and attack points
-    opponent_character = GameCharacter(opponent.name, 100, 10)  # Example life points and attack points
+    # Create game characters using values from the database
+    player_character = GameCharacter(player.name, player.life_points, player.attacks)
+    opponent_character = GameCharacter(opponent.name, opponent.life_points, opponent.attacks)
 
     # Simulate the battle
     game = Game()

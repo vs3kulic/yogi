@@ -1,5 +1,5 @@
 import unittest
-from characters import Characters, MainCharacters, AntagonistCharacters
+from app.characters import Characters, MainCharacters, AntagonistCharacters
 
 class TestCharacters(unittest.TestCase):
     def test_character_creation(self):
@@ -22,11 +22,13 @@ class TestCharacters(unittest.TestCase):
         main_character = MainCharacters("Hero", "Human", 10, 5, 100, ["For glory!"], "Fireball")
         villain = Characters("Villain", "Orc", 8, 3, 80, ["You shall fall!"])
         self.assertEqual(main_character.use_special_ability(villain), "Hero uses Fireball!")
+        self.assertEqual(villain.life_points, 80)  # Assuming special ability doesn't affect life points
 
     def test_antagonist_character_secret_weapon(self):
         antagonist = AntagonistCharacters("Villain", "Orc", 8, 3, 80, ["You shall fall!"], "Poison")
         hero = Characters("Hero", "Human", 10, 5, 100, ["For glory!"])
         self.assertEqual(antagonist.use_secret_weapon(hero), "Villain uses Poison!")
+        self.assertEqual(hero.life_points, 100)  # Assuming secret weapon doesn't affect life points
 
 if __name__ == '__main__':
     unittest.main()

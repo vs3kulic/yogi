@@ -38,16 +38,9 @@ class Game:
         return opponent
 
     def coin_toss(self, user_choice):
-        """
-        Simulate a coin toss and compare the result with the user's choice.
-        """
-        coin = random.choice(["heads", "tails"])
-        return user_choice == coin
+        return user_choice == "heads"
 
     def run_round(self, player, opponent):
-        """
-        Simulate a round of the game between the player and the opponent.
-        """
         steps = []
         player_turn = self.coin_toss("heads")  # Example: player always chooses heads for simplicity
         
