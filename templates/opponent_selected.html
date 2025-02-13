@@ -10,10 +10,16 @@
 <body>
     <div class="container">
         <header>
-            <h1>{{ message }}</h1>
+            <h1>Opponent Selected</h1>
         </header>
         <main>
-            <a href="{% url 'coin_toss' %}" class="back-button">Proceed to Coin Toss</a>
+            <p>{{ message }}</p>
+            <h2>Quotes:</h2>
+            <ul>
+                {% for quote in quotes %}
+                    <li>{{ quote }}</li>
+                {% endfor %}
+            </ul>
         </main>
     </div>
 </body>

@@ -24,7 +24,7 @@ def select_character(request):
 
         request.session['selected_hero'] = selected_hero.name
         message = f"You picked {selected_hero.name} as your fighter!"
-        return render(request, 'select_character.html', {'message': message})
+        return render(request, 'select_character.html', {'message': message, 'quotes': selected_hero.get_quotes()})
     return redirect('index')
 
 def opponent_selected(request):
@@ -38,7 +38,7 @@ def opponent_selected(request):
 
     request.session['opponent'] = opponent.name
     message = f"You picked {selected_hero_name} as your fighter! Your opponent is {opponent.name}."
-    return render(request, 'opponent_selected.html', {'message': message})
+    return render(request, 'opponent_selected.html', {'message': message, 'quotes': opponent.get_quotes()})
 
 def coin_toss(request):
     if request.method == 'POST':
@@ -74,7 +74,7 @@ def battle(request):
         outcome=result
     )
 
-    return render(request, 'battle.html', {'result': result, 'steps': steps})
+    return render(request, 'battle.html', {'result': result, 'steps': steps, 'player_quotes': player.get_quotes(), 'opponent_quotes': opponent.get_quotes()})
 
 def battle_results(request):
     selected_hero_name = request.session.get('selected_hero')

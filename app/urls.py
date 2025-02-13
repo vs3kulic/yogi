@@ -7,5 +7,5 @@ urlpatterns = [
     path('opponent_selected/', views.opponent_selected, name='opponent_selected'),
     path('coin_toss/', views.coin_toss, name='coin_toss'),
     path('battle/', views.battle, name='battle'),
-    path('battle_results/', views.battle_results, name='battle_results'),
+    path('battle_results/', views.battle_results, name='battle_results')
 ]

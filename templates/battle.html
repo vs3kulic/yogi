@@ -3,22 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Battle Result</title>
+    <title>Battle</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Battle Result</h1>
+            <h1>Battle</h1>
         </header>
         <main>
-            <div class="battle-steps">
+            <p>{{ result }}</p>
+            <h2>Battle Steps:</h2>
+            <ul>
                 {% for step in steps %}
-                    <p>{{ step }}</p>
+                    <li>{{ step }}</li>
                 {% endfor %}
-            </div>
-            <a href="{% url 'battle_results' %}" class="next-button">View Battle Results</a>
+            </ul>
+            <h2>Player Quotes:</h2>
+            <ul>
+                {% for quote in player_quotes %}
+                    <li>{{ quote }}</li>
+                {% endfor %}
+            </ul>
+            <h2>Opponent Quotes:</h2>
+            <ul>
+                {% for quote in opponent_quotes %}
+                    <li>{{ quote }}</li>
+                {% endfor %}
+            </ul>
         </main>
     </div>
 </body>
