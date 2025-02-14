@@ -35,15 +35,29 @@ def battle(request):
     opponent_id = request.session.get('opponent_id')
     main_character = get_object_or_404(Character, id=selected_character_id)
     opponent = get_object_or_404(Character, id=opponent_id)
+    coin_toss_result = request.POST.get('coin_toss_result')
 
     steps = []
+    first_attacker = main_character if coin_toss_result == 'win' else opponent
+    second_attacker = opponent if first_attacker == main_character else main_character
+
     while main_character.life_points > 0 and opponent.life_points > 0:
-        damage = main_character.attack(opponent)
-        steps.append(f"{main_character.name} attacks {opponent.name} and deals {damage} damage.")
-        if opponent.life_points <= 0:
-            steps.append(f"{opponent.name} is defeated!")
-            BattleOutcome.objects.create(player=main_character, opponent=opponent, outcome='Win')
-            BattleOutcome.objects.create(player=opponent, opponent=main_character, outcome='Loss')
+        # First attacker attacks
+        damage = first_attacker.attack(second_attacker)
+        steps.append(f"{first_attacker.name} attacks {second_attacker.name} and deals {damage} damage.")
+        if second_attacker.life_points <= 0:
+            steps.append(f"{second_attacker.name} is defeated!")
+            outcome = 'Win' if first_attacker == main_character else 'Loss'
+            BattleOutcome.objects.create(player=main_character, opponent=opponent, outcome=outcome)
+            break
+
+        # Second attacker attacks
+        damage = second_attacker.attack(first_attacker)
+        steps.append(f"{second_attacker.name} attacks {first_attacker.name} and deals {damage} damage.")
+        if first_attacker.life_points <= 0:
+            steps.append(f"{first_attacker.name} is defeated!")
+            outcome = 'Loss' if first_attacker == main_character else 'Win'
+            BattleOutcome.objects.create(player=main_character, opponent=opponent, outcome=outcome)
             break
 
     return render(request, 'battle.html', {'steps': steps})

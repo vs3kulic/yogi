@@ -48,6 +48,3 @@ def fetch_quotes(character_name):
             return [f"Error: Failed to fetch quotes. Status code: {response.status_code}"]
     except requests.RequestException as e:
         return [f"Error: {str(e)}"]
-
-# Example usage
-print(fetch_quotes("Gimli"))  # Output: List of quotes or error message

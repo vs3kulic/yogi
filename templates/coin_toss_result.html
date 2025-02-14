@@ -14,7 +14,12 @@
         </header>
         <main>
             <p>You {{ result }} the coin toss!</p>
-            <a href="{% url 'battle' %}" class="next-button">Proceed to Battle</a>
+            <a href="{% url 'coin_toss' %}" class="next-button">Try Again</a>
+            <form method="post" action="{% url 'battle' %}">
+                {% csrf_token %}
+                <input type="hidden" name="coin_toss_result" value="{{ result }}">
+                <button type="submit" class="next-button">Proceed to Battle</button>
+            </form>
         </main>
     </div>
 </body>
