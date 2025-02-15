@@ -13,13 +13,11 @@
             <h1>Characters</h1>
         </header>
         <main>
-            <ul>
-                {% for character in characters %}
-                    <form action="{% url 'select_character' character.id %}" method="get">
-                        <button class="next-button">{{ character.name }}</button>
-                    </form>
-                {% endfor %}
-            </ul>
+            {% for character in characters %}
+                <form action="{% url 'select_character' character.id %}" method="get">
+                    <button class="next-button">{{ character.name }}</button>
+                </form>
+            {% endfor %}
         </main>
     </div>
 </body>

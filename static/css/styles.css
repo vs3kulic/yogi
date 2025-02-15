@@ -34,7 +34,7 @@ p {
 .character-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: center; /* Center the buttons horizontally */
     gap: 10px;
     padding: 0;
     margin: 20px 0;
@@ -52,6 +52,7 @@ p {
     flex: 1 1 45%; /* Responsive width */
     max-width: 300px;
     box-sizing: border-box;
+    text-align: center; /* Center the text within the button */
 }
 
 .character-button:hover {
