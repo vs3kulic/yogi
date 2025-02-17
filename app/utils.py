@@ -17,7 +17,7 @@ def fetch_character_id(character_name):
     # Use the mapped name if it exists, otherwise use the original name
     api_character_name = CHARACTER_NAME_MAPPING.get(character_name, character_name)
     
-    url = "https://the-one-api.dev/v2/character" 
+    url = "https://the-one-api.dev/v2/character"
     headers = {
         "Authorization": "Bearer 3DZRec9HNFn69urV6L_X" 
     }

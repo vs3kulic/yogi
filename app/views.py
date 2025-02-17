@@ -15,7 +15,7 @@ def select_character(request, character_id):
 
 def opponent_selected(request):
     opponent = Character.objects.filter(is_antagonist=True).order_by('?').first()
-    request.session['opponent_id'] = opponent.id  # Store the opponent's ID in the session
+    request.session['opponent_id'] = opponent.id
     message = "You have selected an opponent."
     return render(request, 'opponent_selected.html', {'character': opponent, 'message': message})
 
@@ -26,6 +26,7 @@ def coin_toss(request):
         result = 'win' if user_choice == coin_result else 'lose'
         return redirect('coin_toss_result', result=result)
     return render(request, 'coin_toss.html')
+
 
 def coin_toss_result(request, result):
     return render(request, 'coin_toss_result.html', {'result': result})
