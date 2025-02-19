@@ -25,9 +25,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install django  # Add explicit Django installation
         pip install requests
+        pip install mysqlclient django
         pip install -r requirements.txt
     - name: Run Tests
       run: |
         python3 manage.py test
+
       
 
