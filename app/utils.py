@@ -1,4 +1,5 @@
 import requests
+from decouple import config
 
 # Mapping of character names to their corresponding names in the API
 CHARACTER_NAME_MAPPING = {
@@ -19,7 +20,7 @@ def fetch_character_id(character_name):
     
     url = "https://the-one-api.dev/v2/character"
     headers = {
-        "Authorization": "Bearer 3DZRec9HNFn69urV6L_X" 
+        "Authorization": f"Bearer {config('API_BEARER_TOKEN')}"
     }
     try:
         response = requests.get(url, headers=headers, timeout=10)
@@ -45,15 +46,15 @@ def fetch_quotes(character_name):
     if "Error" in character_id:
         return [character_id]
 
-    url = f"https://the-one-api.dev/v2/character/{character_id}/quote"  # The actual URL of the external service
+    url = f"https://the-one-api.dev/v2/character/{character_id}/quote"
     headers = {
-        "Authorization": "Bearer 3DZRec9HNFn69urV6L_X"  # Replace YOUR_API_KEY with your actual API key
+        "Authorization": f"Bearer {config('API_BEARER_TOKEN')}"
     }
     try:
         response = requests.get(url, headers=headers, timeout=10)
         if response.status_code == 200:
             data = response.json()
-            return [quote['dialog'] for quote in data['docs']]  # Extracting the quotes (dialogs)
+            return [quote['dialog'] for quote in data['docs']]
         else:
             return [f"Error: Failed to fetch quotes. Status code: {response.status_code}"]
     except requests.RequestException as e:
@@ -63,7 +64,7 @@ def fetch_quotes(character_name):
 def fetch_all_characters():
     url = "https://the-one-api.dev/v2/character"
     headers = {
-        "Authorization": "Bearer 3DZRec9HNFn69urV6L_X"
+        "Authorization": f"Bearer {config('API_BEARER_TOKEN')}"
     }
     try:
         response = requests.get(url, headers=headers, timeout=10)
