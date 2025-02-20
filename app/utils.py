@@ -35,17 +35,13 @@ def fetch_character_id(character_name):
     except requests.RequestException as e:
         return f"Error: {str(e)}"
 
-def fetch_quotes(character_name):
+def fetch_quotes(character_id):
     """
     Fetch quotes from an external service.
 
-    params: character_name (str): The name of the character to fetch quotes for.
+    params: character_id (str): The ID of the character to fetch quotes for.
     returns: List of quotes or error message
     """
-    character_id = fetch_character_id(character_name)
-    if "Error" in character_id:
-        return [character_id]
-
     url = f"https://the-one-api.dev/v2/character/{character_id}/quote"
     headers = {
         "Authorization": f"Bearer {config('API_BEARER_TOKEN')}"

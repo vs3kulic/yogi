@@ -1,6 +1,6 @@
 import random
 from django.db import models
-from .utils import fetch_quotes
+from .utils import fetch_quotes, fetch_character_id
 
 class Character(models.Model):
     """
@@ -22,6 +22,15 @@ class Character(models.Model):
     def __str__(self):
         return str(self.name)
 
+    def assign_random_attributes(self):
+        """
+        Assign random values to attacks, defense, and life_points.
+        """
+        self.attacks = random.randint(5, 15)
+        self.defense = random.randint(3, 10)
+        self.life_points = random.randint(80, 120)
+        self.save()
+
     def attack(self, opponent):
         """
         Attack logic for the characters.
@@ -34,31 +43,23 @@ class Character(models.Model):
         return damage
 
     def use_special_ability(self):
-        """
-        Use the special ability of the main character.
-        """
         if self.special_ability:
             return f"{self.name} uses {self.special_ability}!"
         return None
 
     def use_secret_weapon(self):
-        """
-        Use the secret weapon of the antagonist character.
-        """
         if self.secret_weapon:
             return f"{self.name} uses {self.secret_weapon}!"
         return None
 
     def fetch_and_assign_quotes(self):
-        """
-        Fetch and assign a random quote to the main character.
-        """
-        quotes = fetch_quotes(self.name)
-        if quotes and not quotes[0].startswith("Error"):
-            self.quotes = [random.choice(quotes)]  # Select one random quote
-        else:
-            self.quotes = quotes
-        self.save()
+        try:
+            character_id = fetch_character_id(self.name)
+            quotes = fetch_quotes(character_id)
+            self.quotes = [random.choice(quotes)] if quotes else []
+            self.save()
+        except Exception as e:
+            print(f"Failed to fetch quotes for {self.name}. Error: {str(e)}")
 
 
 class BattleOutcome(models.Model):
