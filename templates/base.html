@@ -34,15 +34,15 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="footer py-3 text-center">
-        <div class="container">
-            <span>&copy; {{ now.year }} Fellowships Application. All rights reserved.</span>
-        </div>
-    </footer>
-
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     {% block extra_js %}{% endblock %}
 </body>
+
+<footer class="footer py-3 text-center">
+    <div class="container">
+        <span>&copy; {{ now.year }} Fellowships Application. All rights reserved.</span>
+    </div>
+</footer>
 
 </html>
