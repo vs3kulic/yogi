@@ -79,7 +79,7 @@ input, select, textarea {
 p {
     text-align: center;
     font-size: 16px;
-    color: #333;
+    color: #fff;
 }
 
 .character-list {
@@ -135,6 +135,7 @@ p {
 .battle-steps {
     text-align: left;
     margin-top: 20px;
+    color: #fff;
 }
 
 .coin-choice-buttons, .back-button-container {
