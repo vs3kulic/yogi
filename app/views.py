@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Character, BattleOutcome
+from .models import Character, BattleOutcome, Artifact
 import random
 
 def index(request):
@@ -27,8 +27,8 @@ def coin_toss(request):
         return redirect('coin_toss_result', result=result)
     return render(request, 'coin_toss.html')
 
-
 def coin_toss_result(request, result):
+    request.session['coin_toss_result'] = result
     return render(request, 'coin_toss_result.html', {'result': result})
 
 def battle(request):
@@ -36,8 +36,16 @@ def battle(request):
     opponent_id = request.session.get('opponent_id')
     main_character = get_object_or_404(Character, id=selected_character_id)
     opponent = get_object_or_404(Character, id=opponent_id)
-    coin_toss_result = request.POST.get('coin_toss_result')
+    
+    # Reset life points if needed (for testing)
+    main_character.life_points = 100
+    opponent.life_points = 100
+    main_character.save()
+    opponent.save()
 
+    coin_toss_result = request.session.get('coin_toss_result')
+    print("Coin toss result:", coin_toss_result)
+    
     steps = []
     first_attacker = main_character if coin_toss_result == 'win' else opponent
     second_attacker = opponent if first_attacker == main_character else main_character
@@ -72,3 +80,35 @@ def battle_results(request):
         'character_name': character.name,
         'outcomes': outcomes
     })
+
+def artifact_selection(request):
+    selected_character_id = request.session.get('selected_character_id')
+    main_character = get_object_or_404(Character, id=selected_character_id)
+    if not main_character:
+        # Optionally handle the case where no main character exists
+        return redirect('index')
+    artifacts = Artifact.objects.filter(character=main_character)
+    return render(request, 'artifact_selection.html', {
+        'character': main_character,
+        'artifacts': artifacts,
+    })
+
+def artifact_selected(request):
+    if request.method == 'POST':
+        artifact_id = request.POST.get('artifact_id')
+        # Retrieve the main character (Legolas)
+        selected_character_id = request.session.get('selected_character_id')
+        main_character = get_object_or_404(Character, id=selected_character_id)
+        artifact = get_object_or_404(Artifact, pk=artifact_id)
+        # Equip the selected artifact to the main character
+        main_character.equipped_artifact = artifact
+        main_character.save()
+        return redirect('opponent_selected')
+
+def attack(self, opponent):
+    # Get any equipped artifact's offensive bonus if available
+    bonus = self.equipped_artifact.offensive_property if self.equipped_artifact else 0
+    damage = max(0, (self.attacks + bonus) - opponent.defense)
+    opponent.life_points -= damage
+    opponent.save()
+    return damage

@@ -18,7 +18,7 @@
                 <em>"{{ quote }}"</em>
             {% endfor %}
         <!-- Add a button to move to the next step -->
-        <form action="{% url 'opponent_selected' %}" method="post">
+        <form action="{% url 'artifact_selection' %}" method="post">
             {% csrf_token %}
             <button class="next-button">Next Step</button>
         </form>

@@ -5,20 +5,26 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 {% endblock %}
 
-{% block title %}Battle Result{% endblock %}
+{% block title %}Battle{% endblock %}
 
 {% block content %}
 <div class="container">
     <header>
-        <h1>Battle Result</h1>
+        <h1>Battle Simulation</h1>
     </header>
     <main>
-        <div class="battle-steps">
-            {% for step in steps %}
-                <p>{{ step }}</p>
-            {% endfor %}
-        </div>
-        <a href="{% url 'battle_results' %}" class="next-button">View Battle Results</a>
+        {% if steps %}
+            <ul>
+                {% for step in steps %}
+                    <ul>{{ step }}</ul>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No battle steps were generated.</p>
+        {% endif %}
+        <form action="{% url 'battle_results' %}" method="post">
+            {% csrf_token %}
+            <button class="next-button">View Battle Results</button>
     </main>
 </div>
 {% endblock %}

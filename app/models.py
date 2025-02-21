@@ -15,12 +15,11 @@ class Character(models.Model):
     is_main_character = models.BooleanField(default=False)
     is_antagonist = models.BooleanField(default=False)
     special_ability = models.CharField(max_length=100, blank=True, null=True)
-    secret_weapon = models.CharField(max_length=100, blank=True, null=True)
     
     objects = models.Manager()
 
     def __str__(self):
-        return str(self.name)
+        return self.name
 
     def assign_random_attributes(self):
         """
@@ -31,27 +30,6 @@ class Character(models.Model):
         self.life_points = random.randint(80, 120)
         self.save()
 
-    def attack(self, opponent):
-        """
-        Attack logic for the characters.
-
-        params: opponent (object) - the opponent character
-        return: int - the damage dealt to the opponent
-        """
-        damage = self.attacks - opponent.defense
-        opponent.life_points -= damage
-        return damage
-
-    def use_special_ability(self):
-        if self.special_ability:
-            return f"{self.name} uses {self.special_ability}!"
-        return None
-
-    def use_secret_weapon(self):
-        if self.secret_weapon:
-            return f"{self.name} uses {self.secret_weapon}!"
-        return None
-
     def fetch_and_assign_quotes(self):
         try:
             character_id = fetch_character_id(self.name)
@@ -60,6 +38,36 @@ class Character(models.Model):
             self.save()
         except Exception as e:
             print(f"Failed to fetch quotes for {self.name}. Error: {str(e)}")
+
+    def attack(self, opponent):
+        """
+        Perform an attack on an opponent.
+        Damage is calculated as the difference between the character's attacks and the opponent's defense (min 0).
+        The opponent's life_points are reduced by the damage.
+        """
+        damage = max(0, self.attacks - opponent.defense)
+        opponent.life_points -= damage
+        opponent.save()
+        return damage
+
+
+class Artifact(models.Model):
+    """
+    A model class to represent an artifact associated with a character.
+    """
+    character = models.ForeignKey(Character, on_delete=models.CASCADE, related_name='artifacts')
+    artifact_name = models.CharField(max_length=100)
+    offensive_property = models.IntegerField(default=0)
+    defensive_property = models.IntegerField(default=0)
+
+    objects = models.Manager()
+
+    def __str__(self):
+        return self.artifact_name
+
+    class Meta:
+        # This forces the table name to be "app_artifacts"
+        db_table = 'app_artifacts'
 
 
 class BattleOutcome(models.Model):
