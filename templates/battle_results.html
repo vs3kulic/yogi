@@ -1,25 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Battle Results for {{ character_name }}</title>
-    {% load static %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_styles %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Battle Results for {{ character_name }}</h1>
-        </header>
-        <main>
-            <ul>
-                {% for outcome in outcomes %}
-                    <ul>{{ outcome.timestamp|date:"Y-m-d H:i:s" }} - {{ outcome.player }} vs {{ outcome.opponent }} - {{ outcome.outcome }}</ul>
-                {% endfor %}
-            </ul>
-            <a href="{% url 'index' %}" class="back-button">Back to Character Selection</a>
-        </main>
-    </div>
-</body>
-</html>
+{% endblock %}
+
+{% block title %}Battle Results for {{ character_name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header>
+        <h1>Battle Results for {{ character_name }}</h1>
+    </header>
+    <main>
+        <ul>
+            {% for outcome in outcomes %}
+                <ul>{{ outcome.timestamp|date:"Y-m-d H:i:s" }} - {{ outcome.player }} vs {{ outcome.opponent }} - {{ outcome.outcome }}</ul>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'index' %}" class="back-button">Back to Character Selection</a>
+    </main>
+</div>
+{% endblock %}

@@ -1,24 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
-    {% load static %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_styles %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Characters</h1>
-        </header>
-        <main>
-            {% for character in characters %}
-                <form action="{% url 'select_character' character.id %}" method="get">
-                    <button class="next-button">{{ character.name }}</button>
-                </form>
-            {% endfor %}
-        </main>
-    </div>
-</body>
-</html>
+{% endblock %}
+
+{% block title %}Characters - Fellowships Application{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header>
+        <h1>Characters</h1>
+    </header>
+    <main>
+        {% for character in characters %}
+            <form action="{% url 'select_character' character.id %}" method="get">
+                <button class="next-button">{{ character.name }}</button>
+            </form>
+        {% endfor %}
+    </main>
+</div>
+{% endblock %}

@@ -1,26 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coin Toss Result</title>
-    {% load static %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_styles %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Coin Toss Result</h1>
-        </header>
-        <main>
-            <p>You {{ result }} the coin toss!</p>
-            <a href="{% url 'coin_toss' %}" class="next-button">Try Again</a>
-            <form method="post" action="{% url 'battle' %}">
-                {% csrf_token %}
-                <input type="hidden" name="coin_toss_result" value="{{ result }}">
-                <button type="submit" class="next-button">Proceed to Battle</button>
-            </form>
-        </main>
-    </div>
-</body>
-</html>
+{% endblock %}
+
+{% block title %}Coin Toss Result{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header>
+        <h1>Coin Toss Result</h1>
+    </header>
+    <main>
+        <p>You {{ result }} the coin toss!</p>
+        <a href="{% url 'coin_toss' %}" class="next-button">Try Again</a>
+        <form method="post" action="{% url 'battle' %}">
+            {% csrf_token %}
+            <input type="hidden" name="coin_toss_result" value="{{ result }}">
+            <button type="submit" class="next-button">Proceed to Battle</button>
+        </form>
+    </main>
+</div>
+{% endblock %}

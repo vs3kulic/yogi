@@ -1,24 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Opponent Selected</title>
-    {% load static %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_styles %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Opponent Selected</h1>
-        </header>
-        <main>
-            <h2>{{ character.name }}</h2>
-            <form action="{% url 'coin_toss' %}" method="post">
-                {% csrf_token %}
-                <a href="{% url 'coin_toss' %}" button class="next-button">Proceed to Coin Toss</a>
-            </form>
-        </main>
-    </div>
-</body>
-</html>
+{% endblock %}
+
+{% block title %}Opponent Selected{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header>
+        <h1>Opponent Selected</h1>
+    </header>
+    <main>
+        <h2>{{ character.name }}</h2>
+        <form action="{% url 'coin_toss' %}" method="post">
+            {% csrf_token %}
+            <a href="{% url 'coin_toss' %}" button class="next-button">Proceed to Coin Toss</a>
+        </form>
+    </main>
+</div>
+{% endblock %}

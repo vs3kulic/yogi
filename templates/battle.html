@@ -1,25 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Battle Result</title>
-    {% load static %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_styles %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Battle Result</h1>
-        </header>
-        <main>
-            <div class="battle-steps">
-                {% for step in steps %}
-                    <p>{{ step }}</p>
-                {% endfor %}
-            </div>
-            <a href="{% url 'battle_results' %}" class="next-button">View Battle Results</a>
-        </main>
-    </div>
-</body>
-</html>
+{% endblock %}
+
+{% block title %}Battle Result{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header>
+        <h1>Battle Result</h1>
+    </header>
+    <main>
+        <div class="battle-steps">
+            {% for step in steps %}
+                <p>{{ step }}</p>
+            {% endfor %}
+        </div>
+        <a href="{% url 'battle_results' %}" class="next-button">View Battle Results</a>
+    </main>
+</div>
+{% endblock %}

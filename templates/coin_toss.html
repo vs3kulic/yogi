@@ -1,24 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coin Toss</title>
-    {% load static %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_styles %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Coin Toss</h1>
-        </header>
-        <main>
-            <form method="POST" action="{% url 'coin_toss' %}">
-                {% csrf_token %}
-                <button button class="next-button" type="submit" name="coin_choice" value="heads">Heads</button>
-                <button button class="next-button" type="submit" name="coin_choice" value="tails">Tails</button>
-            </form>
-        </main>
-    </div>
-</body>
-</html>
+{% endblock %}
+
+{% block title %}Coin Toss{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header>
+        <h1>Coin Toss</h1>
+    </header>
+    <main>
+        <form method="POST" action="{% url 'coin_toss' %}">
+            {% csrf_token %}
+            <button button class="next-button" type="submit" name="coin_choice" value="heads">Heads</button>
+            <button button class="next-button" type="submit" name="coin_choice" value="tails">Tails</button>
+        </form>
+    </main>
+</div>
+{% endblock %}
