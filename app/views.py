@@ -51,22 +51,29 @@ def battle(request):
     second_attacker = opponent if first_attacker == main_character else main_character
 
     while main_character.life_points > 0 and opponent.life_points > 0:
-        # First attacker attacks
         damage = first_attacker.attack(second_attacker)
         steps.append(f"{first_attacker.name} attacks {second_attacker.name} and deals {damage} damage.")
         if second_attacker.life_points <= 0:
             steps.append(f"{second_attacker.name} is defeated!")
             outcome = 'Win' if first_attacker == main_character else 'Loss'
-            BattleOutcome.objects.create(player=main_character, opponent=opponent, outcome=outcome)
+            # Removed artifact retrieval code
+            BattleOutcome.objects.create(
+                player=main_character.name,
+                opponent=opponent.name,
+                outcome=outcome
+            )
             break
 
-        # Second attacker attacks
         damage = second_attacker.attack(first_attacker)
         steps.append(f"{second_attacker.name} attacks {first_attacker.name} and deals {damage} damage.")
         if first_attacker.life_points <= 0:
             steps.append(f"{first_attacker.name} is defeated!")
             outcome = 'Loss' if first_attacker == main_character else 'Win'
-            BattleOutcome.objects.create(player=main_character, opponent=opponent, outcome=outcome)
+            BattleOutcome.objects.create(
+                player=main_character.name,
+                opponent=opponent.name,
+                outcome=outcome
+            )
             break
 
     return render(request, 'battle.html', {'steps': steps})
@@ -76,16 +83,9 @@ def battle_results(request):
     character = get_object_or_404(Character, id=selected_character_id)
     outcomes = BattleOutcome.objects.filter(player=character).order_by('-timestamp')
     
-    # Assume you stored the opponent's artifact id in session in a previous step:
-    opponent_artifact_id = request.session.get('opponent_artifact_id')
-    opponent_artifact = None
-    if opponent_artifact_id:
-        opponent_artifact = get_object_or_404(Artifact, id=opponent_artifact_id)
-    
-    # Removed equipped_artifact reference from the context
+    # Removed the 'equipped_artifact' from context since Character has no such field.
     return render(request, 'battle_results.html', {
         'character_name': character.name,
-        'opponent_artifact': opponent_artifact,
         'outcomes': outcomes
     })
 
@@ -120,9 +120,8 @@ def artifact_selected(request):
         selected_character_id = request.session.get('selected_character_id')
         main_character = get_object_or_404(Character, id=selected_character_id)
         artifact = get_object_or_404(Artifact, pk=artifact_id)
-        # Equip the selected artifact to the main character
-        main_character.equipped_artifact = artifact
-        main_character.save()
+        # Instead of setting an attribute on Character, store the artifact id in session.
+        request.session['main_artifact_id'] = artifact.id
         return redirect('opponent_selected')
 
 def attack(self, opponent):

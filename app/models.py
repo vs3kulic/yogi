@@ -78,6 +78,9 @@ class BattleOutcome(models.Model):
     opponent = models.CharField(max_length=100)
     outcome = models.CharField(max_length=100)
     timestamp = models.DateTimeField(auto_now_add=True)
+    
+    # Removed main_artifact and opponent_artifact fields that cause 
+    # an OperationalError because their corresponding columns don't exist.
 
     objects = models.Manager()
 
