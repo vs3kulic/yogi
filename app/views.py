@@ -96,7 +96,19 @@ def artifact_selection(request):
 def artifact_selected(request):
     if request.method == 'POST':
         artifact_id = request.POST.get('artifact_id')
-        # Retrieve the main character (Legolas)
+        if not artifact_id:
+            # No artifact was selected; add an error message to the context
+            selected_character_id = request.session.get('selected_character_id')
+            main_character = get_object_or_404(Character, id=selected_character_id)
+            artifacts = Artifact.objects.filter(character=main_character)
+            error = "Please select an artifact before continuing."
+            return render(request, 'artifact_selection.html', {
+                'character': main_character,
+                'artifacts': artifacts,
+                'error': error,
+            })
+
+        # Artifact was selected
         selected_character_id = request.session.get('selected_character_id')
         main_character = get_object_or_404(Character, id=selected_character_id)
         artifact = get_object_or_404(Artifact, pk=artifact_id)

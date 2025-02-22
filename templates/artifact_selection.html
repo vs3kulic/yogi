@@ -11,6 +11,9 @@
     <main>
         <form method="post" action="{% url 'artifact_selected' %}">
             {% csrf_token %}
+            {% if error %}
+                <p class="error" style="color: red;">{{ error }}</p>
+            {% endif %}
             {% for artifact in artifacts %}
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="artifact_id" value="{{ artifact.id }}" id="artifact_{{ artifact.id }}">
