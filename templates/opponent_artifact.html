@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}
+
+{% block title %}Opponent Artifact{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header>
+        <h1>Opponent Artifact</h1>
+    </header>
+    <main>
+        {% if selected_artifact %}
+            <p>{{ opponent.name }} has chosen the artifact: <strong>{{ selected_artifact.artifact_name }}</strong>
+            (Offense: {{ selected_artifact.offensive_property }}, Defense: {{ selected_artifact.defensive_property }}).</p>
+        {% else %}
+            <p>{{ opponent.name }} has not been assigned any artifact.</p>
+        {% endif %}
+        <a href="{% url 'coin_toss' %}" class="next-button">Proceed to Coin Toss</a>
+    </main>
+</div>
+{% endblock %}

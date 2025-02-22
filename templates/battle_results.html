@@ -15,7 +15,9 @@
     <main>
         <ul>
             {% for outcome in outcomes %}
-                <ul>{{ outcome.timestamp|date:"Y-m-d H:i:s" }} - {{ outcome.player }} vs {{ outcome.opponent }} - {{ outcome.outcome }}</ul>
+                <ul>
+                    {{ outcome.timestamp|date:"Y-m-d H:i:s" }} - {{ outcome.player }} vs {{ outcome.opponent }} - {{ outcome.outcome }}
+                </ul>
             {% endfor %}
         </ul>
         <a href="{% url 'index' %}" class="back-button">Back to Character Selection</a>

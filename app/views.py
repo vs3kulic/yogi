@@ -1,6 +1,6 @@
+import random
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Character, BattleOutcome, Artifact
-import random
 
 def index(request):
     characters = Character.objects.filter(is_main_character=True)
@@ -75,9 +75,17 @@ def battle_results(request):
     selected_character_id = request.session.get('selected_character_id')
     character = get_object_or_404(Character, id=selected_character_id)
     outcomes = BattleOutcome.objects.filter(player=character).order_by('-timestamp')
-
+    
+    # Assume you stored the opponent's artifact id in session in a previous step:
+    opponent_artifact_id = request.session.get('opponent_artifact_id')
+    opponent_artifact = None
+    if opponent_artifact_id:
+        opponent_artifact = get_object_or_404(Artifact, id=opponent_artifact_id)
+    
+    # Removed equipped_artifact reference from the context
     return render(request, 'battle_results.html', {
         'character_name': character.name,
+        'opponent_artifact': opponent_artifact,
         'outcomes': outcomes
     })
 
@@ -124,3 +132,16 @@ def attack(self, opponent):
     opponent.life_points -= damage
     opponent.save()
     return damage
+
+def opponent_artifact(request):
+    opponent_id = request.session.get('opponent_id')
+    if not opponent_id:
+        return redirect('index')
+    opponent = get_object_or_404(Character, id=opponent_id)
+    artifacts = list(Artifact.objects.filter(character=opponent))
+    selected_artifact = random.choice(artifacts) if artifacts else None
+    request.session['opponent_artifact_id'] = selected_artifact.id
+    return render(request, 'opponent_artifact.html', {
+        'opponent': opponent,
+        'selected_artifact': selected_artifact,
+    })

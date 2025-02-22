@@ -13,4 +13,5 @@ urlpatterns = [
     path('artifact-selection/', artifact_selection, name='artifact_selection'),
     path('artifact-selected/', artifact_selected, name='artifact_selected'),
     path('next-step/', battle, name='next_step'),
+    path('opponent-artifact/', views.opponent_artifact, name='opponent_artifact'),
 ]

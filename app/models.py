@@ -52,21 +52,21 @@ class Character(models.Model):
 
 
 class Artifact(models.Model):
-    """
-    A model class to represent an artifact associated with a character.
-    """
-    character = models.ForeignKey(Character, on_delete=models.CASCADE, related_name='artifacts')
+    id = models.AutoField(primary_key=True)  # Enforce a 32-bit signed integer PK
     artifact_name = models.CharField(max_length=100)
     offensive_property = models.IntegerField(default=0)
     defensive_property = models.IntegerField(default=0)
-
+    character = models.ForeignKey(
+        'Character',
+        on_delete=models.CASCADE,
+        related_name='artifacts'
+    )
     objects = models.Manager()
 
     def __str__(self):
         return self.artifact_name
 
     class Meta:
-        # This forces the table name to be "app_artifacts"
         db_table = 'app_artifacts'
 
 

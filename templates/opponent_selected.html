@@ -14,11 +14,10 @@
     </header>
     <main>
         <h2>{{ character.name }}</h2>
-        <form action="{% url 'coin_toss' %}" method="post">
+        <form action="{% url 'opponent_artifact' %}" method="post">
             {% csrf_token %}
-            <a href="{% url 'coin_toss' %}" button class="next-button">Proceed to Coin Toss</a>
+            <a href="{% url 'opponent_artifact' %}" class="next-button">View Opponent Artifact</a>
         </form>
-        
     </main>
 </div>
 {% endblock %}
