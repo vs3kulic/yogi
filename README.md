@@ -2,6 +2,12 @@
 
 A repository for learning Python with Django. This project simulates a simple game where users can select a character, equip artifacts, flip a coin, and then engage in a battle simulation.
 
+## Tech Stack
+
+- **Django:** A high-level Python web framework that encourages rapid development and clean, pragmatic design.
+- **Bootstrap:** A popular front-end framework for developing responsive and mobile-first websites.
+- **MySQL:** A widely used open-source relational database management system.
+
 ## Features
 
 - **Character Selection:**  
