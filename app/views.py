@@ -50,13 +50,13 @@ def battle(request):
     first_attacker = main_character if coin_toss_result == 'win' else opponent
     second_attacker = opponent if first_attacker == main_character else main_character
 
+    # Battle loop
     while main_character.life_points > 0 and opponent.life_points > 0:
         damage = first_attacker.attack(second_attacker)
         steps.append(f"{first_attacker.name} attacks {second_attacker.name} and deals {damage} damage.")
         if second_attacker.life_points <= 0:
             steps.append(f"{second_attacker.name} is defeated!")
             outcome = 'Win' if first_attacker == main_character else 'Loss'
-            # Removed artifact retrieval code
             BattleOutcome.objects.create(
                 player=main_character.name,
                 opponent=opponent.name,
@@ -125,9 +125,8 @@ def artifact_selected(request):
         return redirect('opponent_selected')
 
 def attack(self, opponent):
-    # Get any equipped artifact's offensive bonus if available
-    bonus = self.equipped_artifact.offensive_property if self.equipped_artifact else 0
-    damage = max(0, (self.attacks + bonus) - opponent.defense)
+    # Removed artifact bonus since 'equipped_artifact' is not used anymore
+    damage = max(0, self.attacks - opponent.defense)
     opponent.life_points -= damage
     opponent.save()
     return damage

@@ -71,18 +71,21 @@ class Artifact(models.Model):
 
 
 class BattleOutcome(models.Model):
-    """
-    A model class to represent the outcome of a battle.
-    """
     player = models.CharField(max_length=100)
     opponent = models.CharField(max_length=100)
     outcome = models.CharField(max_length=100)
     timestamp = models.DateTimeField(auto_now_add=True)
-    
-    # Removed main_artifact and opponent_artifact fields that cause 
-    # an OperationalError because their corresponding columns don't exist.
-
-    objects = models.Manager()
-
-    def __str__(self):
-        return f"{self.player} vs {self.opponent} - {self.outcome} on {self.timestamp}"
+    main_artifact = models.ForeignKey(
+        'Artifact',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='battle_main'
+    )
+    opponent_artifact = models.ForeignKey(
+        'Artifact',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='battle_opponent'
+    )
