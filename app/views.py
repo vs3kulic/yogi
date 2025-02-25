@@ -3,10 +3,22 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Character, BattleOutcome, Artifact
 
 def index(request):
+    """
+    Render the index page.
+    """
+    return render(request, 'index.html')
+
+def character_selection(request):
+    """
+    Display a list of main characters so the user can choose one.
+    """
     characters = Character.objects.filter(is_main_character=True)
-    return render(request, 'index.html', {'characters': characters})
+    return render(request, 'character_selection.html', {'characters': characters})
 
 def select_character(request, character_id):
+    """
+    Select a character, assign quotes if applicable, and store its ID in the session.
+    """
     character = get_object_or_404(Character, id=character_id)
     if character.is_main_character:
         character.fetch_and_assign_quotes()  # Fetch and assign quotes only for main characters
@@ -37,7 +49,7 @@ def battle(request):
     main_character = get_object_or_404(Character, id=selected_character_id)
     opponent = get_object_or_404(Character, id=opponent_id)
     
-    # Reset life points if needed (for testing)
+    # Reset life points for testing
     main_character.life_points = 100
     opponent.life_points = 100
     main_character.save()
@@ -50,7 +62,6 @@ def battle(request):
     first_attacker = main_character if coin_toss_result == 'win' else opponent
     second_attacker = opponent if first_attacker == main_character else main_character
 
-    # Battle loop
     while main_character.life_points > 0 and opponent.life_points > 0:
         damage = first_attacker.attack(second_attacker)
         steps.append(f"{first_attacker.name} attacks {second_attacker.name} and deals {damage} damage.")
@@ -83,7 +94,6 @@ def battle_results(request):
     character = get_object_or_404(Character, id=selected_character_id)
     outcomes = BattleOutcome.objects.filter(player=character).order_by('-timestamp')
     
-    # Removed the 'equipped_artifact' from context since Character has no such field.
     return render(request, 'battle_results.html', {
         'character_name': character.name,
         'outcomes': outcomes
@@ -93,7 +103,6 @@ def artifact_selection(request):
     selected_character_id = request.session.get('selected_character_id')
     main_character = get_object_or_404(Character, id=selected_character_id)
     if not main_character:
-        # Optionally handle the case where no main character exists
         return redirect('index')
     artifacts = Artifact.objects.filter(character=main_character)
     return render(request, 'artifact_selection.html', {
@@ -105,7 +114,6 @@ def artifact_selected(request):
     if request.method == 'POST':
         artifact_id = request.POST.get('artifact_id')
         if not artifact_id:
-            # No artifact was selected; add an error message to the context
             selected_character_id = request.session.get('selected_character_id')
             main_character = get_object_or_404(Character, id=selected_character_id)
             artifacts = Artifact.objects.filter(character=main_character)
@@ -116,20 +124,11 @@ def artifact_selected(request):
                 'error': error,
             })
 
-        # Artifact was selected
         selected_character_id = request.session.get('selected_character_id')
         main_character = get_object_or_404(Character, id=selected_character_id)
         artifact = get_object_or_404(Artifact, pk=artifact_id)
-        # Instead of setting an attribute on Character, store the artifact id in session.
         request.session['main_artifact_id'] = artifact.id
         return redirect('opponent_selected')
-
-def attack(self, opponent):
-    # Removed artifact bonus since 'equipped_artifact' is not used anymore
-    damage = max(0, self.attacks - opponent.defense)
-    opponent.life_points -= damage
-    opponent.save()
-    return damage
 
 def opponent_artifact(request):
     opponent_id = request.session.get('opponent_id')
@@ -143,3 +142,9 @@ def opponent_artifact(request):
         'opponent': opponent,
         'selected_artifact': selected_artifact,
     })
+
+def lore(request):
+    """
+    Render a placeholder lore/info page.
+    """
+    return render(request, 'lore.html')

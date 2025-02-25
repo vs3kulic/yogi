@@ -91,32 +91,36 @@ p {
     color: #fff;
 }
 
+/* Style for character list: remove bullet points and stack buttons vertically */
 .character-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Center the buttons horizontally */
-    gap: 10px;
+    list-style: none;
     padding: 0;
-    margin: 20px 0;
+    margin: 0;
+    width: 100%;
 }
 
+/* Each list item gets some bottom spacing */
+.character-list li {
+    margin-bottom: 15px;
+}
+
+/* Style for character buttons */
 .character-button {
-    padding: 20px 40px; /* Increased padding for larger buttons */
-    font-size: 18px;
-    background-color: #333333;
+    display: block;
+    width: 100%;
+    max-width: 300px; /* Limit button width */
+    margin: 0 auto;   /* Center button horizontally */
+    text-align: center;
+    background-color: #333;
     color: #fff;
-    border: none;
+    padding: 15px;
     border-radius: 5px;
-    cursor: pointer;
+    text-decoration: none;
     transition: background-color 0.3s ease;
-    flex: 1 1 45%; /* Responsive width */
-    max-width: 300px;
-    box-sizing: border-box;
-    text-align: center; /* Center the text within the button */
 }
 
 .character-button:hover {
-    background-color: #000000;
+    background-color: #000;
 }
 
 .character-button:focus {

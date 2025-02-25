@@ -4,6 +4,7 @@ from .views import artifact_selection, artifact_selected, battle
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('character_selection/', views.character_selection, name='character_selection'),
     path('character/<int:character_id>/', views.select_character, name='select_character'),
     path('opponent_selected/', views.opponent_selected, name='opponent_selected'),
     path('coin_toss/', views.coin_toss, name='coin_toss'), 
@@ -14,4 +15,5 @@ urlpatterns = [
     path('artifact-selected/', artifact_selected, name='artifact_selected'),
     path('next-step/', battle, name='next_step'),
     path('opponent-artifact/', views.opponent_artifact, name='opponent_artifact'),
+    path('lore/', views.lore, name='lore'),
 ]

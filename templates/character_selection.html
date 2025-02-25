@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Character Selection{% endblock %}
+
+{% block content %}
+<div class="container">
+  <header>
+    <h1>Select Your Character</h1>
+  </header>
+  <main>
+    <ul class="character-list">
+      {% for character in characters %}
+        <li>
+          <a class="character-button" href="{% url 'select_character' character.id %}">
+            {{ character.name }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </main>
+</div>
+{% endblock %}
