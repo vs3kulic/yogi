@@ -204,4 +204,178 @@ p {
     background-color: #000000;
 }
 
+/* Battle Results Table Styles */
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+    font-size: 0.95em;
+}
+
+.results-table th,
+.results-table td {
+    border: 1px solid #dddddd;
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.results-table th {
+    background-color: #333;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.results-table tr:nth-child(even) {
+    background-color: #000;
+}
+
+/* Back button styles */
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #000;
+}
+
+/* Lore Page Styles */
+.lore-container {
+    padding: 20px;
+    line-height: 1.6;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    max-width: 800px;
+    margin: 40px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.lore-container header h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.lore-container p {
+    margin-bottom: 20px;
+}
+
+.lore-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.lore-links li {
+    margin-bottom: 10px;
+}
+
+.lore-container a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.lore-container a:hover {
+    text-decoration: underline;
+}
+
+.back-button {
+    display: inline-block;
+    text-align: center;
+    margin: 30px auto 0;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* Battle Page Custom Styles */
+.battle-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.battle-steps {
+    list-style: none;  /* Remove bullets */
+    padding: 0;
+    margin: 20px 0;
+}
+.battle-steps li {
+    padding: 12px 16px;
+    margin-bottom: 15px;
+    background-color: #000;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    line-height: 1.5;
+    text-align: center;  /* Center the text within each battle step */
+}
+form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.next-button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.next-button:hover {
+    background-color: #000;
+}
+
+/* Artifact Selection Button Styles */
+.artifact-buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;  /* Reduced gap between buttons */
+    flex-wrap: wrap;
+    margin-top: 10px;  /* Reduce the overall top margin, if any */
+}
+
+.artifact-button {
+    padding: 8px 12px;  /* Adjust padding to reduce the button's footprint */
+    margin: 0;          /* Remove any extra margin */
+    font-size: 1rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.artifact-button:hover {
+    background-color: #000;
+}
+
+/* Index Page Image Styling */
+.index-image {
+    display: block;
+    max-width: 65%;     /* Makes the image a bit smaller */
+    height: auto;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    /* Apply a combination of filters to achieve a hand-drawn look */
+    filter: brightness(0.7) grayscale(100%) contrast(1.2);
+}
+
 /* Additional custom overrides can go here */

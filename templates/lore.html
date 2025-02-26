@@ -1,14 +1,43 @@
 {% extends 'base.html' %}
-{% block title %}Lore{% endblock %}
+{% load static %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}
+
+{% block title %}Lore & Info{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="lore-container">
   <header>
-    <h1>Lore & More Information</h1>
+    <h1>Lore & Info</h1>
   </header>
   <main>
-    <p>This page is coming soon. Here you will find detailed information about the characters and artifacts.</p>
-    <a href="{% url 'index' %}" class="back-button">Back to Home</a>
+    <p>
+      Welcome to the Fellowships Game, a study in Python and a tribute to timeless legends!
+    </p>
+    <p>
+      This game is inspired by the epic fantasy novel series <em>The Lord of the Rings</em> by J.R.R. Tolkien, first published in the mid‑1950s (1954–1955). In an era when paper, pen, and imagination breathed life into stories, Tolkien created a universe of myth and magic.
+    </p>
+    <p>
+      Now, in our modern age, our game revives that timeless spirit. Just as Tolkien's work transcends time, our game bridges classic storytelling with today's digital innovation.
+    </p>
+    <p>
+      Pick your hero, trust your luck (a coin flip will decide who strikes first!), and let the echoes of history guide your quest against the forces of darkness.
+    </p>
+    <div class="lore-links">
+      <p>For more LOTR-themed background, check out:</p>
+      <ul>
+        <li><a href="https://en.wikipedia.org/wiki/The_Lord_of_the_Rings" target="_blank">The Lord of the Rings on Wikipedia</a></li>
+        <li><a href="https://tolkiengateway.net" target="_blank">Tolkien Gateway</a></li>
+        <li><a href="https://lotr.fandom.com/wiki/Portal:Lord_of_the_Rings" target="_blank">LOTR Wiki</a></li>
+        <li><a href="https://the-one-api.dev/" target="_blank">The One API</a></li>
+      </ul>
+    </div>
+    <p>
+      Our project goals, detailed in the <a href="https://github.com/your-repo/Fellowships#readme" target="_blank">README</a>, celebrate the blend of classic lore and modern programming techniques—an homage bridging the past and today.
+    </p>
+    <button class="next-button mt-3" type="button" onclick="window.location.href='{% url 'index' %}'">Back to Home</button>
   </main>
 </div>
 {% endblock %}

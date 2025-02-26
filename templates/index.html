@@ -13,11 +13,11 @@
         <h1>Welcome to Fellowships</h1>
     </header>
     <main>
-        <p>Learn more about LOTR... or just go fight!</p>
+        <p>Here you can learn more about Lord of the Rings...</p>
+        <img src="{% static 'images/armor.png' %}" alt="armor" class="index-image">
+        <p>...or just have a good, old-fashioned fantasy brawl!!</p>
         <div class="button-group">
-            <!-- Link to the lore/info page; ensure its URL name is defined in urls.py (e.g., 'lore') -->
-            <a href="{% url 'lore' %}" class="next-button">More Info / Lore</a>
-            <!-- Link to the character selection page -->
+            <a href="{% url 'lore' %}" class="next-button">More Info</a>
             <a href="{% url 'character_selection' %}" class="next-button">Fight Now</a>
         </div>
     </main>

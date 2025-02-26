@@ -68,10 +68,15 @@ def battle(request):
         if second_attacker.life_points <= 0:
             steps.append(f"{second_attacker.name} is defeated!")
             outcome = 'Win' if first_attacker == main_character else 'Loss'
+            main_artifact_id = request.session.get('main_artifact_id')
+            opponent_artifact_id = request.session.get('opponent_artifact_id')
+
             BattleOutcome.objects.create(
                 player=main_character.name,
                 opponent=opponent.name,
-                outcome=outcome
+                outcome=outcome,
+                main_artifact=Artifact.objects.get(id=main_artifact_id) if main_artifact_id else None,
+                opponent_artifact=Artifact.objects.get(id=opponent_artifact_id) if opponent_artifact_id else None,
             )
             break
 
@@ -80,10 +85,15 @@ def battle(request):
         if first_attacker.life_points <= 0:
             steps.append(f"{first_attacker.name} is defeated!")
             outcome = 'Loss' if first_attacker == main_character else 'Win'
+            main_artifact_id = request.session.get('main_artifact_id')
+            opponent_artifact_id = request.session.get('opponent_artifact_id')
+
             BattleOutcome.objects.create(
                 player=main_character.name,
                 opponent=opponent.name,
-                outcome=outcome
+                outcome=outcome,
+                main_artifact=Artifact.objects.get(id=main_artifact_id) if main_artifact_id else None,
+                opponent_artifact=Artifact.objects.get(id=opponent_artifact_id) if opponent_artifact_id else None,
             )
             break
 

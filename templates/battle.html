@@ -2,21 +2,21 @@
 {% load static %}
 
 {% block extra_styles %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 {% endblock %}
 
-{% block title %}Battle{% endblock %}
+{% block title %}Battle Simulation{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container battle-container">
     <header>
         <h1>Battle Simulation</h1>
     </header>
     <main>
         {% if steps %}
-            <ul>
+            <ul class="battle-steps">
                 {% for step in steps %}
-                    <ul>{{ step }}</ul>
+                    <li>{{ step }}</li>
                 {% endfor %}
             </ul>
         {% else %}
@@ -24,7 +24,8 @@
         {% endif %}
         <form action="{% url 'battle_results' %}" method="post">
             {% csrf_token %}
-            <button class="next-button">View Battle Results</button>
+            <button class="next-button" type="submit">View Battle Results</button>
+        </form>
     </main>
 </div>
 {% endblock %}
