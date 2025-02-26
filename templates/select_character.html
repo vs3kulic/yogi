@@ -14,9 +14,12 @@
     </header>
     <main>
         <h2>{{ character.name }}</h2>
-            {% for quote in character.quotes %}
-                <em>"{{ quote }}"</em>
-            {% endfor %}
+        <p>
+            (Attack: {{ character.attacks }}, Defense: {{ character.defense }}, Life Points: {{ character.life_points }})
+        </p>
+        {% for quote in character.quotes %}
+            <em>"{{ quote }}"</em>
+        {% endfor %}
         <!-- Add a button to move to the next step -->
         <form action="{% url 'artifact_selection' %}" method="post">
             {% csrf_token %}

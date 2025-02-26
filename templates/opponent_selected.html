@@ -14,6 +14,9 @@
     </header>
     <main>
         <h2>{{ character.name }}</h2>
+        <p>
+            (Attack: {{ opponent.attack }}, Defense: {{ opponent.defense }}, Life Points: {{ opponent.life_points }})
+        </p>
         <form action="{% url 'opponent_artifact' %}" method="post">
             {% csrf_token %}
             <a href="{% url 'opponent_artifact' %}" class="next-button">View Opponent Artifact</a>
