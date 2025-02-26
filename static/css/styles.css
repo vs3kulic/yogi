@@ -378,12 +378,8 @@ form {
 /* Index Page Image Styling */
 .index-image {
     display: block;
-    max-width: 65%;     /* Makes the image a bit smaller */
+    max-width: 100%;
     height: auto;
     margin: 20px auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    filter: invert(1) brightness(0.7);
+    filter: invert(1) brightness(0.9);
 }
-
-/* Additional custom overrides can go here */
