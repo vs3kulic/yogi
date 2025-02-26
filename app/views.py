@@ -20,6 +20,9 @@ def select_character(request, character_id):
     Select a character, assign quotes if applicable, and store its ID in the session.
     """
     character = get_object_or_404(Character, id=character_id)
+    character.life_points = 100
+    character.save()
+    
     if character.is_main_character:
         character.fetch_and_assign_quotes()  # Fetch and assign quotes only for main characters
     request.session['selected_character_id'] = character.id  # Store the selected character's ID in the session
@@ -158,3 +161,17 @@ def lore(request):
     Render a placeholder lore/info page.
     """
     return render(request, 'lore.html')
+
+def prepare_battle(request):
+    # Fetch your character and opponent objects using session variables or URL parameters
+    character = get_object_or_404(Character, pk=request.session.get('character_id'))
+    opponent = get_object_or_404(Character, pk=request.session.get('opponent_id'))
+    
+    # Reset life_points for both to 100
+    character.life_points = 100
+    opponent.life_points = 100
+    character.save()
+    opponent.save()
+    
+    # Now proceed with the battle or redirect to the battle view/template
+    return redirect('battle')

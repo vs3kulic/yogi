@@ -15,7 +15,7 @@
     <main>
         <h2>{{ character.name }}</h2>
         <p>
-            (Attack: {{ opponent.attack }}, Defense: {{ opponent.defense }}, Life Points: {{ opponent.life_points }})
+            (Attack: {{ character.attacks }}, Defense: {{ character.defense }}, Life Points: {{ character.life_points }})
         </p>
         <form action="{% url 'opponent_artifact' %}" method="post">
             {% csrf_token %}
