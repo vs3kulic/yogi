@@ -204,30 +204,39 @@ p {
     background-color: #000000;
 }
 
+/* Responsive Table Wrapper */
+.responsive-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 /* Battle Results Table Styles */
 .results-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
-    font-family: Arial, sans-serif;
-    font-size: 0.95em;
+    margin-top: 20px;
+    min-width: 600px;  /* Forces a minimum width so columns don't squish too much */
 }
 
 .results-table th,
 .results-table td {
-    border: 1px solid #dddddd;
-    padding: 12px 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
     text-align: center;
 }
 
 .results-table th {
     background-color: #333;
-    color: #ffffff;
-    font-weight: bold;
+    color: #fff;
 }
 
-.results-table tr:nth-child(even) {
-    background-color: #000;
+/* Optional: Make the table font size smaller on mobile */
+@media (max-width: 600px) {
+    .results-table th,
+    .results-table td {
+        padding: 8px;
+        font-size: 0.85em;
+    }
 }
 
 /* Back button styles */
@@ -374,8 +383,7 @@ form {
     margin: 20px auto;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    /* Apply a combination of filters to achieve a hand-drawn look */
-    filter: brightness(0.7) grayscale(100%) contrast(1.2);
+    filter: invert(1) brightness(0.7);
 }
 
 /* Additional custom overrides can go here */
