@@ -3,4 +3,5 @@ djangorestframework
 requests
 python-decouple
 mysqlclient
+openai
 dotenv
