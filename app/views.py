@@ -1,6 +1,10 @@
 import random
+import os
+import openai
 from django.shortcuts import render, get_object_or_404, redirect
+from dotenv import load_dotenv
 from .models import Character, BattleOutcome, Artifact
+
 
 def index(request):
     """
@@ -52,25 +56,23 @@ def battle(request):
     main_character = get_object_or_404(Character, id=selected_character_id)
     opponent = get_object_or_404(Character, id=opponent_id)
     
-    # Reset life points for testing
+    # Reset life points for battle simulation
     main_character.life_points = 100
     opponent.life_points = 100
     main_character.save()
     opponent.save()
-
-    coin_toss_result = request.session.get('coin_toss_result')
-    print("Coin toss result:", coin_toss_result)
     
     steps = []
-    first_attacker = main_character if coin_toss_result == 'win' else opponent
-    second_attacker = opponent if first_attacker == main_character else main_character
+    # For demonstration, let's decide an arbitrary order
+    first_attacker = main_character
+    second_attacker = opponent
 
     while main_character.life_points > 0 and opponent.life_points > 0:
         damage = first_attacker.attack(second_attacker)
         steps.append(f"{first_attacker.name} attacks {second_attacker.name} and deals {damage} damage.")
         if second_attacker.life_points <= 0:
             steps.append(f"{second_attacker.name} is defeated!")
-            outcome = 'Win' if first_attacker == main_character else 'Loss'
+            outcome = "Win" if first_attacker == main_character else "Loss"
             main_artifact_id = request.session.get('main_artifact_id')
             opponent_artifact_id = request.session.get('opponent_artifact_id')
 
@@ -87,7 +89,7 @@ def battle(request):
         steps.append(f"{second_attacker.name} attacks {first_attacker.name} and deals {damage} damage.")
         if first_attacker.life_points <= 0:
             steps.append(f"{first_attacker.name} is defeated!")
-            outcome = 'Loss' if first_attacker == main_character else 'Win'
+            outcome = "Loss" if first_attacker == main_character else "Win"
             main_artifact_id = request.session.get('main_artifact_id')
             opponent_artifact_id = request.session.get('opponent_artifact_id')
 
@@ -100,7 +102,38 @@ def battle(request):
             )
             break
 
-    return render(request, 'battle.html', {'steps': steps})
+    # Build a prompt for OpenAI using battle data
+    load_dotenv()  # Loads variables from your .env file
+    openai.api_key = os.environ.get("OPENAI_API_KEY")
+    main_artifact = Artifact.objects.get(id=request.session.get('main_artifact_id')) if request.session.get('main_artifact_id') else None
+    opponent_artifact = Artifact.objects.get(id=request.session.get('opponent_artifact_id')) if request.session.get('opponent_artifact_id') else None
+
+    prompt = (
+        f"Summarize the following battle in no more than 100 words:\n\n"
+        f"Main Character: {main_character.name} (Attack: {main_character.attack}, Defense: {main_character.defense}, "
+        f"Life Points: {main_character.life_points})."
+        f"{' Uses artifact: ' + main_artifact.artifact_name if main_artifact else ''}\n"
+        f"Opponent: {opponent.name} (Attack: {opponent.attack}, Defense: {opponent.defense}, "
+        f"Life Points: {opponent.life_points})."
+        f"{' Uses artifact: ' + opponent_artifact.artifact_name if opponent_artifact else ''}\n"
+        f"Battle Steps: {' '.join(steps)}"
+    )
+
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",  # or another available model
+        messages=[
+            {"role": "system", "content": "You are an assistant that summarizes battles in a fantasy setting."},
+            {"role": "user", "content": prompt},
+        ],
+        max_tokens=150,  # adjust this to control the length
+        temperature=0.7,
+    )
+    battle_summary = response.choices[0].message.content.strip()
+
+    return render(request, 'battle.html', {
+        'steps': steps,
+        'battle_summary': battle_summary,
+    })
 
 def battle_results(request):
     selected_character_id = request.session.get('selected_character_id')

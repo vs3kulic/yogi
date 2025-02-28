@@ -89,3 +89,4 @@ class BattleOutcome(models.Model):
         blank=True,
         related_name='battle_opponent'
     )
+    objects = models.Manager()

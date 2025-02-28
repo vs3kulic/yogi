@@ -329,6 +329,11 @@ p {
     line-height: 1.5;
     text-align: center;  /* Center the text within each battle step */
 }
+.battle-steps ul {
+    list-style: none;  /* Removes bullet points */
+    padding-left: 0;   /* Remove default padding */
+    margin: 0;
+}
 form {
     text-align: center;
     margin-top: 20px;

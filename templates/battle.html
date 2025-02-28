@@ -8,24 +8,25 @@
 {% block title %}Battle Simulation{% endblock %}
 
 {% block content %}
-<div class="container battle-container">
+<div class="container">
     <header>
         <h1>Battle Simulation</h1>
     </header>
     <main>
-        {% if steps %}
-            <ul class="battle-steps">
+        {% if battle_summary %}
+            <section class="battle-summary">
+                <p>{{ battle_summary }}</p>
+            </section>
+        {% endif %}
+        <section class="battle-steps">
+            <p>Here is the round by round summary:</p>
+            <ul>
                 {% for step in steps %}
                     <li>{{ step }}</li>
                 {% endfor %}
             </ul>
-        {% else %}
-            <p>No battle steps were generated.</p>
-        {% endif %}
-        <form action="{% url 'battle_results' %}" method="post">
-            {% csrf_token %}
-            <button class="next-button" type="submit">View Battle Results</button>
-        </form>
+        </section>
+        <a href="{% url 'index' %}" class="back-button">Back to Character Selection</a>
     </main>
 </div>
 {% endblock %}
