@@ -1,6 +1,12 @@
-# Fellowships
+# Fellowships Game
 
-A repository for learning Python with Django. This project simulates a simple game where users can select a character, equip artifacts, flip a coin, and then engage in a battle simulation.
+Fellowships Game is a Django-based project that simulates epic battles inspired by classic fantasy literature. Players select a character, choose powerful artifacts, and face off against a randomized opponent. In addition to traditional game mechanics, the project includes:
+
+- **Dynamic Quotes:**  
+  Fetches lore and quotes from The One API to provide thematic insights and character flavor.
+
+- **AI-Generated Battle Summaries:**  
+  After each battle, a summary is generated using the OpenAI ChatCompletion API (gpt-3.5-turbo), summarizing the battle in under 100 words.
 
 ## Tech Stack
 
@@ -10,20 +16,20 @@ A repository for learning Python with Django. This project simulates a simple ga
 
 ## Features
 
-- **Character Selection:**  
-  Choose your character from a list. Each character has attributes such as attacks, defense, life points, and quotes.
-  
-- **Artifact Selection:**  
-  After selecting a character, equip your main character with an artifact that provides offensive and defensive bonuses. If no artifact is selected, an error message is displayed prompting the user to select an artifact.
-  
-- **Coin Toss:**  
-  Perform a coin toss to decide the attack order during battle. The result is stored in the session and used to determine who attacks first.
-  
+- **Character & Artifact Selection:**  
+  Players choose their main character and select an artifact that boosts their battle stats. The opponent's artifact is selected automatically and can be viewed before the battle starts.
+
+- **Coin Toss Mechanic:**  
+  The order of attack is determined by a simulated coin toss.
+
 - **Battle Simulation:**  
-  A turn-based battle simulation where characters attack each other until one is defeated. The simulation steps (damage calculations and events) are recorded and displayed to the user.
-  
-- **Battle Outcomes:**  
-  Battle results are saved to the database, including details about the outcome and timestamps.
+  In each round, characters attack one another until one is defeated. Damage is calculated based on their attack and defense statistics.
+
+- **Quotes from The One API:**  
+  Fetches real-time quotes to display lore-related background information, adding depth and immersion.
+
+- **AI-Powered Battle Summaries:**  
+  Using OpenAI’s API, the game generates a concise, thematic summary of each battle, offering a unique narrative twist to every fight.
 
 ## Project Structure
 
@@ -39,37 +45,73 @@ A repository for learning Python with Django. This project simulates a simple ga
 - **static/css/styles.css:**  
   Houses custom styles, including dark mode settings and responsive design elements.
 
-## Getting Started
+## Setup
 
 1. **Clone the Repository:**
+
    ```bash
-   git clone https://github.com/<your-username>/fellowships.git
+   git clone https://github.com/yourusername/fellowships.git
    cd fellowships
    ```
 
-2. **Set Up Virtual Environment:**
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-   ```
+2. **Create a Virtual Environment and Install Dependencies:**
 
-3. **Install Dependencies:**
    ```bash
+   python3 -m venv env
+   source env/bin/activate
    pip install -r requirements.txt
    ```
 
-4. **Run Migrations:**
+3. **Environment Variables:**
+
+   Create a `.env` file in the project root (or update it as needed) with the following keys:
+
+   ```properties
+   SECRET_KEY=your-secret-key
+   DEBUG=True
+   ALLOWED_HOSTS=localhost,127.0.0.1
+   DB_NAME=fellowship_db
+   DB_USER=vs3kulic
+   DB_PASSWORD=mysql
+   DB_HOST=localhost
+   DB_PORT=3306
+   API_BEARER_TOKEN=your-one-api-bearer-token
+   OPENAI_API_KEY=your-openai-api-key
+   ```
+
+4. **Apply Migrations:**
+
    ```bash
    python manage.py migrate
    ```
 
-5. **Start the Development Server:**
+5. **Run the Development Server:**
+
    ```bash
    python manage.py runserver
    ```
 
-6. **Access the Application:**
-   Open your web browser and go to `http://127.0.0.1:8000/`
+## Usage
+
+1. **Character & Artifact Selection:**  
+   Start by selecting a character from the main characters list. Then, on the artifact selection page, choose an artifact to empower your character.
+
+2. **Coin Toss:**  
+   After selecting an artifact, you'll be redirected to the coin toss page where the outcome determines who attacks first.
+
+3. **Battle Simulation:**  
+   The battle sequence plays out round by round. After the battle, a detailed round-by-round summary is shown along with a concise AI-generated summary.
+
+4. **Quotes & Lore:**  
+   Throughout the game, quotes fetched from The One API are displayed to provide lore and enhance the atmospheric storytelling.
+
+## Integrations
+
+- **The One API:**  
+  Utilized for fetching LOTR-themed quotes and background lore. Ensure you have a valid API token.
+
+- **OpenAI API:**  
+  Used to generate a brief textual battle summary after each battle. The summary is generated dynamically based on the battle events and character data.
 
 ## Conclusion
 
@@ -83,3 +125,7 @@ Future enhancements could include:
 - **Improved UI/UX:** Enhance the user interface and experience with more interactive elements and animations.
 
 Feel free to contribute to the project by submitting pull requests or opening issues on GitHub.
+
+## License
+
+[MIT License](LICENSE)

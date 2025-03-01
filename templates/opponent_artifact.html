@@ -10,7 +10,7 @@
 {% block content %}
 <div class="container">
     <header>
-        <h1>Opponent Artifact</h1>
+        <h1>They don't come empty handed... </h1>
     </header>
     <main>
         {% if selected_artifact %}
@@ -19,7 +19,7 @@
         {% else %}
             <p>{{ opponent.name }} has not been assigned any artifact.</p>
         {% endif %}
-        <a href="{% url 'coin_toss' %}" class="next-button">Proceed to Coin Toss</a>
+        <a href="{% url 'character_selection' %}" class="next-button">Chose your fighter!</a>
     </main>
 </div>
 {% endblock %}

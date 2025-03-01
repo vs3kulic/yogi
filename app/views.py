@@ -63,9 +63,14 @@ def battle(request):
     opponent.save()
     
     steps = []
-    # For demonstration, let's decide an arbitrary order
-    first_attacker = main_character
-    second_attacker = opponent
+   # Determine first attacker based on coin toss result
+    coin_result = request.session.get('coin_toss_result', 'win')
+    if coin_result == 'win':
+        first_attacker = main_character
+        second_attacker = opponent
+    else:
+        first_attacker = opponent
+        second_attacker = main_character
 
     while main_character.life_points > 0 and opponent.life_points > 0:
         damage = first_attacker.attack(second_attacker)
@@ -174,7 +179,7 @@ def artifact_selected(request):
         main_character = get_object_or_404(Character, id=selected_character_id)
         artifact = get_object_or_404(Artifact, pk=artifact_id)
         request.session['main_artifact_id'] = artifact.id
-        return redirect('opponent_selected')
+        return redirect('coin_toss')
 
 def opponent_artifact(request):
     opponent_id = request.session.get('opponent_id')

@@ -14,7 +14,12 @@ SECRET_KEY = config('SECRET_KEY', default='your-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lambda v: [s.strip() for s in v.split(',')])
+ALLOWED_HOSTS = [
+    'vs3kulic.pythonanywhere.com',  # Your specific PythonAnywhere domain
+    '.pythonanywhere.com',          # Wildcard for all *.pythonanywhere.com subdomains
+    'localhost', 
+    '127.0.0.1'
+]
 
 # Application definition
 
