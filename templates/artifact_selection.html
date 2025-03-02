@@ -16,9 +16,12 @@
             {% endif %}
             {% for artifact in artifacts %}
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="artifact_id" value="{{ artifact.id }}" id="artifact_{{ artifact.id }}">
+                    <input class="form-check-input" type="radio" name="artifact_id" value="{{ artifact.id }}" id="artifact_{{ artifact.id }}" {% if artifact == best_artifact %}checked{% endif %}>
                     <label class="form-check-label" for="artifact_{{ artifact.id }}">
                         {{ artifact.artifact_name }} (Offense: {{ artifact.offensive_property }}, Defense: {{ artifact.defensive_property }})
+                        {% if artifact == best_artifact %}
+                            <span class="badge badge-success">Recommended</span>
+                        {% endif %}
                     </label>
                 </div>
             {% empty %}

@@ -30,7 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app',  # Add your app here
+    'app',  # main app
+    'ml',   # ml app
 ]
 
 MIDDLEWARE = [

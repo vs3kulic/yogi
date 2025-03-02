@@ -3,6 +3,7 @@ import os
 import openai
 from django.shortcuts import render, get_object_or_404, redirect
 from dotenv import load_dotenv
+from ml.utils import recommend_artifact  # Update this line
 from .models import Character, BattleOutcome, Artifact
 
 
@@ -34,6 +35,8 @@ def select_character(request, character_id):
 
 def opponent_selected(request):
     opponent = Character.objects.filter(is_antagonist=True).order_by('?').first()
+    opponent.life_points = 100  # Reset life points for the opponent
+    opponent.save()
     request.session['opponent_id'] = opponent.id
     message = "You have selected an opponent."
     return render(request, 'opponent_selected.html', {'character': opponent, 'message': message})
@@ -42,7 +45,7 @@ def coin_toss(request):
     if request.method == 'POST':
         user_choice = request.POST.get('coin_choice')
         coin_result = random.choice(['heads', 'tails'])
-        result = 'win' if user_choice == coin_result else 'lose'
+        result = 'Won' if user_choice == coin_result else 'Lost'
         return redirect('coin_toss_result', result=result)
     return render(request, 'coin_toss.html')
 
@@ -63,9 +66,9 @@ def battle(request):
     opponent.save()
     
     steps = []
-   # Determine first attacker based on coin toss result
-    coin_result = request.session.get('coin_toss_result', 'win')
-    if coin_result == 'win':
+    # Determine first attacker based on coin toss result
+    coin_result = request.session.get('coin_toss_result', 'Won')
+    if (coin_result == 'Won'):
         first_attacker = main_character
         second_attacker = opponent
     else:
@@ -77,7 +80,7 @@ def battle(request):
         steps.append(f"{first_attacker.name} attacks {second_attacker.name} and deals {damage} damage.")
         if second_attacker.life_points <= 0:
             steps.append(f"{second_attacker.name} is defeated!")
-            outcome = "Win" if first_attacker == main_character else "Loss"
+            outcome = "Victory" if first_attacker == main_character else "Defeat"
             main_artifact_id = request.session.get('main_artifact_id')
             opponent_artifact_id = request.session.get('opponent_artifact_id')
 
@@ -85,6 +88,7 @@ def battle(request):
                 player=main_character.name,
                 opponent=opponent.name,
                 outcome=outcome,
+                coin_toss_result=coin_result,  # Store the coin toss result
                 main_artifact=Artifact.objects.get(id=main_artifact_id) if main_artifact_id else None,
                 opponent_artifact=Artifact.objects.get(id=opponent_artifact_id) if opponent_artifact_id else None,
             )
@@ -94,7 +98,7 @@ def battle(request):
         steps.append(f"{second_attacker.name} attacks {first_attacker.name} and deals {damage} damage.")
         if first_attacker.life_points <= 0:
             steps.append(f"{first_attacker.name} is defeated!")
-            outcome = "Loss" if first_attacker == main_character else "Win"
+            outcome = "Defeat" if first_attacker == main_character else "Victory"
             main_artifact_id = request.session.get('main_artifact_id')
             opponent_artifact_id = request.session.get('opponent_artifact_id')
 
@@ -102,6 +106,7 @@ def battle(request):
                 player=main_character.name,
                 opponent=opponent.name,
                 outcome=outcome,
+                coin_toss_result=coin_result,  # Store the coin toss result
                 main_artifact=Artifact.objects.get(id=main_artifact_id) if main_artifact_id else None,
                 opponent_artifact=Artifact.objects.get(id=opponent_artifact_id) if opponent_artifact_id else None,
             )
@@ -151,14 +156,28 @@ def battle_results(request):
     })
 
 def artifact_selection(request):
-    selected_character_id = request.session.get('selected_character_id')
-    main_character = get_object_or_404(Character, id=selected_character_id)
-    if not main_character:
-        return redirect('index')
-    artifacts = Artifact.objects.filter(character=main_character)
+    character_id = request.session.get('selected_character_id')
+    opponent_id = request.session.get('opponent_id')
+    coin_toss_result = request.session.get('coin_toss_result')
+
+    character = get_object_or_404(Character, id=character_id)
+    opponent = get_object_or_404(Character, id=opponent_id)
+    artifacts = Artifact.objects.filter(character=character)
+
+    recommendations = []
+    for artifact in artifacts:
+        probability = recommend_artifact(character, opponent, artifact, coin_toss_result)
+        recommendations.append((artifact, probability))
+
+    # Sort artifacts by probability of winning
+    recommendations.sort(key=lambda x: x[1], reverse=True)
+    best_artifact = recommendations[0][0] if recommendations else None
+
     return render(request, 'artifact_selection.html', {
-        'character': main_character,
+        'character': character,
         'artifacts': artifacts,
+        'best_artifact': best_artifact,
+        'recommendations': recommendations
     })
 
 def artifact_selected(request):
@@ -213,3 +232,28 @@ def prepare_battle(request):
     
     # Now proceed with the battle or redirect to the battle view/template
     return redirect('battle')
+
+def artifact_recommendation_view(request):
+    character_id = request.session.get('selected_character_id')
+    opponent_id = request.session.get('opponent_id')
+    coin_toss_result = request.session.get('coin_toss_result')
+
+    character = Character.objects.get(id=character_id)
+    opponent = Character.objects.get(id=opponent_id)
+    artifacts = Artifact.objects.filter(character=character)
+
+    recommendations = []
+    for artifact in artifacts:
+        probability = recommend_artifact(character, opponent, artifact, coin_toss_result)
+        recommendations.append((artifact, probability))
+
+    # Sort artifacts by probability of winning
+    recommendations.sort(key=lambda x: x[1], reverse=True)
+    best_artifact = recommendations[0][0] if recommendations else None
+
+    return render(request, 'artifact_selection.html', {
+        'character': character,
+        'artifacts': artifacts,
+        'best_artifact': best_artifact,
+        'recommendations': recommendations
+    })

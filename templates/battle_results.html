@@ -23,7 +23,8 @@
             <th>Artifact</th>
             <th>Opponent</th>
             <th>Opponent Artifact</th>
-            <th>Result</th>
+            <th>Coin Toss Result</th> 
+            <th>Battle Outcome</th> 
           </tr>
         </thead>
         <tbody>
@@ -46,11 +47,12 @@
                   None
                 {% endif %}
               </td>
-              <td>{{ outcome.outcome }}</td>
+              <td>{{ outcome.coin_toss_result }}</td> 
+              <td>{{ outcome.outcome }}</td> 
             </tr>
           {% empty %}
             <tr>
-              <td colspan="6">No battle outcomes found.</td>
+              <td colspan="7">No battle outcomes found.</td> <!-- Update colspan to match new column count -->
             </tr>
           {% endfor %}
         </tbody>

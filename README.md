@@ -5,6 +5,9 @@ Fellowships Game is a Django-based project that simulates epic battles inspired 
 - **Dynamic Quotes:**  
   Fetches lore and quotes from The One API to provide thematic insights and character flavor.
 
+- **Machine Learning Artifact Recommendation:**  
+  The app recommends artifacts to players based on historical battle outcomes. A model predicts the probability of winning a battle given the character's and opponent's stats, the selected artifact's properties, and the result of a coin toss.
+
 - **AI-Generated Battle Summaries:**  
   After each battle, a summary is generated using the OpenAI ChatCompletion API (gpt-3.5-turbo), summarizing the battle in under 100 words.
 
@@ -13,6 +16,7 @@ Fellowships Game is a Django-based project that simulates epic battles inspired 
 - **Django:** A high-level Python web framework that encourages rapid development and clean, pragmatic design.
 - **Bootstrap:** A popular front-end framework for developing responsive and mobile-first websites.
 - **MySQL:** A widely used open-source relational database management system.
+- **scikit-learn:** A machine learning library in Python used for training the artifact recommendation model.
 
 ## Features
 
@@ -27,6 +31,9 @@ Fellowships Game is a Django-based project that simulates epic battles inspired 
 
 - **Quotes from The One API:**  
   Fetches real-time quotes to display lore-related background information, adding depth and immersion.
+
+- **Machine Learning Artifact Recommendation:**  
+  The ML app recommends artifacts to players based on historical battle outcomes. The model predicts the probability of winning a battle given the character's and opponent's stats, the selected artifact's properties, and the result of a coin toss.
 
 - **AI-Powered Battle Summaries:**  
   Using OpenAI’s API, the game generates a concise, thematic summary of each battle, offering a unique narrative twist to every fight.
@@ -64,20 +71,7 @@ Fellowships Game is a Django-based project that simulates epic battles inspired 
 
 3. **Environment Variables:**
 
-   Create a `.env` file in the project root (or update it as needed) with the following keys:
-
-   ```properties
-   SECRET_KEY=your-secret-key
-   DEBUG=True
-   ALLOWED_HOSTS=localhost,127.0.0.1
-   DB_NAME=fellowship_db
-   DB_USER=vs3kulic
-   DB_PASSWORD=mysql
-   DB_HOST=localhost
-   DB_PORT=3306
-   API_BEARER_TOKEN=your-one-api-bearer-token
-   OPENAI_API_KEY=your-openai-api-key
-   ```
+   Create a `.env` file in the project root (or update it as needed) with the your keys.
 
 4. **Apply Migrations:**
 

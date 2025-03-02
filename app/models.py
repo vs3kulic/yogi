@@ -75,6 +75,7 @@ class BattleOutcome(models.Model):
     opponent = models.CharField(max_length=100)
     outcome = models.CharField(max_length=100)
     timestamp = models.DateTimeField(auto_now_add=True)
+    coin_toss_result = models.CharField(max_length=100, blank=True, null=True)
     main_artifact = models.ForeignKey(
         'Artifact',
         on_delete=models.SET_NULL,

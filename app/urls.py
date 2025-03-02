@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from .views import artifact_selection, artifact_selected, battle
 
@@ -16,4 +16,5 @@ urlpatterns = [
     path('next-step/', battle, name='next_step'),
     path('opponent-artifact/', views.opponent_artifact, name='opponent_artifact'),
     path('lore/', views.lore, name='lore'),
+    path('ml/', include('ml.urls')),  # Include ML app URLs
 ]

@@ -72,3 +72,4 @@ def fetch_all_characters():
             print(f"Error: Failed to fetch characters. Status code: {response.status_code}")
     except requests.RequestException as e:
         print(f"Error: {str(e)}")
+

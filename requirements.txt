@@ -5,3 +5,7 @@ python-decouple
 mysqlclient
 openai
 dotenv
+pandas
+joblib
+scikit-learn
+numpy
