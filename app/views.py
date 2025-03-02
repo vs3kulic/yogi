@@ -28,7 +28,7 @@ def select_character(request, character_id):
     character.life_points = 100
     character.save()
     
-    if character.is_main_character:
+    if (character.is_main_character):
         character.fetch_and_assign_quotes()  # Fetch and assign quotes only for main characters
     request.session['selected_character_id'] = character.id  # Store the selected character's ID in the session
     return render(request, 'select_character.html', {'character': character})
@@ -257,3 +257,16 @@ def artifact_recommendation_view(request):
         'best_artifact': best_artifact,
         'recommendations': recommendations
     })
+
+def battle_view(request):
+    # Fetch the latest battle outcome or any specific outcome you want to display
+    outcome = BattleOutcome.objects.latest('id')
+    battle_summary = "This is a summary of the battle."
+    steps = ["Step 1: Attack", "Step 2: Defend", "Step 3: Counterattack"]
+
+    context = {
+        'outcome': outcome,
+        'battle_summary': battle_summary,
+        'steps': steps,
+    }
+    return render(request, 'battle.html', context)

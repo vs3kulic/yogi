@@ -383,8 +383,58 @@ form {
 /* Index Page Image Styling */
 .index-image {
     display: block;
-    max-width: 100%;
+    max-width: 67%;
     height: auto;
     margin: 20px auto;
-    filter: invert(1) brightness(0.9);
+}
+
+/* Tooltip Custom Styles */
+.tooltip-custom {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tooltip-custom .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    top: 125%; /* Position the tooltip below the text */
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip-custom .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 0; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.tooltip-custom:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Best Artifact Style */
+.best-artifact {
+    color: rgb(0, 119, 255);
+    font-weight: bold;
+}
+
+/* Favicon Styling */
+link[rel="icon"] {
+    filter: grayscale(100%);
 }

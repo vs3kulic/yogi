@@ -3,19 +3,34 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+from django.conf import settings
+from django.db import models
 
-# Generate some example data
-# Replace this with your actual data loading and preprocessing
-data = {
-    'character_attack': [10, 15, 7, 8, 12],
-    'character_defense': [5, 7, 3, 4, 6],
-    'artifact_offense': [3, 5, 2, 4, 3],
-    'artifact_defense': [2, 3, 1, 2, 2],
-    'opponent_attack': [8, 10, 6, 7, 9],
-    'opponent_defense': [4, 5, 3, 4, 5],
-    'coin_toss_win': [1, 0, 1, 0, 1],
-    'outcome': [1, 0, 1, 0, 1]
-}
+# Ensure Django settings are configured
+import django
+import os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'fellowships.settings')
+django.setup()
+
+from app.models import BattleOutcome
+
+# Fetch data from the BattleOutcome table
+battle_outcomes = BattleOutcome.objects.all()
+
+# Prepare the data
+data = []
+for outcome in battle_outcomes:
+    data.append({
+        'character_attack': outcome.character.attacks,
+        'character_defense': outcome.character.defense,
+        'artifact_offense': outcome.artifact.offensive_property,
+        'artifact_defense': outcome.artifact.defensive_property,
+        'opponent_attack': outcome.opponent.attacks,
+        'opponent_defense': outcome.opponent.defense,
+        'coin_toss_win': 1 if outcome.coin_toss_result == 'win' else 0,
+        'outcome': 1 if outcome.result == 'win' else 0
+    })
+
 df = pd.DataFrame(data)
 
 # Split the data into features and labels

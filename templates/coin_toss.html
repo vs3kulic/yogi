@@ -13,6 +13,7 @@
         <h1>Coin Toss</h1>
     </header>
     <main>
+        <em>The coin toss will decide who goes first in the battle!</em>
         <form method="POST" action="{% url 'coin_toss' %}">
             {% csrf_token %}
             <button button class="next-button" type="submit" name="coin_choice" value="heads">Heads</button>

@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container">
     <header>
-        <h1>Select an Artifact for {{ character.name }}</h1>
+        <h1>Equip {{ character.name }} with an artifact!</h1>
     </header>
     <main>
         <form method="post" action="{% url 'artifact_selected' %}">
@@ -17,10 +17,10 @@
             {% for artifact in artifacts %}
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="artifact_id" value="{{ artifact.id }}" id="artifact_{{ artifact.id }}" {% if artifact == best_artifact %}checked{% endif %}>
-                    <label class="form-check-label" for="artifact_{{ artifact.id }}">
+                    <label class="form-check-label {% if artifact == best_artifact %}best-artifact tooltip-custom{% endif %}" for="artifact_{{ artifact.id }}">
                         {{ artifact.artifact_name }} (Offense: {{ artifact.offensive_property }}, Defense: {{ artifact.defensive_property }})
                         {% if artifact == best_artifact %}
-                            <span class="badge badge-success">Recommended</span>
+                            <span class="tooltiptext">This artifact is recommended by the ML app based on historical battle outcomes.</span>
                         {% endif %}
                     </label>
                 </div>
@@ -31,4 +31,23 @@
         </form>
     </main>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var tooltipElements = document.querySelectorAll('.tooltip-custom');
+        tooltipElements.forEach(function (elem) {
+            elem.addEventListener('mouseover', function () {
+                var tooltipText = elem.querySelector('.tooltiptext');
+                tooltipText.style.visibility = 'visible';
+                tooltipText.style.opacity = '1';
+            });
+            elem.addEventListener('mouseout', function () {
+                var tooltipText = elem.querySelector('.tooltiptext');
+                tooltipText.style.visibility = 'hidden';
+                tooltipText.style.opacity = '0';
+            });
+        });
+    });
+</script>
+
 {% endblock %}
