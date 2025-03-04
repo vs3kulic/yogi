@@ -1,0 +1,7 @@
+[phases.setup]
+nixpkgs = [
+  "pkg-config",
+  "mariadb-dev",
+  "gcc",
+  "python311Packages.mysqlclient"
+]
