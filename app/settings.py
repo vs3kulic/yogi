@@ -1,27 +1,25 @@
-import environ
 import os
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-env = environ.Env(
-    DEBUG=(bool, False)
-)
-
-# Reading .env file
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY', default='your-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+ALLOWED_HOSTS = [
+    'vs3kulic.pythonanywhere.com',  # Your specific PythonAnywhere domain
+    '.pythonanywhere.com',          # Wildcard for all *.pythonanywhere.com subdomains
+    'localhost', 
+    '127.0.0.1'
+]
 
 # Application definition
 
@@ -72,11 +70,11 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT'),
+        'NAME': config('DB_NAME', default='*****'),
+        'USER': config('DB_USER', default='*****'),
+        'PASSWORD': config('DB_PASSWORD', default='*****'),
+        'HOST': config('DB_HOST', default='*****'),
+        'PORT': config('DB_PORT', default='*****'),
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         }
