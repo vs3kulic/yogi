@@ -9,4 +9,5 @@ pandas
 joblib
 scikit-learn
 numpy
-django-environ
+environ
+pkg-config
