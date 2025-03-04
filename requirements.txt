@@ -10,4 +10,4 @@ joblib
 scikit-learn
 numpy
 environ
-pkg-config
+pkgconf
