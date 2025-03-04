@@ -14,3 +14,4 @@ pkgconf
 pip
 setuptools
 wheel
+gunicorn
