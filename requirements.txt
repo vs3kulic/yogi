@@ -13,5 +13,4 @@ environ
 pkgconf
 pip
 setuptools
-wheel
 gunicorn
