@@ -9,3 +9,4 @@ pandas
 joblib
 scikit-learn
 numpy
+environ
