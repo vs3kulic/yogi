@@ -9,7 +9,12 @@ from django.db import models
 # Ensure Django settings are configured
 import django
 import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'fellowships.settings')
+import sys
+
+# Add the project directory to the Python path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
 django.setup()
 
 from app.models import BattleOutcome
@@ -20,15 +25,17 @@ battle_outcomes = BattleOutcome.objects.all()
 # Prepare the data
 data = []
 for outcome in battle_outcomes:
+    player_character = outcome.player_character
+    opponent_character = outcome.opponent_character
     data.append({
-        'character_attack': outcome.character.attacks,
-        'character_defense': outcome.character.defense,
-        'artifact_offense': outcome.artifact.offensive_property,
-        'artifact_defense': outcome.artifact.defensive_property,
-        'opponent_attack': outcome.opponent.attacks,
-        'opponent_defense': outcome.opponent.defense,
+        'character_attack': player_character.attacks if player_character else 0,
+        'character_defense': player_character.defense if player_character else 0,
+        'artifact_offense': outcome.main_artifact.offensive_property if outcome.main_artifact else 0,
+        'artifact_defense': outcome.main_artifact.defensive_property if outcome.main_artifact else 0,
+        'opponent_attack': opponent_character.attacks if opponent_character else 0,
+        'opponent_defense': opponent_character.defense if opponent_character else 0,
         'coin_toss_win': 1 if outcome.coin_toss_result == 'win' else 0,
-        'outcome': 1 if outcome.result == 'win' else 0
+        'outcome': 1 if outcome.outcome == 'win' else 0
     })
 
 df = pd.DataFrame(data)

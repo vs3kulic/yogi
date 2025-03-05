@@ -31,22 +31,10 @@
           {% for outcome in outcomes %}
             <tr>
               <td>{{ outcome.timestamp|date:"Y-m-d H:i:s" }}</td>
-              <td>{{ outcome.player }}</td>
-              <td>
-                {% if outcome.main_artifact %}
-                  {{ outcome.main_artifact.artifact_name }}
-                {% else %}
-                  None
-                {% endif %}
-              </td>
-              <td>{{ outcome.opponent }}</td>
-              <td>
-                {% if outcome.opponent_artifact %}
-                  {{ outcome.opponent_artifact.artifact_name }}
-                {% else %}
-                  None
-                {% endif %}
-              </td>
+              <td>{{ outcome.player_character.name }}</td>
+              <td>{{ outcome.main_artifact.artifact_name|default:"None" }}</td>
+              <td>{{ outcome.opponent_character.name }}</td>
+              <td>{{ outcome.opponent_artifact.artifact_name|default:"None" }}</td>
               <td>{{ outcome.coin_toss_result }}</td> 
               <td>{{ outcome.outcome }}</td> 
             </tr>

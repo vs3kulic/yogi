@@ -1,11 +1,13 @@
 import random
 import os
 import openai
+import logging
 from django.shortcuts import render, get_object_or_404, redirect
 from dotenv import load_dotenv
 from ml.utils import recommend_artifact  # Update this line
 from .models import Character, BattleOutcome, Artifact
 
+logger = logging.getLogger(__name__)
 
 def index(request):
     """
@@ -56,6 +58,7 @@ def coin_toss_result(request, result):
 def battle(request):
     selected_character_id = request.session.get('selected_character_id')
     opponent_id = request.session.get('opponent_id')
+
     main_character = get_object_or_404(Character, id=selected_character_id)
     opponent = get_object_or_404(Character, id=opponent_id)
     
@@ -84,14 +87,18 @@ def battle(request):
             main_artifact_id = request.session.get('main_artifact_id')
             opponent_artifact_id = request.session.get('opponent_artifact_id')
 
-            BattleOutcome.objects.create(
-                player=main_character.name,
-                opponent=opponent.name,
-                outcome=outcome,
-                coin_toss_result=coin_result,  # Store the coin toss result
-                main_artifact=Artifact.objects.get(id=main_artifact_id) if main_artifact_id else None,
-                opponent_artifact=Artifact.objects.get(id=opponent_artifact_id) if opponent_artifact_id else None,
-            )
+            try:
+                BattleOutcome.objects.create(
+                    player_character=main_character,
+                    opponent_character=opponent,
+                    outcome=outcome,
+                    coin_toss_result=coin_result,  # Store the coin toss result
+                    main_artifact=Artifact.objects.get(id=main_artifact_id) if main_artifact_id else None,
+                    opponent_artifact=Artifact.objects.get(id=opponent_artifact_id) if opponent_artifact_id else None,
+                )
+                logger.info("BattleOutcome created successfully.")  # Log success
+            except Exception as e:
+                logger.error(f"Error creating BattleOutcome: {e}") # Log failure
             break
 
         damage = second_attacker.attack(first_attacker)
@@ -102,14 +109,18 @@ def battle(request):
             main_artifact_id = request.session.get('main_artifact_id')
             opponent_artifact_id = request.session.get('opponent_artifact_id')
 
-            BattleOutcome.objects.create(
-                player=main_character.name,
-                opponent=opponent.name,
-                outcome=outcome,
-                coin_toss_result=coin_result,  # Store the coin toss result
-                main_artifact=Artifact.objects.get(id=main_artifact_id) if main_artifact_id else None,
-                opponent_artifact=Artifact.objects.get(id=opponent_artifact_id) if opponent_artifact_id else None,
-            )
+            try:
+                BattleOutcome.objects.create(
+                    player_character=main_character,
+                    opponent_character=opponent,
+                    outcome=outcome,
+                    coin_toss_result=coin_result,  # Store the coin toss result
+                    main_artifact=Artifact.objects.get(id=main_artifact_id) if main_artifact_id else None,
+                    opponent_artifact=Artifact.objects.get(id=opponent_artifact_id) if opponent_artifact_id else None,
+                )
+                logger.info("BattleOutcome created successfully.")  # Log success
+            except Exception as e:
+                logger.error(f"Error creating BattleOutcome: {e}") # Log failure
             break
 
     # Build a prompt for OpenAI using battle data
@@ -148,7 +159,7 @@ def battle(request):
 def battle_results(request):
     selected_character_id = request.session.get('selected_character_id')
     character = get_object_or_404(Character, id=selected_character_id)
-    outcomes = BattleOutcome.objects.filter(player=character).order_by('-timestamp')
+    outcomes = BattleOutcome.objects.filter(player_character=character).order_by('-timestamp')
     
     return render(request, 'battle_results.html', {
         'character_name': character.name,
@@ -160,8 +171,8 @@ def artifact_selection(request):
     opponent_id = request.session.get('opponent_id')
     coin_toss_result = request.session.get('coin_toss_result')
 
-    character = get_object_or_404(Character, id=character_id)
-    opponent = get_object_or_404(Character, id=opponent_id)
+    character = Character.objects.get(id=character_id)
+    opponent = Character.objects.get(id=opponent_id)
     artifacts = Artifact.objects.filter(character=character)
 
     recommendations = []

@@ -71,8 +71,18 @@ class Artifact(models.Model):
 
 
 class BattleOutcome(models.Model):
-    player = models.CharField(max_length=100)
-    opponent = models.CharField(max_length=100)
+    player_character = models.ForeignKey(
+        'Character',
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='battle_player'
+    )
+    opponent_character = models.ForeignKey(
+        'Character',
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='battle_opponent'
+    )
     outcome = models.CharField(max_length=255)
     timestamp = models.DateTimeField(auto_now_add=True)
     coin_toss_result = models.CharField(max_length=100, blank=True, null=True)
@@ -93,4 +103,4 @@ class BattleOutcome(models.Model):
     objects = models.Manager()
 
     def __str__(self):
-        return self.outcome
+        return str(self.outcome)
