@@ -26,7 +26,10 @@
                 {% endfor %}
             </ul>
         </section>
-        <a href="{% url 'battle_results' %}" class="back-button">Historic Battle Results</a>
+        <form>
+            <a href="{% url 'index' %}" class="next-button">Back to Home</a>
+            <a href="{% url 'battle_results' %}" class="next-button">Historic Battle Results</a>
+        </form>
     </main>
 </div>
 {% endblock %}
