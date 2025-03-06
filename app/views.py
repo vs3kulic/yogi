@@ -154,6 +154,7 @@ def battle(request):
     return render(request, 'battle.html', {
         'steps': steps,
         'battle_summary': battle_summary,
+        'outcome': {'outcome': outcome},  # Pass as a dictionary so template can access outcome.outcome
     })
 
 def battle_results(request):
