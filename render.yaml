@@ -1,0 +1,66 @@
+services:
+  # Web service configuration
+  - type: web
+    name: fellowships
+    env: python
+    buildCommand: ./build.sh
+    startCommand: gunicorn app.wsgi:application --bind 0.0.0.0:$PORT
+    envVars:
+      - key: DEBUG
+        value: false
+      - key: ALLOWED_HOSTS
+        value: fellowships-o5gr.onrender.com
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.9.7
+      # Database configuration from the database service
+      - key: DB_NAME
+        fromDatabase:
+          name: fellowship-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: fellowship-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: fellowship-db
+          property: password
+      - key: DB_HOST
+        fromDatabase:
+          name: fellowship-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: fellowship-db
+          property: port
+
+  # Database service configuration
+  - type: pserv
+    name: fellowship-db
+    env: mysql
+    plan: standard
+    envVars:
+      - key: MYSQL_DATABASE
+        value: fellowship_db
+
+# Build script to be placed in your project directory
+# Create a build.sh file with these commands
+buildScripts:
+  - path: build.sh
+    content: |
+      #!/usr/bin/env bash
+      set -o errexit
+      
+      # Update pip
+      pip install --upgrade pip
+      
+      # Install requirements
+      pip install -r requirements.txt
+      
+      # Collect static files
+      python manage.py collectstatic --no-input
+      
+      # Apply migrations
+      python manage.py migrate
