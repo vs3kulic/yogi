@@ -3,7 +3,7 @@ djangorestframework
 requests
 python-decouple
 mysqlclient
-openai
+openai==0.28
 dotenv
 pandas
 joblib
