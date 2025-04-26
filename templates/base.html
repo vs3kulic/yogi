@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Welcome to the Fellowship{% endblock %}</title>
+    <title>{% block title %}Willkommen zum Yogi!{% endblock %}</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <!-- Dark Mode Styles CSS -->
@@ -17,14 +17,14 @@
 <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'index' %}">Fellowships</a>
+            <a class="navbar-brand" href="{% url 'index' %}">Yogi</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="https://github.com/vs3kulic/fellowships" target="_blank" rel="noopener noreferrer">Github Repo</a>
+                        <a class="nav-link" href="https://github.com/vs3kulic/yogi" target="_blank" rel="noopener noreferrer">Github</a>
                     </li>
                 </ul>
             </div>
@@ -43,7 +43,7 @@
 
 <footer class="footer py-3 text-center">
     <div class="container">
-        <span>&copy; {{ now.year }} Fellowships Application. All rights reserved.</span>
+        <span>&copy; {{ now.year }} Yogi Application. All rights reserved.</span>
     </div>
 </footer>
 

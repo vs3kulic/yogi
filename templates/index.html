@@ -5,20 +5,19 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 {% endblock %}
 
-{% block title %}Welcome to Fellowships!{% endblock %}
+{% block title %}Yogi sagt: Hallo!!{% endblock %}
 
 {% block content %}
 <div class="container">
     <header>
-        <h1>Welcome, dear Fellow!</h1>
+        <h1>Hallo, liebe Yogini!</h1>
     </header>
     <main>
-        <p>Here you can learn more about Lord of the Rings...</p>
+        <p>Ich zeige dir den Weg zum richtigen Kurs...</p>
         <img src="{% static 'images/armor.png' %}" alt="armor" class="index-image">
-        <p>...or just have a good, old-fashioned fantasy brawl!!</p>
         <div class="button-group">
-            <a href="{% url 'lore' %}" class="next-button">More Info</a>
-            <a href="{% url 'opponent_selected' %}" class="next-button">Fight Now</a>
+            <a href="{% url 'lore' %}" class="next-button">Mehr Info</a>
+            <a href="{% url 'opponent_selected' %}" class="next-button">Kurs suchen</a>
         </div>
     </main>
 </div>

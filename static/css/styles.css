@@ -1,7 +1,7 @@
-/* Base settings for dark mode */
+/* Base settings for light mode */
 body {
-    background-color: #121212;
-    color: #e0e0e0;
+    background-color: #ffffff;
+    color: #ff69b4; /* Pink font color */
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
@@ -9,10 +9,10 @@ body {
 
 /* Container styling */
 .container {
-    background-color: #1f1f1f;
+    background-color: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
@@ -20,48 +20,47 @@ body {
 
 /* Navbar styling */
 .navbar {
-    background-color: #1f1f1f;
+    background-color: #ffffff;
 }
 .navbar-brand, .nav-link {
-    color: #e0e0e0;
+    color: #ff69b4; /* Pink font color for navbar links */
 }
 .navbar-brand:hover, .nav-link:hover {
-    color: #ffffff;
+    color: #ff1493; /* Darker pink on hover */
 }
 
 .navbar-toggler {
-    background-color: #1f1f1f;
+    background-color: #ffffff;
     border: none;
 }
 
 .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
 /* Footer styling */
 .footer {
-    background-color: #121212;
-    color: #e0e0e0;
+    color: #ff69b4; /* Pink font color for footer */
 }
 
 /* Button styling */
 .next-button, .back-button {
-    background-color: #333333;
+    background-color: #6a0dad; /* Purple */
     border: none;
     color: #ffffff;
-    padding: 0.5em 1em;
+    padding: 1em 2em; /* Increased padding for larger buttons */
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 1.25rem; /* Increased font size */
     text-decoration: none;
     cursor: pointer;
     display: inline-block;
     margin-top: 20px;
-    flex: 1 1 45%;
-    max-width: 300px;
+    flex: 1 1 60%; /* Increased width */
+    max-width: 400px; /* Increased max width */
     box-sizing: border-box;
 }
 .next-button:hover, .back-button:hover {
-    background-color: #444444;
+    background-color: #4b0082; /* Darker purple for hover */
     transition: background-color 0.3s ease;
 }
 
@@ -71,16 +70,16 @@ header {
     margin-bottom: 20px;
 }
 header h1 {
-    color: #ffffff;
+    color: #ff69b4; /* Pink font color for headers */
     font-size: 2.5em;
     margin-bottom: 10px;
 }
 
 /* Form elements */
 input, select, textarea {
-    background-color: #2a2a2a;
-    color: #e0e0e0;
-    border: 1px solid #444444;
+    color: #ff69b4; /* Pink font color for form inputs */
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
     border-radius: 4px;
     padding: 8px;
 }
@@ -88,7 +87,7 @@ input, select, textarea {
 p {
     text-align: center;
     font-size: 16px;
-    color: #fff;
+    color: #ff69b4; /* Pink font color for paragraphs */
 }
 
 /* Style for character list: remove bullet points and stack buttons vertically */
@@ -108,11 +107,11 @@ p {
 .character-button {
     display: block;
     width: 100%;
-    max-width: 300px; /* Limit button width */
-    margin: 0 auto;   /* Center button horizontally */
+    max-width: 300px;
+    margin: 0 auto;
     text-align: center;
-    background-color: #333;
-    color: #fff;
+    background-color: #007bff;
+    color: #ffffff;
     padding: 15px;
     border-radius: 5px;
     text-decoration: none;
@@ -120,264 +119,12 @@ p {
 }
 
 .character-button:hover {
-    background-color: #000;
+    background-color: #0056b3;
 }
 
 .character-button:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-.coin-button {
-    font-size: 1.5em;
-    padding: 20px 40px; /* Increased padding for larger buttons */
-    background-color: #e0e0e0;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    flex: 1 1 45%; /* Responsive width */
-    max-width: 300px;
-    box-sizing: border-box;
-}
-
-.coin-button:hover {
-    background-color: #d0d0d0;
-}
-
-.battle-steps {
-    text-align: left;
-    margin-top: 20px;
-    color: #fff;
-}
-
-.coin-choice-buttons, .back-button-container {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.coin-choice-button, .back-button {
-    padding: 20px 40px; /* Increased padding for larger buttons */
-    font-size: 18px;
-    font-weight: bold;
-    background-color: #333333; /* Changed from #007bff to #333333 */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    flex: 1 1 45%; /* Responsive width */
-    max-width: 300px;
-    box-sizing: border-box;
-}
-
-.coin-choice-button:hover, .back-button:hover {
-    background-color: #000000;
-}
-
-.coin-choice-button:focus, .back-button:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
-
-/* Center the buttons and ensure they have the same width */
-.coin-choice-buttons, .next-button {
-    display: inline-block;
-    width: 100%; /* Responsive width */
-    margin: 10px;
-}
-
-.next-button {
-    padding: 20px 40px; /* Increased padding for larger buttons */
-    background-color: #333333; /* Changed from #007bff to #333333 */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-}
-
-.next-button:hover {
-    background-color: #000000;
-}
-
-/* Responsive Table Wrapper */
-.responsive-table-wrapper {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-/* Battle Results Table Styles */
-.results-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    min-width: 600px;  /* Forces a minimum width so columns don't squish too much */
-}
-
-.results-table th,
-.results-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: center;
-}
-
-.results-table th {
-    background-color: #333;
-    color: #fff;
-}
-
-/* Optional: Make the table font size smaller on mobile */
-@media (max-width: 600px) {
-    .results-table th,
-    .results-table td {
-        padding: 8px;
-        font-size: 0.85em;
-    }
-}
-
-/* Back button styles */
-.back-button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.back-button:hover {
-    background-color: #000;
-}
-
-/* Lore Page Styles */
-.lore-container {
-    padding: 20px;
-    line-height: 1.6;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    max-width: 800px;
-    margin: 40px auto;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-.lore-container header h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.lore-container p {
-    margin-bottom: 20px;
-}
-
-.lore-links ul {
-    list-style: none;
-    padding: 0;
-}
-
-.lore-links li {
-    margin-bottom: 10px;
-}
-
-.lore-container a {
-    color: #007BFF;
-    text-decoration: none;
-}
-
-.lore-container a:hover {
-    text-decoration: underline;
-}
-
-.back-button {
-    display: inline-block;
-    text-align: center;
-    margin: 30px auto 0;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-/* Battle Page Custom Styles */
-.battle-container {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-.battle-steps {
-    list-style: none;  /* Remove bullets */
-    padding: 0;
-    margin: 20px 0;
-}
-.battle-steps li {
-    padding: 12px 16px;
-    margin-bottom: 15px;
-    background-color: #000;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
-    font-family: Arial, sans-serif;
-    font-size: 1em;
-    line-height: 1.5;
-    text-align: center;  /* Center the text within each battle step */
-}
-.battle-steps ul {
-    list-style: none;  /* Removes bullet points */
-    padding-left: 0;   /* Remove default padding */
-    margin: 0;
-}
-form {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.next-button {
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    text-decoration: none;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.next-button:hover {
-    background-color: #000;
-}
-
-/* Artifact Selection Button Styles */
-.artifact-buttons-container {
-    display: flex;
-    justify-content: center;
-    gap: 8px;  /* Reduced gap between buttons */
-    flex-wrap: wrap;
-    margin-top: 10px;  /* Reduce the overall top margin, if any */
-}
-
-.artifact-button {
-    padding: 8px 12px;  /* Adjust padding to reduce the button's footprint */
-    margin: 0;          /* Remove any extra margin */
-    font-size: 1rem;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.artifact-button:hover {
-    background-color: #000;
 }
 
 /* Index Page Image Styling */
@@ -412,20 +159,10 @@ form {
     transition: opacity 0.3s;
 }
 
-.tooltip-custom .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 0; /* At the bottom of the tooltip */
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #333 transparent transparent transparent;
-}
-
 .tooltip-custom:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
+}
 }
 
 /* Best Artifact Style */
@@ -436,5 +173,5 @@ form {
 
 /* Favicon Styling */
 link[rel="icon"] {
-    filter: grayscale(100%);
+    filter: grayscale(0%);
 }
