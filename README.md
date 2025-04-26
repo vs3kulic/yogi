@@ -1,4 +1,3 @@
-```markdown
 # Yogi Go Deep
 
 Yogi Go Deep is a web app that helps you find the most suitable yoga class for your needs-quickly, simply, and based on your preferences.
@@ -35,4 +34,3 @@ All of this runs on a subdomain of [bekindstudio.at](https://bekindstudio.at).
 ## Get Involved
 
 Stay tuned for setup instructions and contribution guidelines as the project evolves!
-```
