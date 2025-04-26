@@ -1,6 +1,6 @@
-# Yogi Go Deep
+# Yogi
 
-Yogi Go Deep is a web app that helps you find the most suitable yoga class for your needs-quickly, simply, and based on your preferences.
+Yogi is a web app that helps you find the most suitable yoga class for your needs-quickly, simply, and based on your preferences.
 
 ---
 
