@@ -15,8 +15,8 @@ SECRET_KEY = config('SECRET_KEY', default='your-secret-key')
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = [
-    'fellowships-o5gr.onrender.com',  # Your specific PythonAnywhere domain
-    '.onrender.com',          # Wildcard for all *.pythonanywhere.com subdomains
+    'yogi.bekindstudio.at',  # Your specific PythonAnywhere domain
+    '.bekindstudio.at',          # Wildcard for all *.pythonanywhere.com subdomains
     'localhost', 
     '127.0.0.1'
 ]
