@@ -48,16 +48,16 @@ body {
     background-color: #6a0dad; /* Purple */
     border: none;
     color: #ffffff;
-    padding: 1em 2em; /* Increased padding for larger buttons */
+    padding: 0.5em 1em; /* Reduced padding for smaller buttons */
     border-radius: 5px;
-    font-size: 1.25rem; /* Increased font size */
+    font-size: 1rem; /* Reduced font size */
     text-decoration: none;
     cursor: pointer;
     display: inline-block;
     margin-top: 20px;
-    flex: 1 1 60%; /* Increased width */
-    max-width: 400px; /* Increased max width */
+    width: 200px; /* Ensures all buttons have the same width */
     box-sizing: border-box;
+    text-align: center;
 }
 .next-button:hover, .back-button:hover {
     background-color: #4b0082; /* Darker purple for hover */
@@ -69,9 +69,9 @@ header {
     text-align: center;
     margin-bottom: 20px;
 }
-header h1 {
-    color: #ff69b4; /* Pink font color for headers */
-    font-size: 2.5em;
+
+h1, h2, h3, h4, h5, h6 {
+    color: #6a0dad; /* Purple font color for all headers */
     margin-bottom: 10px;
 }
 
@@ -130,9 +130,9 @@ p {
 /* Index Page Image Styling */
 .index-image {
     display: block;
-    max-width: 67%;
-    height: auto;
-    margin: 20px auto;
+    max-width: 50%; /* Reduce the width to 50% */
+    height: auto; /* Maintain aspect ratio */
+    margin: 10px auto; /* Reduce the margin for better spacing */
 }
 
 /* Tooltip Custom Styles */
@@ -163,6 +163,11 @@ p {
     visibility: visible;
     opacity: 1;
 }
+
+/* Left-align text inside bullet points */
+ul li {
+    text-align: left; /* Aligns the text to the left */
+    margin-bottom: 10px; /* Adds spacing between list items */
 }
 
 /* Best Artifact Style */

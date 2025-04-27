@@ -10,11 +10,12 @@
 {% block content %}
 <div class="container">
     <header>
-        <h1>Hallo, liebe Yogini!</h1>
+        <h1>Hallo!</h1>
     </header>
     <main>
-        <p>Ich zeige dir den Weg zum richtigen Kurs...</p>
-        <img src="{% static 'images/armor.png' %}" alt="armor" class="index-image">
+        <p>Ich bin Yogi – dein fresher Yoga-Matcher! </br> 
+            Lass uns die Klasse finden, die zu dir passt!</p>
+        <img src="{% static 'images/bekind-logo.png' %}" alt="logo" class="index-image">
         <div class="button-group">
             <a href="{% url 'lore' %}" class="next-button">Mehr Info</a>
             <a href="{% url 'opponent_selected' %}" class="next-button">Kurs suchen</a>

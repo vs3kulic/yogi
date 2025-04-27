@@ -5,39 +5,26 @@
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 {% endblock %}
 
-{% block title %}Lore & Info{% endblock %}
+{% block title %}Über Yogi{% endblock %}
 
 {% block content %}
 <div class="lore-container">
   <header>
-    <h1>Lore & Info</h1>
+    <h1>be kind :: Yogi</h1>
   </header>
   <main>
     <p>
-      Welcome to the Fellowships Game, a study in Python and a tribute to timeless legends!
+      <strong>Yogi</strong> hilft dir, die passende be kind Yoga-Klasse für deine Bedürfnisse zu finden. </br> 
     </p>
-
-    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/07p7PALHp6ZcD5tmlbO94N?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    
-    <p>
-      This game is inspired by the epic fantasy novel series <em>The Lord of the Rings</em> by J.R.R. Tolkien, first published in the mid‑1950s (1954–1955). In an era when paper, pen, and imagination breathed life into stories, Tolkien created a universe of myth and magic.
-    </p>
-    <p>
-      Now, in our modern age, our game revives that timeless spirit. Just as Tolkien's work transcends time, our game bridges classic storytelling with today's digital innovation.
-    </p>
-    <p>
-      Pick your hero, trust your luck (a coin flip will decide who strikes first!), and let the echoes of history guide your quest against the forces of darkness.
-    </p>
-    <div class="lore-links">
-      <p>For more LOTR-themed background, check out:</p>
-      <ul>
-        <li><a href="https://en.wikipedia.org/wiki/The_Lord_of_the_Rings" target="_blank">The Lord of the Rings on Wikipedia</a></li>
-        <li><a href="https://tolkiengateway.net" target="_blank">Tolkien Gateway</a></li>
-        <li><a href="https://lotr.fandom.com/wiki/Portal:Lord_of_the_Rings" target="_blank">LOTR Wiki</a></li>
-        <li><a href="https://the-one-api.dev/" target="_blank">The One API</a></li>
-      </ul>
-    </div>
-    <button class="next-button mt-3" type="button" onclick="window.location.href='{% url 'index' %}'">Back to Home</button>
+    <h3>Und so funktioniert’s:</h3>
+    <ul>
+      <li>Du gibst deine E-Mail-Adresse ein</li>
+      <li>Wir stellen dir einige Fragen, um dich kennenzulernen</li>
+      <li>Über deine Antworten empfehlen wir dir eine passende Klasse</li>
+    </ul>
+    <p>No worries – Yogi meldet dich nirgendwo an und behandelt deine Daten vertraulichst. Wie versprochen – no strings attached!</p>
+    <p class="cta"><strong>Be kind and come as you are.</strong></p>
+    <button class="next-button mt-3" type="button" onclick="window.location.href='{% url 'index' %}'">Los geht’s</button>
   </main>
 </div>
 {% endblock %}
