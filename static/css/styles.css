@@ -211,11 +211,13 @@ link[rel="icon"] {
     transition: background-color 0.3s ease;
     width: 80%; /* Set the width to 80% of the container */
     margin: 0 auto; /* Center the buttons horizontally */
+    color: black; /* Ensure the text color is black */
 }
 
 /* Add hover effect */
 .answer-options button:hover {
     background-color: pink;
+    color: black; /* Ensure the text color remains black on hover */
 }
 
 /* Add focus effect */
@@ -223,6 +225,7 @@ link[rel="icon"] {
     outline: none;
     border-color: #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    color: black; /* Ensure the text color remains black on focus */
 }
 
 .result-image img {
