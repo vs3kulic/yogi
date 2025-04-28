@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %} <!-- Load the static template tag -->
+
+{% block content %}
+<h1>Dein Ergebnis</h1>
+
+<!-- Show the image based on the result type -->
+{% if result_type == "Burnout-Yogini" %}
+<div class="result-image">
+    <img src="{% static 'images/burnout_yogini.png' %}" alt="Burnout Yogini" />
+</div>
+{% elif result_type == "Ashtanga-Warrior" %}
+<div class="result-image">
+    <img src="{% static 'images/ashtanga_warrior.png' %}" alt="Ashtanga Warrior" />
+</div>
+{% elif result_type == "Homeoffice-Yogi" %}
+<div class="result-image">
+    <img src="{% static 'images/homeoffice_yogi.png' %}" alt="Homeoffice Yogi" />
+</div>
+{% elif result_type == "Casual-Stretcher" %}
+<div class="result-image">
+    <img src="{% static 'images/casual_stretcher.png' %}" alt="Casual Stretcher" />
+</div>
+{% endif %}
+
+<div id="result">
+    {{ result_text|safe }}
+</div>
+
+<a href="{% url 'recommended_classes' %}" class="next-button">Empfohlene Kurse</a>
+<p></p>
+<a href="{% url 'index' %}" class="nav-link">Zurück zur Startseite</a>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ question.question }}</h1>
+<form method="POST">
+    {% csrf_token %}
+    <fieldset class="question">
+        <legend>{{ question.question }}</legend>
+        <div class="answer-options">
+            {% for key, answer in question.answers.items %}
+            <button type="submit" name="answer" value="{{ key }}">{{ answer }}</button>
+            {% endfor %}
+        </div>
+    </fieldset>
+</form>
+{% endblock %}

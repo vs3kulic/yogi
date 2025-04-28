@@ -180,3 +180,99 @@ ul li {
 link[rel="icon"] {
     filter: grayscale(0%);
 }
+
+/* Progress bar styling */
+.progress {
+    height: 4px;
+    background: #e8e0ef;
+    margin: 20px 0;
+}
+.progress-bar {
+    height: 100%;
+    background: var(--primary);
+    transition: width 0.3s;
+}
+
+/* Styling for answer options */
+.answer-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Add spacing between buttons */
+}
+
+/* Style the buttons */
+.answer-options button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 80%; /* Set the width to 80% of the container */
+    margin: 0 auto; /* Center the buttons horizontally */
+}
+
+/* Add hover effect */
+.answer-options button:hover {
+    background-color: pink;
+}
+
+/* Add focus effect */
+.answer-options button:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.result-image img {
+    max-width: 60%; /* Ensure the image is responsive */
+    height: auto; /* Maintain aspect ratio */
+    margin: 20px auto; /* Add spacing and center the image */
+    display: block;
+    border-radius: 10px; /* Optional: Add rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
+}
+
+/* Style for the recommended classes table */
+.recommended-classes-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+.recommended-classes-table thead tr {
+    background-color: #f4f4f4;
+    border-bottom: 2px solid #ddd;
+}
+
+.recommended-classes-table th,
+.recommended-classes-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+.recommended-classes-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.recommended-classes-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.next-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: darkviolet; /* Set the button color to purple */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.next-button:hover {
+    background-color: darkviolet; /* Darker purple on hover */
+}
