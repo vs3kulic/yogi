@@ -75,6 +75,11 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 10px;
 }
 
+/* Alternatively, add space above the answer options */
+.answer-options {
+    margin-top: 20px; /* Adjust the value as needed */
+}
+
 /* Form elements */
 input, select, textarea {
     color: #ff69b4; /* Pink font color for form inputs */
@@ -202,8 +207,8 @@ link[rel="icon"] {
 
 /* Style the buttons */
 .answer-options button {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
+    background-color: #ffd1dc; /* ffd1dc */
+    border: 0.5px solid purple;
     border-radius: 5px;
     padding: 10px 15px;
     font-size: 16px;
@@ -216,7 +221,7 @@ link[rel="icon"] {
 
 /* Add hover effect */
 .answer-options button:hover {
-    background-color: pink;
+    background-color: plum;
     color: black; /* Ensure the text color remains black on hover */
 }
 
@@ -278,4 +283,14 @@ link[rel="icon"] {
 
 .next-button:hover {
     background-color: darkviolet; /* Darker purple on hover */
+}
+
+/* Style for horizontal lines */
+hr {
+    border: none;
+    border-top: 2px solid #ff69b4; /* Purple color for the line */
+    margin: 12px 0;
+    width: 80%; /* Optional: Adjust the width of the line */
+    margin-left: auto;
+    margin-right: auto; /* Center the line */
 }
