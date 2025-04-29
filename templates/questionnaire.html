@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>{{ question.question }}</h2>
+<h2>Frage {{ question.number }}: {{ question.question }}</h2>
 <hr> <!-- Add a horizontal line after the h2 -->
 <form method="POST">
     {% csrf_token %}

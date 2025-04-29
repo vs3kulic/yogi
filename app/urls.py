@@ -5,6 +5,6 @@ urlpatterns = [
     path('', views.index, name='index'),  # Home page with reset functionality
     path('info/', views.info, name='info'),
     path('questionnaire/', views.questionnaire, name='questionnaire'),
-    path('result/', views.calculate_result, name='result'), 
-    path('recommended-classes/', views.recommended_classes, name='recommended_classes')
+    path('calculate_result/', views.calculate_result, name='calculate_result'),
+    path('recommended_classes/', views.recommended_classes, name='recommended_classes')
 ]

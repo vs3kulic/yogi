@@ -294,3 +294,31 @@ hr {
     margin-left: auto;
     margin-right: auto; /* Center the line */
 }
+
+/* Style for result details */
+.result-details {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.result-details h2 {
+    color: #6a0dad; /* Purple */
+    margin-bottom: 10px;
+}
+
+.result-details h3 {
+    color: #ff69b4; /* Pink */
+    margin-top: 15px;
+}
+
+.result-details ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.result-details ul li {
+    margin-bottom: 5px;
+}
