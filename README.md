@@ -6,7 +6,6 @@ Yogi is a web app that helps you find the most suitable yoga class for your need
 
 ## How It Works
 
-- You enter your email address.
 - We ask you a few questions to get to know your preferences.
 - Based on your answers, we match you with one of our classes.
 - Before joining, you can preview some content and information about your matched class.
