@@ -67,7 +67,7 @@ def calculate_result(request):
     answer_to_result_type = {
         "A": "Burnout-Yogini",
         "B": "Ashtanga-Warrior",
-        "C": "Homeoffice-Yogi",
+        "C": "Homeoffice-Yogini",
         "D": "Casual-Stretcher",
     }
 
