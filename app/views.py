@@ -98,7 +98,7 @@ def recommended_classes(request):
     result_type = request.session.get('result_type', None)
 
     # Fetch classes from the database based on the result type
-    filtered_classes = YogaClass.objects.filter(type=result_type[0])  # Use the first letter of the result type
+    filtered_classes = YogaClass.objects.filter(yoga_type=result_type)  # Use 'yoga_type' instead of 'type'
 
     return render(request, 'recommended_classes.html', {'classes': filtered_classes, 'result_type': result_type})
 

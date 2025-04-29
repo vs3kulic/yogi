@@ -8,15 +8,13 @@
         <tr>
             <th>Kursname</th>
             <th>Beschreibung</th>
-            <th>Dauer</th>
         </tr>
     </thead>
     <tbody>
         {% for cls in classes %}
         <tr>
             <td>{{ cls.name }}</td>
-            <td>{{ cls.description }}</td>
-            <td>{{ cls.duration }}</td>
+            <td>{{ cls.key_features }}</td> <!-- Use key_features for description -->
         </tr>
         {% endfor %}
     </tbody>
