@@ -109,7 +109,7 @@ questions = [
         "question": "Wie fühlt sich dein Körper aktuell an?",
         "answers": {
             "A": "Ich bin basically der Typ flexible Brezel – super elastisch in fast allen Positionen.",
-            "B": "Mein Körper fühlt sich ganz solide an, aber manchmal knarre ich beim Aufstehen wie ein Holzstuhl.",
+            "B": "Ganz solide an, aber manchmal knarre ich beim Aufstehen wie ein Holzstuhl.",
             "C": "Mein Körper ist ein work in progress – ich bin da realistisch.",
             "D": "Bewegung gibt’s bei mir meistens nur dann wenn es unbedingt sein muss."
         }
