@@ -131,7 +131,7 @@ questions = [
             "A": "Situationship-Yogi. Ich und Yoga waren immer schon on-off.",
             "B": "Yoga war Liebe auf den ersten Blick. Ich bin vollkommen committed!",
             "C": "YouTube-Yoga und ich haben eine intensive Fernbeziehung.",
-            "D": "Ich schau mal, weil es mir empfohlen wurde. Ich hab gehört es gibt Snacks und Tee nach der Klasse."
+            "D": "Ich schau mal. Ich hab gehört es gibt Snacks und Tee nach der Klasse."
         }
     },
     {
