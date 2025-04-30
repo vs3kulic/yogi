@@ -2,7 +2,7 @@
 body {
     background-color: #ffffff;
     color: #ff69b4; /* Pink font color */
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-family: 'Nunito Sans', Arial, Helvetica, sans-serif; /* Use Nunito font */
     margin: 0;
     padding: 0;
 }
