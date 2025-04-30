@@ -1,6 +1,11 @@
 from playwright.sync_api import sync_playwright
 
 def test_homepage():
+    """
+    This test checks the homepage of the Yogi application.
+    It verifies that the title is correct and that the "Kurs suchen" button is present.
+    It also checks if clicking the button redirects to the questionnaire page.
+    """
     with sync_playwright() as p:
         # Launch a browser
         browser = p.chromium.launch(headless=True)
