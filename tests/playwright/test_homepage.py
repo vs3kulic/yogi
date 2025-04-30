@@ -20,7 +20,7 @@ def test_homepage():
         # Check if the "Kurs suchen" button exists
         assert page.locator("text=Klasse suchen").is_visible()
 
-        # Click the "Los geht’s" button
+        # Click the "Kurs suchen" button
         page.locator("text=Klasse suchen").click()
 
         # Verify that the questionnaire page is loaded
