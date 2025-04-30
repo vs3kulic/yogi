@@ -13,10 +13,10 @@ def test_homepage():
         assert page.title() == "Yogi sagt: Hallo!!"
 
         # Check if the "Kurs suchen" button exists
-        assert page.locator("text=Kurs suchen").is_visible()
+        assert page.locator("text=Klasse suchen").is_visible()
 
         # Click the "Los geht’s" button
-        page.locator("text=Kurs suchen").click()
+        page.locator("text=Klasse suchen").click()
 
         # Verify that the questionnaire page is loaded
         assert page.url == "https://www.yogi.bekindstudio.at/questionnaire/"  # Adjust the URL if necessary
