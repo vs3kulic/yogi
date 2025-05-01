@@ -9,7 +9,7 @@ body {
 
 /* Container styling */
 .container {
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -72,7 +72,6 @@ header {
 
 h1, h2, h3, h4, h5, h6 {
     color: #6a0dad; /* Purple font color for all headers */
-    margin-bottom: 10px;
 }
 
 /* Alternatively, add space above the answer options */
@@ -298,9 +297,8 @@ hr {
 /* Style for result details */
 .result-details {
     margin-top: 20px;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: #ffffff;
     border-radius: 5px;
 }
 
@@ -310,15 +308,91 @@ hr {
 }
 
 .result-details h3 {
-    color: #ff69b4; /* Pink */
+    color: #6a0dad; /* Pink */
     margin-top: 15px;
 }
 
 .result-details ul {
     margin: 10px 0;
-    padding-left: 20px;
+    padding-left: 0px;
 }
 
 .result-details ul li {
     margin-bottom: 5px;
+}
+
+/* Container for the subscription form */
+.subscribe-container {
+    background-color: #ffffff; /* Light gray background */
+    padding: 20px;
+    max-width: 95%;
+    margin: 20px auto; /* Center the form */
+    text-align: center;
+    font-family: 'Nunito Sans', Arial, sans-serif; /* Match the font */
+    color: #4a154b; /* Purple text color */
+}
+
+/* Heading above the form */
+.subscribe-container h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #4a154b; /* Purple text color */
+}
+
+/* Label for the email input */
+.subscribe-form .form-label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #4a154b; /* Purple text color */
+    margin-bottom: 10px;
+    display: block;
+    text-align: left;
+}
+
+/* Email input field */
+.subscribe-form .form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    color: #4a154b; /* Purple text color */
+}
+
+.subscribe-form .form-control::placeholder {
+    color: #aaa; /* Placeholder text color */
+    font-style: italic;
+}
+
+.subscribe-form .form-control:focus {
+    border-color: #4a154b; /* Purple border on focus */
+    outline: none;
+    box-shadow: 0 0 5px rgba(74, 21, 75, 0.5); /* Subtle purple glow */
+}
+
+/* Submit button */
+.subscribe-form .btn {
+    background-color: #6a0dad; /* Purple background */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.subscribe-form .btn:hover {
+    background-color: #3a0f3b; /* Darker purple on hover */
+}
+
+/* Message below the form */
+.subscribe-message {
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
 }

@@ -1,11 +1,60 @@
 import random
 import os
 import logging
+import requests
+import json
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from app.models import YogaClass  # Import the YogaClass model
 
 logger = logging.getLogger(__name__)
+
+# Mailchimp configuration
+MAILCHIMP_API_KEY = "327a30b8aa474e58dd4381f9c59df53e-us11"
+MAILCHIMP_LIST_ID = "be kind GmbH"
+MAILCHIMP_DC = "us11"  # Example: 'us1', 'us2'
+
+# Mailchimp endpoint
+members_endpoint = f"https://{MAILCHIMP_DC}.api.mailchimp.com/3.0/lists/{MAILCHIMP_LIST_ID}/members"
+
+def subscribe_email(email):
+    """
+    Subscribe an email address to a Mailchimp list.
+
+    Args:
+        email (str): The email address to subscribe.
+
+    Returns:
+        tuple: A tuple containing the HTTP status code and the response JSON.
+    """
+    data = {
+        "email_address": email,
+        "status": "subscribed"
+    }
+
+    req = requests.post(
+        members_endpoint,
+        auth=("", MAILCHIMP_API_KEY),
+        data=json.dumps(data),
+        headers={"Content-Type": "application/json"}
+    )
+
+    return req.status_code, req.json()
+
+def subscribe_view(request):
+    """
+    Handle email subscription requests from the result page.
+    """
+    if request.method == "POST":
+        email = request.POST.get("email")
+        if email:
+            status_code, response = subscribe_email(email)
+            if status_code == 200:
+                return JsonResponse({"message": "Successfully subscribed!"}, status=200)
+            else:
+                return JsonResponse({"error": response.get("detail", "Subscription failed.")}, status=status_code)
+        return JsonResponse({"error": "Email is required."}, status=400)
+    return JsonResponse({"error": "Invalid request method."}, status=405)
 
 def index(request):
     """

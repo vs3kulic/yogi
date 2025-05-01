@@ -60,7 +60,50 @@
 </div>
 {% endif %}
 
-<a href="{% url 'recommended_classes' %}" class="next-button">Empfohlene Kurse</a>
-<p></p>
-<a href="{% url 'index' %}" class="nav-link">Zurück zur Startseite</a>
+<h3>Hooked? Hier ist der Stundenplan:</h3>
+<!-- Add the Eversports widget snippet here -->
+<div data-eversports-widget-id="8f80f6ac-abff-4fde-990f-865a3a7dbe31">
+    <!-- Füge das Skript nur einmal pro Seite ein. -->
+</div>
+<script type="module" src="https://widget-static.eversports.io/loader.js" async defer></script>
+<p> </p>
+<p> </p>
+<h3>Na, noch immer nicht genug von uns?</h3>
+<!-- Add the subscription form -->
+<div class="subscribe-container">
+    <form id="subscribe-form" method="POST" action="{% url 'subscribe' %}" class="subscribe-form">
+        {% csrf_token %}
+        <p>Mit unserem Newsletter bleibst du stabil in jedem Asana. Keine Sorge – wir spammen dich nicht, echt nicht!</p>
+        <input type="email" id="email" name="email" class="form-control" placeholder="Deine echte E-Mail Adresse" required>
+        <button type="submit" class="btn btn-primary mt-3">Meldet mich an!</button>
+    </form>
+    <div id="subscribe-message" class="subscribe-message mt-2"></div>
+</div>
+
+<script>
+    // Handle form submission with AJAX
+    const form = document.getElementById("subscribe-form");
+    const messageDiv = document.getElementById("subscribe-message");
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: {
+                "X-CSRFToken": form.querySelector("[name=csrfmiddlewaretoken]").value,
+            },
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            messageDiv.textContent = result.message;
+            messageDiv.style.color = "green";
+        } else {
+            messageDiv.textContent = result.error || "An error occurred.";
+            messageDiv.style.color = "red";
+        }
+    });
+</script>
 {% endblock %}

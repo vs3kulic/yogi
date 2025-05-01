@@ -5,8 +5,7 @@ class YogaClass(models.Model):
         ('Burnout-Yogini', 'Burnout-Yogini'),
         ('Ashtanga-Warrior', 'Ashtanga-Warrior'),
         ('Homeoffice-Yogi', 'Homeoffice-Yogi'),
-        ('Casual-Stretcher', 'Casual-Stretcher'),
-        ('Cross-Type', 'Cross-Type'),
+        ('Casual-Stretcher', 'Casual-Stretcher')
     ]
 
     yoga_type = models.CharField(max_length=50, choices=TYPE_CHOICES, default='Burnout-Yogini')
