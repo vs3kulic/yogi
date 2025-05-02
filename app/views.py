@@ -6,7 +6,7 @@ import json
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from django.conf import settings
-from app.models import YogaClass  # Import the YogaClass model
+from app.models import YogaClass
 
 logger = logging.getLogger(__name__)
 
