@@ -250,7 +250,7 @@ link[rel="icon"] {
     display: inline-block;
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: darkviolet; /* Set the button color to purple */
+    background-color: #471f66; /* Set the button color to purple */
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -258,7 +258,7 @@ link[rel="icon"] {
 }
 
 .next-button:hover {
-    background-color: darkviolet; /* Darker purple on hover */
+    background-color: #471f66; /* Darker purple on hover */
 }
 
 /* Style for horizontal lines */
