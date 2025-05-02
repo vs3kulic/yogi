@@ -184,13 +184,13 @@ link[rel="icon"] {
 /* Style the buttons */
 .answer-options button {
     background-color: #f2ebf9; /* e6d8f2 */
-    border: 0.5px solid #471f66;
+    border: 0.5px solid #c6009b;
     border-radius: 5px;
     padding: 10px 15px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 90%; /* Set the width to 80% of the container */
+    width: 85%; /* Set the width to 85% of the container */
     margin: 0 auto; /* Center the buttons horizontally */
     color: black; /* Ensure the text color is black */
 }
