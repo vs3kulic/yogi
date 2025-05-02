@@ -30,5 +30,7 @@ jobs:
     - name: Run Tests
       env: 
         MAILCHIMP_API_KEY: ${{ secrets.MAILCHIMP_API_KEY }}
+        MAILCHIMP_LIST_ID: ${{ secrets.MAILCHIMP_LIST_ID }}
+        MAILCHIMP_DC: ${{ secrets.MAILCHIMP_DC }}
       run: |
         python3 manage.py test
