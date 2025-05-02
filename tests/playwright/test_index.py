@@ -6,7 +6,7 @@ def test_index_page():
     """
     with sync_playwright() as p:
         # Launch a browser
-        browser = p.chromium.launch(headless=True)
+        browser = p.chromium.launch(headless=False)
         page = browser.new_page()
 
         # Navigate to the index page
