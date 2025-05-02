@@ -1,8 +1,11 @@
 /* Base settings for light mode */
 body {
     background-color: #ffffff;
-    color: #ff69b4; /* Pink font color */
-    font-family: 'Nunito Sans', Arial, Helvetica, sans-serif; /* Use Nunito font */
+    color: #c6009b; /* Pink font color */
+    font-family: 'Nunito'; /* Use Nunito font */
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 1px;
     margin: 0;
     padding: 0;
 }
@@ -23,7 +26,7 @@ body {
     background-color: #ffffff;
 }
 .navbar-brand, .nav-link {
-    color: #ff69b4; /* Pink font color for navbar links */
+    color: #c6009b; /* Pink font color for navbar links */
 }
 .navbar-brand:hover, .nav-link:hover {
     color: #ff1493; /* Darker pink on hover */
@@ -45,7 +48,7 @@ body {
 
 /* Button styling */
 .next-button, .back-button {
-    background-color: #6a0dad; /* Purple */
+    background-color: #471f66; /* Purple */
     border: none;
     color: #ffffff;
     padding: 0.5em 1em; /* Reduced padding for smaller buttons */
@@ -58,9 +61,12 @@ body {
     width: 200px; /* Ensures all buttons have the same width */
     box-sizing: border-box;
     text-align: center;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 1px;
 }
 .next-button:hover, .back-button:hover {
-    background-color: #4b0082; /* Darker purple for hover */
+    background-color: #471f66; /* Darker purple for hover */
     transition: background-color 0.3s ease;
 }
 
@@ -71,7 +77,13 @@ header {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #6a0dad; /* Purple font color for all headers */
+    color: #471f66; /* Purple font color for all headers */
+}
+
+/* Heading styling */
+h1, h2, h3 {
+    color: #471f66; /* Purple font color for all headers */
+    line-height: 1.2; /* Recommended for headings */
 }
 
 /* Alternatively, add space above the answer options */
@@ -81,60 +93,28 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Form elements */
 input, select, textarea {
-    color: #ff69b4; /* Pink font color for form inputs */
+    color: #c6009b; /* Pink font color for form inputs */
     background-color: #ffffff;
     border: 1px solid #cccccc;
     border-radius: 4px;
     padding: 8px;
 }
 
+/* Paragraph styling */
 p {
     text-align: center;
-    font-size: 16px;
-    color: #ff69b4; /* Pink font color for paragraphs */
-}
-
-/* Style for character list: remove bullet points and stack buttons vertically */
-.character-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-}
-
-/* Each list item gets some bottom spacing */
-.character-list li {
-    margin-bottom: 15px;
-}
-
-/* Style for character buttons */
-.character-button {
-    display: block;
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-    text-align: center;
-    background-color: #007bff;
-    color: #ffffff;
-    padding: 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.character-button:hover {
-    background-color: #0056b3;
-}
-
-.character-button:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    font-size: 17px;
+    color: #c6009b; /* Pink font color for paragraphs */
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 1.8;
 }
 
 /* Index Page Image Styling */
 .index-image {
     display: block;
-    max-width: 50%; /* Reduce the width to 50% */
+    max-width: 40%; /* Reduce the width to 50% */
     height: auto; /* Maintain aspect ratio */
     margin: 10px auto; /* Reduce the margin for better spacing */
 }
@@ -174,12 +154,6 @@ ul li {
     margin-bottom: 10px; /* Adds spacing between list items */
 }
 
-/* Best Artifact Style */
-.best-artifact {
-    color: rgb(0, 119, 255);
-    font-weight: bold;
-}
-
 /* Favicon Styling */
 link[rel="icon"] {
     filter: grayscale(0%);
@@ -195,6 +169,9 @@ link[rel="icon"] {
     height: 100%;
     background: var(--primary);
     transition: width 0.3s;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 1px;
 }
 
 /* Styling for answer options */
@@ -206,8 +183,8 @@ link[rel="icon"] {
 
 /* Style the buttons */
 .answer-options button {
-    background-color: #ffd1dc; /* ffd1dc */
-    border: 0.5px solid purple;
+    background-color: #f2ebf9; /* e6d8f2 */
+    border: 0.5px solid #471f66;
     border-radius: 5px;
     padding: 10px 15px;
     font-size: 16px;
@@ -227,7 +204,7 @@ link[rel="icon"] {
 /* Add focus effect */
 .answer-options button:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: #c6009b;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
     color: black; /* Ensure the text color remains black on focus */
 }
@@ -287,7 +264,7 @@ link[rel="icon"] {
 /* Style for horizontal lines */
 hr {
     border: none;
-    border-top: 2px solid #ff69b4; /* Purple color for the line */
+    border-top: 2px solid #c6009b; /* Purple color for the line */
     margin: 12px 0;
     width: 80%; /* Optional: Adjust the width of the line */
     margin-left: auto;
@@ -303,12 +280,12 @@ hr {
 }
 
 .result-details h2 {
-    color: #6a0dad; /* Purple */
+    color: #471f66; /* Purple */
     margin-bottom: 10px;
 }
 
 .result-details h3 {
-    color: #6a0dad; /* Pink */
+    color: #471f66; /* Pink */
     margin-top: 15px;
 }
 
@@ -328,7 +305,10 @@ hr {
     max-width: 95%;
     margin: 20px auto; /* Center the form */
     text-align: center;
-    font-family: 'Nunito Sans', Arial, sans-serif; /* Match the font */
+    font-family: 'Nunito'; /* Match the font */
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 1px;
     color: #4a154b; /* Purple text color */
 }
 
@@ -375,7 +355,7 @@ hr {
 
 /* Submit button */
 .subscribe-form .btn {
-    background-color: #6a0dad; /* Purple background */
+    background-color: #471f66; /* Purple background */
     color: #fff;
     border: none;
     padding: 10px 20px;

@@ -2,7 +2,7 @@
 {% load static %} <!-- Load the static template tag -->
 
 {% block content %}
-<h1><strong>Dein Ergebnis</strong></h1>
+<h1>Dein Ergebnis</h1>
 
 <!-- Show the image based on the result type -->
 {% if result_type == "Burnout-Yogini" %}
@@ -68,7 +68,7 @@
 <script type="module" src="https://widget-static.eversports.io/loader.js" async defer></script>
 <p> </p>
 <p> </p>
-<h3>Na, noch immer nicht genug von uns?</h3>
+<h3>Na, immer noch nicht genug von uns?</h3>
 <!-- Add the subscription form -->
 <div class="subscribe-container">
     <form id="subscribe-form" method="POST" action="{% url 'subscribe' %}" class="subscribe-form">
