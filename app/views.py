@@ -5,14 +5,15 @@ import requests
 import json
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
+from django.conf import settings
 from app.models import YogaClass  # Import the YogaClass model
 
 logger = logging.getLogger(__name__)
 
 # Mailchimp configuration
-MAILCHIMP_API_KEY = "327a30b8aa474e58dd4381f9c59df53e-us11"
-MAILCHIMP_LIST_ID = "be kind GmbH"
-MAILCHIMP_DC = "us11"  # Example: 'us1', 'us2'
+MAILCHIMP_API_KEY = settings.MAILCHIMP_API_KEY
+MAILCHIMP_LIST_ID = settings.MAILCHIMP_LIST_ID
+MAILCHIMP_DC = settings.MAILCHIMP_DC
 
 # Mailchimp endpoint
 members_endpoint = f"https://{MAILCHIMP_DC}.api.mailchimp.com/3.0/lists/{MAILCHIMP_LIST_ID}/members"

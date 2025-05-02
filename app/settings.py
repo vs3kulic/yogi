@@ -21,6 +21,11 @@ ALLOWED_HOSTS = [
     '127.0.0.1'
 ]
 
+# Example of loading environment variables
+MAILCHIMP_API_KEY = config("MAILCHIMP_API_KEY")
+MAILCHIMP_LIST_ID = config("MAILCHIMP_LIST_ID")
+MAILCHIMP_DC = config("MAILCHIMP_DC")
+
 # Application definition
 
 INSTALLED_APPS = [

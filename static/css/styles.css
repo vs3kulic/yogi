@@ -213,7 +213,7 @@ link[rel="icon"] {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 80%; /* Set the width to 80% of the container */
+    width: 90%; /* Set the width to 80% of the container */
     margin: 0 auto; /* Center the buttons horizontally */
     color: black; /* Ensure the text color is black */
 }
