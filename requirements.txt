@@ -63,3 +63,4 @@ urllib3==2.3.0
 virtualenv==20.30.0
 whitenoise==6.9.0
 yarl==1.18.3
+honeybadger==0.11.0
