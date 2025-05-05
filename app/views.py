@@ -118,7 +118,7 @@ def questionnaire(request):
                 "A": "Faszien-Liebe: Entkrampfen, durchatmen, alles loslassen – pls massage my soul.",
                 "B": "Power-Mover: Ich brauch Action! Schwitzen, stretchen, strong AF werden.",
                 "C": "Slow-Flow: Ich will flowen und chillen.",
-                "D": "Zen-Seeker: Ich weiß ich brauche mehr im Leben — vielleicht ist es Yoga."
+                "D": "Zen-Seeker: Ich brauche mehr im Leben — vielleicht ist es Yoga."
             }
         },
         {
