@@ -25,6 +25,7 @@ ALLOWED_HOSTS = [
 MAILCHIMP_API_KEY = config("MAILCHIMP_API_KEY")
 MAILCHIMP_LIST_ID = config("MAILCHIMP_LIST_ID")
 MAILCHIMP_DC = config("MAILCHIMP_DC")
+HONEYBADGER_API_KEY = config('HONEYBADGER_API_KEY', default=None)
 
 # Application definition
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'honeybadger.contrib.DjangoHoneybadgerMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
