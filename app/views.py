@@ -222,6 +222,15 @@ def calculate_result(request):
 def recommended_classes(request):
     """
     Display recommended classes based on the user's result type.
+    This function fetches classes from the database that match the user's yoga type.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+    Returns:
+        HttpResponse: Rendered HTML response with recommended classes.
+    Example:
+        GET /recommended_classes/
+        Response: Rendered HTML with recommended classes based on the user's yoga type.
     """
     # Get the user's result type from the session
     result_type = request.session.get('result_type', None)

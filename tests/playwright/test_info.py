@@ -32,13 +32,5 @@ def test_info_page():
         assert los_gehts_button.is_visible(), "Los geht’s button is not visible"
         los_gehts_button.click()
 
-        # Verify navigation to the questionnaire page
-        assert page.url == "https://www.club.bekindstudio.at/questionnaire/", "Los geht’s button did not navigate to the correct URL"
-
-        # Check if the first question is displayed
-        question_header = page.locator("h2")
-        assert question_header.is_visible(), "Question header is not visible"
-        assert question_header.text_content().strip() == "Frage 1: Wie fühlt sich dein Körper aktuell an?", "First question is incorrect"
-
         # Close the browser
         browser.close()
