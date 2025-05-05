@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Frage {{ question.number }}: {{ question.question }}</h2>
-<form method="POST">
+<form method="post">
     {% csrf_token %}
+    <h2>Frage {{ question.number }}: {{ question.question }}</h2>
     <fieldset class="question">
         <div class="answer-options">
             {% for key, answer in question.answers.items %}
@@ -11,5 +11,10 @@
             {% endfor %}
         </div>
     </fieldset>
+    <div class="navigation">
+        <button type="submit" name="back" class="back-button" {% if current_question_index == 1 %}disabled{% endif %}>
+            Zurück
+        </button>
+    </div>
 </form>
 {% endblock %}

@@ -17,8 +17,10 @@
             Lass uns die Klasse finden, die zu dir passt!</p>
         <img src="{% static 'images/bekind-logo.png' %}" alt="logo" class="index-image">
         <div class="button-group">
-            <a href="{% url 'info' %}" class="next-button">Mehr Info</a>
             <a href="{% url 'questionnaire' %}" class="next-button">Klasse suchen</a>
+        </div>
+        <div class="info">
+            <a href="{% url 'info' %}" class="text-link info-link">Mehr Info</a>
         </div>
     </main>
 </div>

@@ -3,7 +3,7 @@ import os
 import logging
 import requests
 import json
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.conf import settings
 from app.models import YogaClass
@@ -76,26 +76,105 @@ def info(request):
 
 def questionnaire(request):
     """
-    Handle the questionnaire logic.
+    Handle the questionnaire logic where users move forward by selecting an answer
+    or backward using a Back button.
     """
+    # Define the questions
+    questions = [
+        {
+            "number": 1,
+            "question": "Wie fühlt sich dein Körper aktuell an?",
+            "answers": {
+                "A": "Ich bin basically der Typ flexible Brezel – super elastisch in allen Positionen.",
+                "B": "Ganz solide, aber manchmal knarre ich beim Aufstehen wie ein Holzstuhl.",
+                "C": "Mein Körper ist ein work in progress – ich bin da realistisch.",
+                "D": "Bewegung gibt’s bei mir meistens nur dann wenn es unbedingt sein muss."
+            }
+        },
+        {
+            "number": 2,
+            "question": "Wie läuft’s bei dir mit Verletzungen oder Einschränkungen?",
+            "answers": {
+                "A": "Momentan hab ich keine akuten oder chronischen Verletzungen.",
+                "B": "Ich komme mit Altlasten – meine Schulter erzählt noch vom Festival ’18.",
+                "C": "Mein Körper kommt mir derzeit wie eine chronische Baustelle vor.",
+                "D": "Ich bin aktuell völlig out of order — aber ich will zurück ins Game."
+            }
+        },
+        {
+            "number": 3,
+            "question": "Dein Commitment-Level zu Yoga?",
+            "answers": {
+                "A": "Situationship-Yogi. Ich und Yoga waren immer schon on-off.",
+                "B": "Yoga war Liebe auf den ersten Blick. Ich bin vollkommen committed!",
+                "C": "YouTube-Yoga und ich haben eine intensive Fernbeziehung.",
+                "D": "Ich schau mal. Ich hab gehört es gibt Snacks und Tee nach der Klasse."
+            }
+        },
+        {
+            "number": 4,
+            "question": "Welche Vibes spürst du, wenn du an Yoga denkst?",
+            "answers": {
+                "A": "Faszien-Liebe: Entkrampfen, durchatmen, alles loslassen – pls massage my soul.",
+                "B": "Power-Mover: Ich brauch Action! Schwitzen, stretchen, strong AF werden.",
+                "C": "Slow-Flow: Ich will flowen und chillen.",
+                "D": "Zen-Seeker: Ich weiß ich brauche mehr im Leben — vielleicht ist es Yoga."
+            }
+        },
+        {
+            "number": 5,
+            "question": "Wie willst du dein Yoga erleben?",
+            "answers": {
+                "A": "Kollektiver Vibe like a Sunday Brunch – nur mit Asanas.",
+                "B": "Mat Queen: Ich bleibe auf meiner Matte, alles andere um mich herum blende ich aus.",
+                "C": "Zen-Master: Hauptsache gemütlich. Langsamer, tiefer, länger.",
+                "D": "Ich brauch klare Ansagen – step by step, sonst verlauf ich mich."
+            }
+        },
+    ]
+
+    # Initialize session variables if not already set
+    if 'responses' not in request.session:
+        request.session['responses'] = [None] * len(questions)  # Pre-fill with None
+    if 'current_question_index' not in request.session:
+        request.session['current_question_index'] = 0
+
+    # Handle POST request
     if request.method == "POST":
+        # Check if the user clicked the Back button
+        if 'back' in request.POST:
+            current_question_index = request.session['current_question_index']
+            if current_question_index > 0:
+                request.session['current_question_index'] -= 1
+            return redirect('questionnaire')
+
+        # Handle answer submission
         answer = request.POST.get("answer")
         if answer:
-            responses = request.session.get('responses', [])
-            responses.append(answer)
+            # Save the answer at the correct index
+            current_question_index = request.session['current_question_index']
+            responses = request.session['responses']
+            responses[current_question_index] = answer  # Update the response for the current question
             request.session['responses'] = responses
 
-        # Move to the next question or calculate the result
-        current_question_index = request.session.get('current_question_index', 0)
-        current_question_index += 1
-        request.session['current_question_index'] = current_question_index
+            # Move to the next question
+            current_question_index += 1
+            request.session['current_question_index'] = current_question_index
 
-        if current_question_index >= len(questions):
-            return redirect('calculate_result')  # Ensure this matches the name in urls.py
+            # Redirect to the result page if all questions are answered
+            if current_question_index >= len(questions):
+                return redirect('calculate_result')
+
+    # Get the current question index
+    current_question_index = request.session['current_question_index']
 
     # Render the current question
-    question = questions[request.session.get('current_question_index', 0)]
-    return render(request, 'questionnaire.html', {'question': question})
+    question = questions[current_question_index]
+    return render(request, 'questionnaire.html', {
+        'question': question,
+        'current_question_index': current_question_index + 1,  # For display (1-based index)
+        'total_questions': len(questions),
+    })
 
 def reset_questionnaire(request):
     """
@@ -151,57 +230,3 @@ def recommended_classes(request):
     filtered_classes = YogaClass.objects.filter(yoga_type=result_type)  # Use 'yoga_type' instead of 'type'
 
     return render(request, 'recommended_classes.html', {'classes': filtered_classes, 'result_type': result_type})
-
-# Define the questions for the questionnaire
-questions = [
-    {
-        "number": 1,
-        "question": "Wie fühlt sich dein Körper aktuell an?",
-        "answers": {
-            "A": "Ich bin basically der Typ flexible Brezel – super elastisch in allen Positionen.",
-            "B": "Ganz solide, aber manchmal knarre ich beim Aufstehen wie ein Holzstuhl.",
-            "C": "Mein Körper ist ein work in progress – ich bin da realistisch.",
-            "D": "Bewegung gibt’s bei mir meistens nur dann wenn es unbedingt sein muss."
-        }
-    },
-    {
-        "number": 2,
-        "question": "Wie läuft’s bei dir mit Verletzungen oder Einschränkungen?",
-        "answers": {
-            "A": "Momentan hab ich keine akuten oder chronischen Verletzungen.",
-            "B": "Ich komme mit Altlasten – meine Schulter erzählt noch vom Festival ’18.",
-            "C": "Mein Körper kommt mir derzeit wie eine chronische Baustelle vor.",
-            "D": "Ich bin aktuell völlig out of order — aber ich will zurück ins Game."
-        }
-    },
-    {
-        "number": 3,
-        "question": "Dein Commitment-Level zu Yoga?",
-        "answers": {
-            "A": "Situationship-Yogi. Ich und Yoga waren immer schon on-off.",
-            "B": "Yoga war Liebe auf den ersten Blick. Ich bin vollkommen committed!",
-            "C": "YouTube-Yoga und ich haben eine intensive Fernbeziehung.",
-            "D": "Ich schau mal. Ich hab gehört es gibt Snacks und Tee nach der Klasse."
-        }
-    },
-    {
-        "number": 4,
-        "question": "Welche Vibes spürst du, wenn du an Yoga denkst?",
-        "answers": {
-            "A": "Faszien-Liebe: Entkrampfen, durchatmen, alles loslassen – pls massage my soul.",
-            "B": "Power-Mover: Ich brauch Action! Schwitzen, stretchen, strong AF werden.",
-            "C": "Slow-Flow: Ich will flowen und chillen.",
-            "D": "Zen-Seeker: Ich weiß ich brauche mehr im Leben — vielleicht ist es Yoga."
-        }
-    },
-    {
-        "number": 5,
-        "question": "Wie willst du dein Yoga erleben?",
-        "answers": {
-            "A": "Kollektiver Vibe like a Sunday Brunch – nur mit Asanas.",
-            "B": "Mat Queen: Ich bleibe auf meiner Matte, alles andere um mich herum blende ich aus.",
-            "C": "Zen-Master: Hauptsache gemütlich. Langsamer, tiefer, länger.",
-            "D": "Ich brauch klare Ansagen – step by step, sonst verlauf ich mich."
-        }
-    },
-]

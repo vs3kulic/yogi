@@ -29,7 +29,7 @@ body {
     color: #c6009b; /* Pink font color for navbar links */
 }
 .navbar-brand:hover, .nav-link:hover {
-    color: #ff1493; /* Darker pink on hover */
+    color: #c6009b; /* Darker pink on hover */
 }
 
 .navbar-toggler {
@@ -43,7 +43,7 @@ body {
 
 /* Footer styling */
 .footer {
-    color: #ff69b4; /* Pink font color for footer */
+    color: #c6009b; /* Pink font color for footer */
 }
 
 /* Button styling */
@@ -88,7 +88,7 @@ h1, h2, h3 {
 
 /* Alternatively, add space above the answer options */
 .answer-options {
-    margin-top: 20px; /* Adjust the value as needed */
+    margin-top: 20px;
 }
 
 /* Form elements */
@@ -375,4 +375,23 @@ hr {
     font-weight: bold;
     text-align: center;
     margin-top: 10px;
+}
+
+/* Text link styling */
+.text-link {
+    color: #c6009b; /* Pink color */
+    text-decoration: underline;
+    font-weight: 400;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.text-link:hover {
+    text-decoration: none; /* Remove underline on hover */
+    color: #6a0dad; /* Purple hover color */
+}
+
+.info-link {
+    display: inline-block; /* Ensures margin works properly */
+    margin-top: 20px; /* Adjust the value as needed */
 }

@@ -15,10 +15,10 @@ SECRET_KEY = config('SECRET_KEY', default='your-secret-key')
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = [
-    'yogi.bekindstudio.at',  # Your specific PythonAnywhere domain
-    '.bekindstudio.at',          # Wildcard for all *.pythonanywhere.com subdomains
-    'localhost', 
-    '127.0.0.1'
+    'yogi.bekindstudio.at',  # Your specific domain
+    '.bekindstudio.at',      # Wildcard for all subdomains
+    'localhost',
+    '127.0.0.1',
 ]
 
 # Example of loading environment variables
@@ -27,8 +27,6 @@ MAILCHIMP_LIST_ID = config("MAILCHIMP_LIST_ID")
 MAILCHIMP_DC = config("MAILCHIMP_DC")
 HONEYBADGER_API_KEY = config('HONEYBADGER_API_KEY', default=None)
 
-# Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -36,8 +34,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app',  # main app
-    'ml',   # ml app
+    'app',  # Main app
+    'ml',   # ML app
 ]
 
 MIDDLEWARE = [
@@ -49,7 +47,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'app.urls'
@@ -130,10 +128,13 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Session settings
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Default session engine
 SESSION_COOKIE_AGE = 1209600  # Two weeks (default)
 SESSION_SAVE_EVERY_REQUEST = True  # Save session on every request
 
+# Logging configuration
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -141,11 +142,20 @@ LOGGING = {
         'console': {
             'class': 'logging.StreamHandler',
         },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/honeybadger.log'),
+        },
     },
     'loggers': {
         '': {  # Root logger
             'handlers': ['console'],
             'level': 'INFO',  # Or any level you consider appropriate
+        },
+        'honeybadger': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+            'propagate': True,
         },
     },
 }
