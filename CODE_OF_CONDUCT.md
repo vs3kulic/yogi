@@ -29,12 +29,12 @@ Applies to:
 
 ### Enforcement Team  
 **Ethics Committee**:  
-- 3 core maintainers (minimum)  
+- 1 core maintainer (minimum)  
 - 2 external advisors (security/environmental experts)  
 - Rotating membership every 12 months  
 
 ### Violation Process  
-1. Report via secure form: `ethics@yourdomain.com`  
+1. Report via mail: `hello@bekindstudio.com`  
 2. Initial response within 72 hours  
 3. Resolution options:  
    - Public/private apology  
