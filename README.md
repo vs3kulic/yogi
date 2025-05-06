@@ -106,13 +106,6 @@ git commit --no-verify
 
 ---
 
-## Notes  
-
-- We use the term "classes" instead of "courses".  
-- Class content and requirements will be provided by the be kind team.  
-
----
-
 ## Get Involved  
 
 Stay tuned for setup instructions and contribution guidelines as the project evolves.
