@@ -6,11 +6,14 @@ def test_info_page():
     """
     with sync_playwright() as p:
         # Launch a browser
-        browser = p.chromium.launch(headless=False)  # Use headless=False for debugging
+        browser = p.chromium.launch(headless=True)  # Use headless=True for CI or debugging
         page = browser.new_page()
 
+        # Define the base URL for local testing
+        base_url = "http://127.0.0.1:8000"
+
         # Navigate to the info page
-        page.goto("https://www.club.bekindstudio.at/info/")  # Replace with the correct URL if necessary
+        page.goto(f"{base_url}/info/")
 
         # Verify the page title
         assert page.title() == "Über Yogi", "Page title is incorrect"
@@ -31,6 +34,9 @@ def test_info_page():
         los_gehts_button = page.locator("a.next-button", has_text="Los geht’s")
         assert los_gehts_button.is_visible(), "Los geht’s button is not visible"
         los_gehts_button.click()
+
+        # Verify navigation to the questionnaire page
+        assert page.url == f"{base_url}/questionnaire/", "Navigation to questionnaire failed"
 
         # Close the browser
         browser.close()
