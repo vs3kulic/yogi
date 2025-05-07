@@ -9,7 +9,6 @@ We pledge to foster an open environment where users and contributors feel safe r
 ## Ethical Enforcement Standards  
 
 **Encouraged Behavior**  
-- Using inclusive language (e.g., gender-neutral terms)  
 - Respecting differing technical approaches  
 - Transparent decision-making processes  
 - Reporting ethical concerns via secure channels  
