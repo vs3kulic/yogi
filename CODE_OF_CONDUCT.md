@@ -7,7 +7,6 @@ We pledge to foster an open environment where users and contributors feel safe r
 - Political affiliation, religion, or sexual orientation  
 
 ## Ethical Enforcement Standards  
-
 **Encouraged Behavior**  
 - Respecting differing technical approaches  
 - Transparent decision-making processes  
