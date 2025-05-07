@@ -28,20 +28,12 @@ Applies to:
 
 ### Enforcement Team  
 **Ethics Committee**:  
-<<<<<<< HEAD
 - 1 core maintainer (minimum)  
-=======
-- 3 core maintainers (minimum)  
->>>>>>> 08130e96 (docs: modified LICENSE, added CoC)
 - 2 external advisors (security/environmental experts)  
 - Rotating membership every 12 months  
 
 ### Violation Process  
-<<<<<<< HEAD
 1. Report via mail: `hello@bekindstudio.com`  
-=======
-1. Report via secure form: `ethics@yourdomain.com`  
->>>>>>> 08130e96 (docs: modified LICENSE, added CoC)
 2. Initial response within 72 hours  
 3. Resolution options:  
    - Public/private apology  
@@ -49,5 +41,4 @@ Applies to:
    - Permanent license revocation for severe violations  
 
 ## Attribution  
-Adapted from [Contributor Covenant 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct/)  
-Includes modifications from [Facebook Open Source CoC](https://opensource.fb.com/code-of-conduct/)
+Adapted from [Contributor Covenant 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct/)
