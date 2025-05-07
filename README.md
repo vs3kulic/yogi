@@ -92,8 +92,6 @@ We use **Piwik** (Matomo) for tracking user behavior and analytics, without capt
 3. Analytics data is available in the Piwik dashboard for analysis.  
 
 ### Notes on Piwik  
-
-- The Piwik consent popup is styled to be non-intrusive and user-friendly.  
 - To modify the Piwik integration, update the tracking code in `base.html`.  
 
 ---
