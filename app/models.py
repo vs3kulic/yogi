@@ -1,3 +1,5 @@
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFit, Adjust
 from django.db import models
 
 class YogaClass(models.Model):
@@ -17,3 +19,12 @@ class YogaClass(models.Model):
 
     def __str__(self):
         return self.name
+
+class MyImageModel(models.Model):
+    original_image = models.ImageField(upload_to='static/images/')
+    optimized_image = ImageSpecField(
+        source='original_image',
+        processors=[ResizeToFit(800, 800), Adjust(contrast=1.2, sharpness=1.1)],
+        format='PNG',
+        options={'quality': 80}
+    )

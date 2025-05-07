@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',  # Main app
+    'imagekit' # Image processing
     # 'ml',   # ML app
 ]
 
