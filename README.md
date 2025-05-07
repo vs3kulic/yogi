@@ -14,14 +14,26 @@ All of this runs on a subdomain of [bekindstudio.at](https://bekindstudio.at).
 
 ---
 
+## Microservice Architecture  
+
+Yogi is designed as a **microservice** that integrates seamlessly into the broader be kind studio ecosystem. It operates independently while communicating with other services to provide a cohesive user experience.  
+
+### Key Characteristics of Yogi as a Microservice:  
+- **Independent Deployment**: Yogi can be deployed and scaled independently of other services.  
+- **API-Driven**: Yogi communicates with other services via REST APIs for data exchange.  
+- **Focused Functionality**: Yogi specializes in personalized yoga class recommendations.  
+- **Error Isolation**: Issues in Yogi do not affect other services in the ecosystem.  
+
+---
+
 ## Features  
 
 - **Personalized class recommendations** based on your input.  
 - **Preview class content** before joining.  
-- **Potential for machine learning** to improve recommendations over time.  
 - **Automated testing** with Playwright to ensure the app works as expected.  
 - **Error monitoring** with Honeybadger to track and resolve issues in production.  
-- **User analytics** with Piwik to understand user behavior and improve the app experience.  
+- **User analytics** with Piwik to understand user behavior and improve the app experience. 
+- **Images** delivered through a dedicated CDN to enhance performance and reduce storage requirements.
 
 ---
 
