@@ -9,6 +9,10 @@ We pledge to foster an open environment where users and contributors feel safe r
 ## Ethical Enforcement Standards  
 
 **Encouraged Behavior**  
+<<<<<<< HEAD
+=======
+- Using inclusive language (e.g., gender-neutral terms)  
+>>>>>>> 08130e96 (docs: modified LICENSE, added CoC)
 - Respecting differing technical approaches  
 - Transparent decision-making processes  
 - Reporting ethical concerns via secure channels  
@@ -29,12 +33,20 @@ Applies to:
 
 ### Enforcement Team  
 **Ethics Committee**:  
+<<<<<<< HEAD
 - 1 core maintainer (minimum)  
+=======
+- 3 core maintainers (minimum)  
+>>>>>>> 08130e96 (docs: modified LICENSE, added CoC)
 - 2 external advisors (security/environmental experts)  
 - Rotating membership every 12 months  
 
 ### Violation Process  
+<<<<<<< HEAD
 1. Report via mail: `hello@bekindstudio.com`  
+=======
+1. Report via secure form: `ethics@yourdomain.com`  
+>>>>>>> 08130e96 (docs: modified LICENSE, added CoC)
 2. Initial response within 72 hours  
 3. Resolution options:  
    - Public/private apology  
