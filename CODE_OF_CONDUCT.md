@@ -9,10 +9,6 @@ We pledge to foster an open environment where users and contributors feel safe r
 ## Ethical Enforcement Standards  
 
 **Encouraged Behavior**  
-<<<<<<< HEAD
-=======
-- Using inclusive language (e.g., gender-neutral terms)  
->>>>>>> 08130e96 (docs: modified LICENSE, added CoC)
 - Respecting differing technical approaches  
 - Transparent decision-making processes  
 - Reporting ethical concerns via secure channels  
