@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load static %} <!-- Load the static template tag -->
 
 {% block content %}
 <h1>Dein Ergebnis</h1>
@@ -7,7 +6,7 @@
 <!-- Show the image based on the result type -->
 {% if result_type == "Burnout-Yogini" %}
 <div class="result-image">
-    <img src="{% static 'images/burnout_yogini.png' %}" alt="Burnout Yogini" />
+    <img src="https://bekindstudio.at/wp-content/uploads/2025/05/burnout_yogini-200x300.png" alt="Burnout Yogini" />
 </div>
 <div class="result-details">
     <h2>Burnout-Yogini</h2>
@@ -21,7 +20,7 @@
 </div>
 {% elif result_type == "Ashtanga-Warrior" %}
 <div class="result-image">
-    <img src="{% static 'images/ashtanga_warrior.png' %}" alt="Ashtanga Warrior" />
+    <img src="https://bekindstudio.at/wp-content/uploads/2025/05/ashtanga_warrior-200x300.png" alt="Ashtanga Warrior" />
 </div>
 <div class="result-details">
     <h2>Ashtanga-Warrior</h2>
@@ -34,7 +33,7 @@
 </div>
 {% elif result_type == "Homeoffice-Yogini" %}
 <div class="result-image">
-    <img src="{% static 'images/homeoffice_yogi.png' %}" alt="Homeoffice Yogi" />
+    <img src="https://bekindstudio.at/wp-content/uploads/2025/05/homeoffice_yogi-200x300.png" alt="Homeoffice Yogi" />
 </div>
 <div class="result-details">
     <h2>Homeoffice-Yogini</h2>
@@ -47,7 +46,7 @@
 </div>
 {% elif result_type == "Casual-Stretcher" %}
 <div class="result-image">
-    <img src="{% static 'images/casual_stretcher.png' %}" alt="Casual Stretcher" />
+    <img src="https://bekindstudio.at/wp-content/uploads/2025/05/casual_stretcher-200x300.png" alt="Casual Stretcher" />
 </div>
 <div class="result-details">
     <h2>Casual-Stretcher</h2>
