@@ -60,6 +60,14 @@ def subscribe_view(request):
 def index(request):
     """
     Home page view that also resets the questionnaire session data.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+    Returns:
+        HttpResponse: Rendered HTML response for the home page.
+    Example:
+        GET /index/
+        Response: Rendered HTML for the home page.
     """
     # Reset questionnaire session data
     request.session.pop('shuffled_questions', None)
