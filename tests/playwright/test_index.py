@@ -6,7 +6,7 @@ def test_index_page():
     """
     with sync_playwright() as p:
         # Launch a browser
-        browser = p.chromium.launch(headless=False)  # Use headless=True for CI or debugging
+        browser = p.chromium.launch(headless=True)  # Use headless=True for CI or debugging
         page = browser.new_page()
 
         # Define the base URL for local testing

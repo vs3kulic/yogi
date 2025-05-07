@@ -3,7 +3,10 @@ services:
   - type: web
     name: fellowships
     env: python
-    buildCommand: ./build.sh
+    buildCommand: |
+      pip install -r requirements.txt
+      npm install -g playwright
+      npx playwright install chromium
     startCommand: gunicorn app.wsgi:application --bind 0.0.0.0:$PORT
     envVars:
       - key: DEBUG
@@ -58,6 +61,10 @@ buildScripts:
       
       # Install requirements
       pip install -r requirements.txt
+      
+      # Install Playwright and Chromium
+      npm install -g playwright
+      npx playwright install chromium
       
       # Collect static files
       python manage.py collectstatic --no-input

@@ -30,7 +30,7 @@ Applies to:
 **Ethics Committee**:  
 - 1 core maintainer (minimum)  
 - 2 external advisors (security/environmental experts)  
-- Rotating membership every 12 months  
+- Rotating membership every 12 months (if feasible)
 
 ### Violation Process  
 1. Report via mail: `hello@bekindstudio.com`  
