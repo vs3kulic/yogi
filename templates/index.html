@@ -3,6 +3,7 @@
 
 {% block extra_styles %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="preload" href="https://bekindstudio.at/wp-content/uploads/2025/05/bekind-logo-300x300.png" as="image">
 {% endblock %}
 
 {% block title %}be kind club{% endblock %}
@@ -15,7 +16,7 @@
     <main>
         <p>Ich bin dein fresher Yoga-Matcher! </br> 
             Lass uns die Klasse finden, die zu dir passt!</p>
-        <img src="https://bekindstudio.at/wp-content/uploads/2025/05/bekind-logo-300x300.png" alt="logo" class="index-image">
+        <img src="https://bekindstudio.at/wp-content/uploads/2025/05/bekind-logo-300x300.png" alt="logo" class="index-image" width="300" height="300">
         <div class="button-group">
             <a href="{% url 'questionnaire' %}" class="next-button">Klasse suchen</a>
         </div>
