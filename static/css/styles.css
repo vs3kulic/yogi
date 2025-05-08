@@ -1,8 +1,17 @@
+/* Default styles before fonts are loaded */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Styles after fonts are loaded */
+html.fonts-loaded body {
+  font-family: 'Nunito', sans-serif;
+}
+
 /* Base settings for light mode */
 body {
     background-color: #ffffff;
     color: #c6009b; /* Pink font color */
-    font-family: 'Nunito'; /* Use Nunito font */
     font-style: normal;
     font-weight: 400;
     letter-spacing: 1px;
@@ -61,37 +70,78 @@ body {
     width: 200px; /* Ensures all buttons have the same width */
     box-sizing: border-box;
     text-align: center;
+    transition: background-color 0.3s ease;
+}
+.next-button:hover, .back-button:hover {
+    background-color: #3a0f3b; /* Darker purple on hover */
+}
+
+/* Typography */
+body {
+    font-family: Arial, sans-serif; /* Fallback font */
+    background-color: #ffffff;
+    color: #c6009b; /* Pink font color */
     font-style: normal;
     font-weight: 400;
     letter-spacing: 1px;
-}
-.next-button:hover, .back-button:hover {
-    background-color: #471f66; /* Darker purple for hover */
-    transition: background-color 0.3s ease;
+    margin: 0;
+    padding: 0;
 }
 
-/* Header styling */
+html.fonts-loaded body {
+    font-family: 'Nunito', sans-serif; /* Use Nunito font after loading */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #471f66; /* Purple font color for all headers */
+    line-height: 1.2;
+}
+
+p {
+    text-align: center;
+    font-size: 17px;
+    color: #c6009b; /* Pink font color for paragraphs */
+    line-height: 1.8;
+    letter-spacing: 1px;
+}
+
+/* Layout */
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
 header {
     text-align: center;
     margin-bottom: 20px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    color: #471f66; /* Purple font color for all headers */
-}
-
-/* Heading styling */
-h1, h2, h3 {
-    color: #471f66; /* Purple font color for all headers */
-    line-height: 1.2; /* Recommended for headings */
-}
-
-/* Alternatively, add space above the answer options */
-.answer-options {
+.result-details {
     margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
 }
 
-/* Form elements */
+.result-details h2, .result-details h3 {
+    color: #471f66; /* Purple */
+}
+
+.result-image img {
+    max-width: 60%;
+    height: auto;
+    margin: 20px auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Forms */
 input, select, textarea {
     color: #c6009b; /* Pink font color for form inputs */
     background-color: #ffffff;
@@ -100,23 +150,92 @@ input, select, textarea {
     padding: 8px;
 }
 
-/* Paragraph styling */
-p {
-    text-align: center;
-    font-size: 17px;
-    color: #c6009b; /* Pink font color for paragraphs */
-    font-style: normal;
-    font-weight: 400;
-    letter-spacing: 1px;
-    line-height: 1.8;
+input:focus, select:focus, textarea:focus {
+    border-color: #c6009b;
+    outline: none;
+    box-shadow: 0 0 5px rgba(198, 0, 155, 0.5);
 }
 
-/* Index Page Image Styling */
-.index-image {
-    display: block;
-    max-width: 40%; /* Reduce the width to 50% */
-    height: auto; /* Maintain aspect ratio */
-    margin: 10px auto; /* Reduce the margin for better spacing */
+/* Subscription Form */
+.subscribe-container {
+    background-color: #ffffff;
+    padding: 20px;
+    max-width: 95%;
+    margin: 20px auto;
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    color: #4a154b; /* Purple text color */
+}
+
+.subscribe-form .form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.subscribe-form .btn {
+    background-color: #471f66; /* Purple background */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.subscribe-form .btn:hover {
+    background-color: #3a0f3b; /* Darker purple on hover */
+}
+
+/* Navbar */
+.navbar {
+    background-color: #ffffff;
+}
+
+.navbar-brand, .nav-link {
+    color: #c6009b; /* Pink font color for navbar links */
+}
+
+.navbar-brand:hover, .nav-link:hover {
+    color: #c6009b; /* Darker pink on hover */
+}
+
+.navbar-toggler {
+    background-color: #ffffff;
+    border: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Links */
+.text-link {
+    color: #c6009b; /* Pink color */
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.text-link:hover {
+    text-decoration: none;
+    color: #6a0dad; /* Purple hover color */
+}
+
+/* Miscellaneous */
+hr {
+    border: none;
+    border-top: 2px solid #c6009b; /* Purple color for the line */
+    margin: 12px auto;
+    width: 80%;
+}
+
+ul li {
+    text-align: left;
+    margin-bottom: 10px;
 }
 
 /* Tooltip Custom Styles */
@@ -146,17 +265,6 @@ p {
 .tooltip-custom:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
-}
-
-/* Left-align text inside bullet points */
-ul li {
-    text-align: left; /* Aligns the text to the left */
-    margin-bottom: 10px; /* Adds spacing between list items */
-}
-
-/* Favicon Styling */
-link[rel="icon"] {
-    filter: grayscale(0%);
 }
 
 /* Progress bar styling */
@@ -207,68 +315,6 @@ link[rel="icon"] {
     border-color: #c6009b;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
     color: black; /* Ensure the text color remains black on focus */
-}
-
-.result-image img {
-    max-width: 60%; /* Ensure the image is responsive */
-    height: auto; /* Maintain aspect ratio */
-    margin: 20px auto; /* Add spacing and center the image */
-    display: block;
-    border-radius: 10px; /* Optional: Add rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
-}
-
-/* Style for the recommended classes table */
-.recommended-classes-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 16px;
-    text-align: left;
-}
-
-.recommended-classes-table thead tr {
-    background-color: #f4f4f4;
-    border-bottom: 2px solid #ddd;
-}
-
-.recommended-classes-table th,
-.recommended-classes-table td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-}
-
-.recommended-classes-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.recommended-classes-table tbody tr:hover {
-    background-color: #f1f1f1;
-}
-
-.next-button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #471f66; /* Set the button color to purple */
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.next-button:hover {
-    background-color: #471f66; /* Darker purple on hover */
-}
-
-/* Style for horizontal lines */
-hr {
-    border: none;
-    border-top: 2px solid #c6009b; /* Purple color for the line */
-    margin: 12px 0;
-    width: 80%; /* Optional: Adjust the width of the line */
-    margin-left: auto;
-    margin-right: auto; /* Center the line */
 }
 
 /* Style for result details */
@@ -381,9 +427,7 @@ hr {
 .text-link {
     color: #c6009b; /* Pink color */
     text-decoration: underline;
-    font-weight: 400;
     cursor: pointer;
-    margin-top: 10px;
 }
 
 .text-link:hover {
@@ -394,4 +438,14 @@ hr {
 .info-link {
     display: inline-block; /* Ensures margin works properly */
     margin-top: 20px; /* Adjust the value as needed */
+}
+
+/* Style for horizontal lines */
+hr {
+    border: none;
+    border-top: 2px solid #c6009b; /* Purple color for the line */
+    margin: 12px 0;
+    width: 80%; /* Optional: Adjust the width of the line */
+    margin-left: auto;
+    margin-right: auto; /* Center the line */
 }
