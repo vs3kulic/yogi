@@ -25,7 +25,9 @@ ALLOWED_HOSTS = [
 MAILCHIMP_API_KEY = config("MAILCHIMP_API_KEY")
 MAILCHIMP_LIST_ID = config("MAILCHIMP_LIST_ID")
 MAILCHIMP_DC = config("MAILCHIMP_DC")
-HONEYBADGER_API_KEY = config('HONEYBADGER_API_KEY', default=None)
+HONEYBADGER = {
+    'API_KEY': config("HONEYBADGER_API_KEY", default=None)
+}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -35,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',  # Main app
-    'imagekit' # Image processing
-    # 'ml',   # ML app
+    'imagekit', # Image processing
 ]
 
 MIDDLEWARE = [
