@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Seite nicht gefunden | be kind club{% endblock %}
+
+{% block content %}
+<div class="container text-center py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="display-4 mb-4">404</h1>
+            <h2 class="mb-4">Oops! Diese Seite konnten wir nicht finden.</h2>
+            
+            <img src="{% static 'images/yoga-404.png' %}" alt="Meditierender Yoga-Charakter" class="img-fluid mb-4" style="max-height: 200px;">
+            
+            <p class="lead mb-5">
+                Nimm einen tiefen Atemzug ein... und aus... und versuche einen dieser Wege:
+            </p>
+            
+            <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+                <a href="{% url 'index' %}" class="btn next-button mb-3 mb-md-0">Zurück zur Startseite</a>
+                <a href="javascript:history.back()" class="btn back-button">Zurück zur vorherigen Seite</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -4,5 +4,8 @@
 # Ignore venv directory
 venv/
 
+# Ignore logs
+logs/honeybadger.log
+
 # Ignore macOS .DS_Store files
 .DS_Store

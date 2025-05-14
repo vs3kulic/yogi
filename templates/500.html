@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Server Error | be kind club{% endblock %}
+
+{% block content %}
+<div class="container text-center py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="display-4 mb-4">500</h1>
+            <h2 class="mb-4">Oops! Etwas ist schief gelaufen.</h2>
+            
+            <p class="lead mb-4">
+                Unser Server braucht gerade einen Moment der Meditation. Wir arbeiten daran, das Problem zu lösen.
+            </p>
+            
+            <p class="mb-5">
+                Bitte versuche es später noch einmal oder kontaktiere uns, wenn das Problem bestehen bleibt.
+            </p>
+            
+            <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+                <a href="{% url 'index' %}" class="next-button mb-3 mb-md-0">Zurück zur Startseite</a>
+                <a href="javascript:history.back()" class="back-button">Zurück zur vorherigen Seite</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
