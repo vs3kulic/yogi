@@ -224,9 +224,6 @@ def recommended_classes(request):
         request (HttpRequest): The HTTP request object.
     Returns:
         HttpResponse: Rendered HTML response with recommended classes.
-    Example:
-        GET /recommended_classes/
-        Response: Rendered HTML with recommended classes based on the user's yoga type.
     """
     # Get the user's result type from the session
     result_type = request.session.get('result_type', None)
@@ -238,6 +235,9 @@ def recommended_classes(request):
 
 @require_GET
 def robots_txt(request):
+    """
+    Serve the robots.txt file to control web crawler access.
+    """
     lines = [
         "User-agent: *",
         "Allow: /",
