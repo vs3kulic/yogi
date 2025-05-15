@@ -1,8 +1,10 @@
-import random
-import os
+"""
+views.py module contains the logic for handling user requests and rendering appropriate responses.
+"""
+
 import logging
-import requests
 import json
+import requests
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.conf import settings
