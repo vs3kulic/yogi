@@ -18,9 +18,8 @@ html.fonts-loaded body {
 
 h1, h2, h3, h4, h5, h6 {
   color: #471f66; /* Purple font color for all headers */
+  margin-top: 20px;
   line-height: 1.2;
-  letter-spacing: 1px;
-  font-size: 24px;
 }
 
 p {
@@ -106,6 +105,11 @@ header {
 
 .result-details h2, .result-details h3 {
   color: #471f66; /* Purple */
+  margin-top: 20px;
+}
+
+.result-details h3 {
+  margin-top: 30px; /* Adjust the value as needed */
 }
 
 .result-image img {
@@ -308,4 +312,8 @@ ul li {
   border-color: #c6009b;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   color: black;
+}
+
+.challenge-heading {
+  margin-top: 40px; /* Adjust the value as needed */
 }
