@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'app',  # Main app
     'imagekit', # Image processing
     'django.contrib.sites',  # For Django Allauth
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
@@ -164,3 +165,5 @@ LOGGING = {
         },
     },
 }
+
+SITE_ID = 1

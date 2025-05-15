@@ -153,3 +153,26 @@ Registering plugin Django
 Registering plugin Django
 Registering plugin Django
 Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+[<FrameSummary file /Users/vajosekulic/Documents/Programming/Fellowships/venv/lib/python3.11/site-packages/django/core/handlers/base.py, line 181 in _get_response>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Fellowships/venv/lib/python3.11/site-packages/django/contrib/sitemaps/views.py, line 16 in inner>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Fellowships/venv/lib/python3.11/site-packages/django/contrib/sitemaps/views.py, line 53 in sitemap>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Fellowships/venv/lib/python3.11/site-packages/django/contrib/sites/shortcuts.py, line 13 in get_current_site>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Fellowships/venv/lib/python3.11/site-packages/django/contrib/sites/models.py, line 60 in get_current>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Fellowships/venv/lib/python3.11/site-packages/django/contrib/sites/models.py, line 45 in _get_site_by_request>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Fellowships/venv/lib/python3.11/site-packages/django/db/models/manager.py, line 85 in manager_method>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Fellowships/venv/lib/python3.11/site-packages/django/db/models/query.py, line 435 in get>]
+Returning payload from plugin Django
+No active plugin to generate payload
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+[<FrameSummary file /Users/vajosekulic/Documents/Programming/Fellowships/venv/lib/python3.11/site-packages/django/core/handlers/base.py, line 204 in _get_response>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Fellowships/venv/lib/python3.11/site-packages/django/template/response.py, line 105 in render>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Fellowships/venv/lib/python3.11/site-packages/django/template/response.py, line 81 in rendered_content>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Fellowships/venv/lib/python3.11/site-packages/django/template/response.py, line 65 in resolve_template>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Fellowships/venv/lib/python3.11/site-packages/django/template/loader.py, line 19 in get_template>]
+Returning payload from plugin Django
+No active plugin to generate payload
+[<FrameSummary file /Users/vajosekulic/Documents/Programming/Fellowships/venv/lib/python3.11/site-packages/django/core/handlers/base.py, line 204 in _get_response>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Fellowships/venv/lib/python3.11/site-packages/django/template/response.py, line 105 in render>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Fellowships/venv/lib/python3.11/site-packages/django/template/response.py, line 81 in rendered_content>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Fellowships/venv/lib/python3.11/site-packages/django/template/response.py, line 65 in resolve_template>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Fellowships/venv/lib/python3.11/site-packages/django/template/loader.py, line 19 in get_template>]
+Returning payload from plugin Django
+No active plugin to generate payload
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
