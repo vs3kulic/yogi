@@ -1,6 +1,8 @@
 import os
+import sys
 from pathlib import Path
 from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,19 +81,31 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_NAME', default='*****'),
-        'USER': config('DB_USER', default='*****'),
-        'PASSWORD': config('DB_PASSWORD', default='*****'),
-        'HOST': config('DB_HOST', default='*****'),
-        'PORT': config('DB_PORT', default='*****'),
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+if 'test' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',  # In-memory SQLite database for faster tests
         }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': config('DB_NAME', default='*****'),
+            'USER': config('DB_USER', default='*****'),
+            'PASSWORD': config('DB_PASSWORD', default='*****'),
+            'HOST': config('DB_HOST', default='*****'),
+            'PORT': config('DB_PORT', default='*****'),
+            'OPTIONS': {
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            },
+            'TEST': {
+                'ENGINE': 'django.db.backends.sqlite3',  # Use SQLite for tests
+                'NAME': ':memory:',  # In-memory SQLite database for faster tests
+            },
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -167,3 +181,8 @@ LOGGING = {
 }
 
 SITE_ID = 1
+
+# ImageKit settings
+IMAGEKIT_CACHEFILE_DIR = 'cache/images/'  # Directory for cached images
+IMAGEKIT_CACHEFILE_NAMER = 'imagekit.cachefiles.namers.hash'  # Default namer
+IMAGEKIT_DEFAULT_CACHEFILE_BACKEND = 'imagekit.cachefiles.backends.Simple'  # Default backend

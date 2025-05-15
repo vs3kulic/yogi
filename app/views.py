@@ -7,11 +7,19 @@ import requests
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from django.conf import settings
-from django.views.decorators.http import require_GET, require_http_methods
+from django.views.decorators.http import require_GET, require_POST, require_http_methods
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
+from .models import YogaClass  # Adjust import path as needed
+from .utils import SessionManager
+from .constants import QUESTIONS, ANSWER_TO_TYPE
 
 logger = logging.getLogger(__name__)
+
+
+# ---------------------------
+# Views
+# ---------------------------
 
 # subscribe_view
 @require_http_methods(["POST"])
@@ -20,12 +28,9 @@ def subscribe_view(request):
     Helper function to subscribe an email address to Mailchimp.
 
     Args:
-        POST JSON: {"email": "user@example.com"}
-
+        request (HttpRequest): The HTTP request object containing the email address.
     Returns:
-        200/201: {"message": "Successfully subscribed!"}
-        400: {"error": "..."}
-        4xx/5xx: {"error": "..."}
+        JsonResponse: A JSON response indicating success or failure.
     """
     email = request.POST.get("email")
 
@@ -60,7 +65,6 @@ def subscribe_email(email):
             status_code (int): HTTP status code from Mailchimp API.
             response (dict): JSON response from Mailchimp API.
     """
-
     data = {
         "email_address": email,
         "status": "subscribed"
@@ -75,206 +79,115 @@ def subscribe_email(email):
             timeout=5
         )
         try:
-            resp_json = req.json() # Attempt to decode JSON response
+            resp_json = req.json()  # Attempt to decode JSON response
         except ValueError:
-            resp_json = {} # Fallback to empty dict if JSON decoding fails
+            resp_json = {}  # Fallback to empty dict if JSON decoding fails
         
         return req.status_code, resp_json
-    
+
     except requests.RequestException as e:
+        # Handle request-related exceptions (e.g., connection errors, timeouts)
         return 503, {"detail": str(e)}
 
 
+@require_GET
 def index(request):
     """
-    Home page view that also resets the questionnaire session data.
-
-    Args:
-        request (HttpRequest): The HTTP request object.
-    Returns:
-        HttpResponse: Rendered HTML response for the home page.
-    Example:
-        GET /index/
-        Response: Rendered HTML for the home page.
+    Home page view. Resets questionnaire session data.
     """
-    # Reset questionnaire session data
-    request.session.pop('shuffled_questions', None)
-    request.session.pop('current_question_index', None)
-    request.session.pop('responses', None)
-
+    session_manager = SessionManager(request.session)
+    session_manager.reset_questionnaire()
     return render(request, 'index.html')
 
+@require_GET
 def info(request):
     """
-    Render a placeholder lore/info page.
+    Renders a static info/lore page.
     """
     return render(request, 'info.html')
 
+@require_http_methods(["GET", "POST"])
 def questionnaire(request):
     """
-    Handle the questionnaire logic where users move forward by selecting an answer
-    or backward using a Back button.
+    Handles the questionnaire flow: displaying questions, saving answers, and navigation.
     """
-    # Define the questions
-    questions = [
-        {
-            "number": 1,
-            "question": "Wie fühlt sich dein Körper aktuell an?",
-            "answers": {
-                "A": "Ich bin basically der Typ flexible Brezel – super elastisch in allen Positionen.",
-                "B": "Ganz solide, aber manchmal knarre ich beim Aufstehen wie ein Holzstuhl.",
-                "C": "Mein Körper ist ein work in progress – ich bin da realistisch.",
-                "D": "Bewegung gibt’s bei mir meistens nur dann wenn es unbedingt sein muss."
-            }
-        },
-        {
-            "number": 2,
-            "question": "Wie läuft’s bei dir mit Verletzungen oder Einschränkungen?",
-            "answers": {
-                "A": "Momentan hab ich keine akuten oder chronischen Verletzungen.",
-                "B": "Ich komme mit Altlasten – meine Schulter erzählt noch vom Festival ’18.",
-                "C": "Mein Körper kommt mir derzeit wie eine chronische Baustelle vor.",
-                "D": "Ich bin aktuell völlig out of order — aber ich will zurück ins Game."
-            }
-        },
-        {
-            "number": 3,
-            "question": "Dein Commitment-Level zu Yoga?",
-            "answers": {
-                "A": "Situationship-Yogi. Ich und Yoga waren immer schon on-off.",
-                "B": "Yoga war Liebe auf den ersten Blick. Ich bin vollkommen committed!",
-                "C": "YouTube-Yoga und ich haben eine intensive Fernbeziehung.",
-                "D": "Ich schau mal. Ich hab gehört es gibt Snacks und Tee nach der Klasse."
-            }
-        },
-        {
-            "number": 4,
-            "question": "Welche Vibes spürst du, wenn du an Yoga denkst?",
-            "answers": {
-                "A": "Faszien-Liebe: Entkrampfen, durchatmen, alles loslassen – pls massage my soul.",
-                "B": "Power-Mover: Ich brauch Action! Schwitzen, stretchen, strong AF werden.",
-                "C": "Slow-Flow: Ich will flowen und chillen.",
-                "D": "Zen-Seeker: Ich brauche mehr im Leben — vielleicht ist es Yoga."
-            }
-        },
-        {
-            "number": 5,
-            "question": "Wie willst du dein Yoga erleben?",
-            "answers": {
-                "A": "Kollektiver Vibe like a Sunday Brunch – nur mit Asanas.",
-                "B": "Mat Queen: Ich bleibe auf meiner Matte, alles andere um mich herum blende ich aus.",
-                "C": "Zen-Master: Hauptsache gemütlich. Langsamer, tiefer, länger.",
-                "D": "Ich brauch klare Ansagen – step by step, sonst verlauf ich mich."
-            }
-        },
-    ]
+    session_manager = SessionManager(request.session)
+    session_manager.initialize_questionnaire(len(QUESTIONS))
 
-    # Initialize session variables if not already set
-    if 'responses' not in request.session:
-        request.session['responses'] = [None] * len(questions)  # Pre-fill with None
-    if 'current_question_index' not in request.session:
-        request.session['current_question_index'] = 0
+    current_index = session_manager.get_current_question_index()
+    responses = session_manager.get_responses()
 
-    # Handle POST request
     if request.method == "POST":
-        # Check if the user clicked the Back button
         if 'back' in request.POST:
-            current_question_index = request.session['current_question_index']
-            if current_question_index > 0:
-                request.session['current_question_index'] -= 1
+            if current_index > 0:
+                session_manager.set_current_question_index(current_index - 1)
             return redirect('questionnaire')
 
-        # Handle answer submission
         answer = request.POST.get("answer")
         if answer:
-            # Save the answer at the correct index
-            current_question_index = request.session['current_question_index']
-            responses = request.session['responses']
-            responses[current_question_index] = answer  # Update the response for the current question
-            request.session['responses'] = responses
+            session_manager.save_response(current_index, answer)
+            next_index = current_index + 1
 
-            # Move to the next question
-            current_question_index += 1
-            request.session['current_question_index'] = current_question_index
-
-            # Redirect to the result page if all questions are answered
-            if current_question_index >= len(questions):
+            if next_index >= len(QUESTIONS):
                 return redirect('calculate_result')
 
-    # Get the current question index
-    current_question_index = request.session['current_question_index']
+            session_manager.set_current_question_index(next_index)
+            return redirect('questionnaire')
 
-    # Render the current question
-    question = questions[current_question_index]
+    # Render current question
+    question = QUESTIONS[current_index]
     return render(request, 'questionnaire.html', {
         'question': question,
-        'current_question_index': current_question_index + 1,  # For display (1-based index)
-        'total_questions': len(questions),
+        'current_question_index': current_index + 1,  # 1-based for display
+        'total_questions': len(QUESTIONS),
     })
 
+@require_POST
 def reset_questionnaire(request):
     """
-    Reset the questionnaire by clearing session data.
+    Resets the questionnaire session and redirects to home.
     """
-    request.session.pop('shuffled_questions', None)
-    request.session.pop('current_question_index', None)
-    request.session.pop('responses', None)
-    return redirect('index')  # Redirect to the home page or any other page
+    session_manager = SessionManager(request.session)
+    session_manager.reset_questionnaire()
+    return redirect('index')
 
+@require_GET
 def calculate_result(request):
     """
-    Calculate the user's yoga type based on their answers.
+    Calculates the user's yoga type based on their answers.
     """
-    # Retrieve the user's responses from the session
-    responses = request.session.get('responses', [])
+    session_manager = SessionManager(request.session)
+    responses = session_manager.get_responses()
 
-    # Mapping of answers to result types
-    answer_to_result_type = {
-        "A": "Burnout-Yogini",
-        "B": "Ashtanga-Warrior",
-        "C": "Homeoffice-Yogini",
-        "D": "Casual-Stretcher",
-    }
-
-    # Count the occurrences of each result type
-    result_type_count = {}
-    for response in responses:
-        result_type = answer_to_result_type.get(response)
+    # Tally results
+    type_counts = {}
+    for resp in responses:
+        result_type = ANSWER_TO_TYPE.get(resp)
         if result_type:
-            result_type_count[result_type] = result_type_count.get(result_type, 0) + 1
+            type_counts[result_type] = type_counts.get(result_type, 0) + 1
 
-    # Determine the most frequent result type
-    result_yoga_type = max(result_type_count, key=result_type_count.get, default="Unbekannt")
-
-    # Store the result type in the session
+    result_yoga_type = max(type_counts, key=type_counts.get, default="Unbekannt")
     request.session['result_type'] = result_yoga_type
 
-    # Pass the result to the template
     return render(request, 'result.html', {
         'result_text': f"Dein Yoga-Typ ist: <strong>{result_yoga_type}</strong>!",
         'result_type': result_yoga_type
     })
 
+@require_GET
 def recommended_classes(request):
     """
-    Display recommended classes based on the user's result type.
-    This function fetches classes from the database that match the user's yoga type.
-
-    Args:
-        request (HttpRequest): The HTTP request object.
-    Returns:
-        HttpResponse: Rendered HTML response with recommended classes.
+    Displays recommended classes based on the user's result type.
     """
-    # Get the user's result type from the session
-    result_type = request.session.get('result_type', None)
-
-    # Fetch classes from the database based on the result type
-    filtered_classes = YogaClass.objects.filter(yoga_type=result_type)  # Use 'yoga_type' instead of 'type'
-
-    return render(request, 'recommended_classes.html', {'classes': filtered_classes, 'result_type': result_type})
+    result_type = request.session.get('result_type')
+    filtered_classes = YogaClass.objects.filter(yoga_type=result_type)
+    return render(request, 'recommended_classes.html', {
+        'classes': filtered_classes,
+        'result_type': result_type
+    })
 
 @require_GET
-def robots_txt(request):
+def robots_txt(_request):
     """
     Serve the robots.txt file to control web crawler access.
     """
@@ -282,6 +195,5 @@ def robots_txt(request):
         "User-agent: *",
         "Allow: /",
         "Disallow: /admin/",
-        # Add more rules as needed
     ]
     return HttpResponse("\n".join(lines), content_type="text/plain")
