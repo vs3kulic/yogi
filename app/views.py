@@ -6,8 +6,9 @@ import logging
 import json
 import requests
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.conf import settings
+from django.views.decorators.http import require_GET
 
 logger = logging.getLogger(__name__)
 
@@ -19,6 +20,7 @@ def subscribe_email(email):
         "email_address": email,
         "status": "subscribed"
     }
+    
     req = requests.post(
         settings.MAILCHIMP_MEMBERS_ENDPOINT,
         auth=("", settings.MAILCHIMP_API_KEY),
@@ -233,3 +235,13 @@ def recommended_classes(request):
     filtered_classes = YogaClass.objects.filter(yoga_type=result_type)  # Use 'yoga_type' instead of 'type'
 
     return render(request, 'recommended_classes.html', {'classes': filtered_classes, 'result_type': result_type})
+
+@require_GET
+def robots_txt(request):
+    lines = [
+        "User-agent: *",
+        "Allow: /",
+        "Disallow: /admin/",
+        # Add more rules as needed
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")

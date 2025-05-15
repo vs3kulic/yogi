@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',  # Main app
     'imagekit', # Image processing
+    'django.contrib.sites',  # For Django Allauth
 ]
 
 MIDDLEWARE = [
