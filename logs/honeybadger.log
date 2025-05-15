@@ -118,3 +118,4 @@ Registering plugin Django
 [<FrameSummary file /Users/vajosekulic/Documents/Programming/Fellowships/venv/lib/python3.11/site-packages/django/core/handlers/base.py, line 181 in _get_response>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/app/views.py, line 180 in questionnaire>]
 Returning payload from plugin Django
 No active plugin to generate payload
+Registering plugin Django
