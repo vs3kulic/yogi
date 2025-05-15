@@ -34,16 +34,16 @@ HONEYBADGER = {
 }
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app',  # Main app
-    'imagekit', # Image processing
     'django.contrib.sites',  # For Django Allauth
     'django.contrib.sitemaps',
+    'app',  # Main app
+    'imagekit', # Image processing
 ]
 
 MIDDLEWARE = [

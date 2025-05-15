@@ -13,12 +13,14 @@ body {
 
 /* Apply web font once loaded */
 html.fonts-loaded body {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: #471f66; /* Purple font color for all headers */
   line-height: 1.2;
+  letter-spacing: 1px;
+  font-size: 24px;
 }
 
 p {
@@ -137,7 +139,7 @@ input:focus, select:focus, textarea:focus {
   max-width: 95%;
   margin: 20px auto;
   text-align: center;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
   color: #4a154b; /* Purple text color */
 }
 
