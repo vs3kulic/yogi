@@ -1,49 +1,89 @@
 """
 views.py module contains the logic for handling user requests and rendering appropriate responses.
 """
-
 import logging
 import json
 import requests
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from django.conf import settings
-from django.views.decorators.http import require_GET
+from django.views.decorators.http import require_GET, require_http_methods
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
 
 logger = logging.getLogger(__name__)
 
+# subscribe_view
+@require_http_methods(["POST"])
+def subscribe_view(request):
+    """
+    Helper function to subscribe an email address to Mailchimp.
+
+    Args:
+        POST JSON: {"email": "user@example.com"}
+
+    Returns:
+        200/201: {"message": "Successfully subscribed!"}
+        400: {"error": "..."}
+        4xx/5xx: {"error": "..."}
+    """
+    email = request.POST.get("email")
+
+    if not email:
+        return JsonResponse({"error": "Email is required."}, status=400)
+    
+    try:
+        validate_email(email)
+    except ValidationError:
+        return JsonResponse({"error": "Invalid email format."}, status=400)
+
+    # Call the subscribe_email function to process the subscription
+    status_code, response = subscribe_email(email)
+
+    # Check the status code and response
+    if 200 <= status_code < 300:
+        return JsonResponse({"message": "Successfully subscribed!"}, status = status_code)
+    else:
+        error_msg = response.get("detail") if isinstance(response, dict) else "Subscription failed."
+        return JsonResponse({"error": error_msg}, status = status_code)
+
+
 def subscribe_email(email):
     """
-    Subscribe to a Mailchimp list.
+    Helper function to subscribe an email address to Mailchimp.
+
+    Args:
+        email (str): The email address to subscribe.
+        
+    Returns:
+        tuple: (status_code, response)
+            status_code (int): HTTP status code from Mailchimp API.
+            response (dict): JSON response from Mailchimp API.
     """
+
     data = {
         "email_address": email,
         "status": "subscribed"
     }
+    try:
+        # Send a POST request to Mailchimp API
+        req = requests.post(
+            settings.MAILCHIMP_MEMBERS_ENDPOINT,
+            auth=("", settings.MAILCHIMP_API_KEY),
+            data=json.dumps(data),
+            headers={"Content-Type": "application/json"},
+            timeout=5
+        )
+        try:
+            resp_json = req.json() # Attempt to decode JSON response
+        except ValueError:
+            resp_json = {} # Fallback to empty dict if JSON decoding fails
+        
+        return req.status_code, resp_json
     
-    req = requests.post(
-        settings.MAILCHIMP_MEMBERS_ENDPOINT,
-        auth=("", settings.MAILCHIMP_API_KEY),
-        data=json.dumps(data),
-        headers={"Content-Type": "application/json"},
-        timeout=5 # Timeout after 5 seconds
-    )
-    return req.status_code, req.json()
+    except requests.RequestException as e:
+        return 503, {"detail": str(e)}
 
-def subscribe_view(request):
-    """
-    Handle email subscription requests from the result page.
-    """
-    if request.method == "POST":
-        email = request.POST.get("email")
-        if email:
-            status_code, response = subscribe_email(email)
-            if status_code == 200:
-                return JsonResponse({"message": "Successfully subscribed!"}, status=200)
-            else:
-                return JsonResponse({"error": response.get("detail", "Subscription failed.")}, status=status_code)
-        return JsonResponse({"error": "Email is required."}, status=400)
-    return JsonResponse({"error": "Invalid request method."}, status=405)
 
 def index(request):
     """
