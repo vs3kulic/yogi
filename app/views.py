@@ -8,40 +8,24 @@ import requests
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.conf import settings
-from app.models import YogaClass
 
 logger = logging.getLogger(__name__)
 
-# Mailchimp configuration
-MAILCHIMP_API_KEY = settings.MAILCHIMP_API_KEY
-MAILCHIMP_LIST_ID = settings.MAILCHIMP_LIST_ID
-MAILCHIMP_DC = settings.MAILCHIMP_DC
-
-# Mailchimp endpoint
-members_endpoint = f"https://{MAILCHIMP_DC}.api.mailchimp.com/3.0/lists/{MAILCHIMP_LIST_ID}/members"
-
 def subscribe_email(email):
     """
-    Subscribe an email address to a Mailchimp list.
-
-    Args:
-        email (str): The email address to subscribe.
-
-    Returns:
-        tuple: A tuple containing the HTTP status code and the response JSON.
+    Subscribe to a Mailchimp list.
     """
     data = {
         "email_address": email,
         "status": "subscribed"
     }
-
     req = requests.post(
-        members_endpoint,
-        auth=("", MAILCHIMP_API_KEY),
+        settings.MAILCHIMP_MEMBERS_ENDPOINT,
+        auth=("", settings.MAILCHIMP_API_KEY),
         data=json.dumps(data),
-        headers={"Content-Type": "application/json"}
+        headers={"Content-Type": "application/json"},
+        timeout=5 # Timeout after 5 seconds
     )
-
     return req.status_code, req.json()
 
 def subscribe_view(request):
