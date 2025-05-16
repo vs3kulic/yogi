@@ -19,7 +19,8 @@ def test_info_page():
         assert page.title() == "Über Yogi", "Page title is incorrect"
 
         # Check if the header is displayed
-        header = page.locator("h1")
+        page.wait_for_selector("h1", timeout=2000)  # Wait up to 2 seconds for the h1 element to appear
+        header = page.locator("h1", has_text="be kind club")
         assert header.is_visible(), "Header is not visible"
         assert header.text_content() == "be kind club", "Header text is incorrect"
 

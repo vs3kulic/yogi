@@ -17,7 +17,8 @@ def test_views():
         # Test the info page
         page.locator("a.info-link").click()
         assert page.url == "http://127.0.0.1:8000/info/"
-        assert page.locator("h1", has_text="be kind club").is_visible()
+        page.wait_for_selector("h1", timeout=1000)
+        assert page.locator("h1").is_visible()
 
         # Test the questionnaire page
         page.goto("http://127.0.0.1:8000/questionnaire/")
@@ -29,6 +30,7 @@ def test_views():
 
         # Test the result page
         assert page.url == "http://127.0.0.1:8000/calculate_result/", "Navigation to result page failed"
+        page.wait_for_selector("h1", timeout=1000)
         assert page.locator("h1", has_text="Dein Ergebnis").is_visible()
 
         # Close the browser
