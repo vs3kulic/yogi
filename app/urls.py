@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from . import views
 from .sitemaps import StaticViewSitemap
@@ -9,6 +10,7 @@ sitemaps = {
 
 urlpatterns = [
     path('', views.index, name='index'),  # Home page with reset functionality
+    path('admin/', admin.site.urls),  # Admin panel URL
     path('info/', views.info, name='info'),
     path('questionnaire/', views.questionnaire, name='questionnaire'),
     path('calculate_result/', views.calculate_result, name='calculate_result'),
