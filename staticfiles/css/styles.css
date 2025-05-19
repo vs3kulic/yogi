@@ -1,0 +1,309 @@
+/* ------------ Typography ------------ */
+/* Default styles before web fonts load */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #c6009b; /* Pink font color */
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Apply web font once loaded */
+html.fonts-loaded body {
+  font-family: 'Nunito', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #471f66; /* Purple font color for all headers */
+  line-height: 1.2;
+}
+
+p {
+  text-align: center;
+  font-size: 17px;
+  color: #c6009b; /* Pink font color for paragraphs */
+  line-height: 1.8;
+  letter-spacing: 1px;
+}
+
+/* ------------ Layout ------------ */
+.container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ------------ Navbar ------------ */
+.navbar {
+  background-color: #ffffff;
+}
+
+.navbar-brand, .nav-link {
+  color: #c6009b; /* Pink font color for navbar links */
+}
+
+.navbar-brand:hover, .nav-link:hover {
+  color: #c6009b; /* Darker pink on hover */
+}
+
+.navbar-toggler {
+  background-color: #ffffff;
+  border: none;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* ------------ Footer ------------ */
+.footer {
+  color: #c6009b; /* Pink font color for footer */
+}
+
+/* ------------ Buttons ------------ */
+.next-button, .back-button {
+  background-color: #471f66; /* Purple */
+  border: none;
+  color: #ffffff;
+  padding: 0.5em 1em; /* Reduced padding for smaller buttons */
+  border-radius: 5px;
+  font-size: 1rem; /* Reduced font size */
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 20px;
+  width: 200px; /* Ensures all buttons have the same width */
+  box-sizing: border-box;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.next-button:hover, .back-button:hover {
+  background-color: #3a0f3b; /* Darker purple on hover */
+}
+
+/* ------------ Results ------------ */
+.result-details {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.result-details h2, .result-details h3 {
+  color: #471f66; /* Purple */
+}
+
+.result-image img {
+  max-width: 60%;
+  height: auto;
+  margin: 20px auto;
+  display: block;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ------------ Forms ------------ */
+input, select, textarea {
+  color: #c6009b; /* Pink font color for form inputs */
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #c6009b;
+  outline: none;
+  box-shadow: 0 0 5px rgba(198, 0, 155, 0.5);
+}
+
+/* ------------ Subscription Form ------------ */
+.subscribe-container {
+  background-color: #ffffff;
+  padding: 20px;
+  max-width: 95%;
+  margin: 20px auto;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  color: #4a154b; /* Purple text color */
+}
+
+.subscribe-container h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #4a154b; /* Purple text color */
+}
+
+.subscribe-form .form-label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #4a154b; /* Purple text color */
+  margin-bottom: 10px;
+  display: block;
+  text-align: left;
+}
+
+.subscribe-form .form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  color: #4a154b; /* Purple text color */
+}
+
+.subscribe-form .form-control::placeholder {
+  color: #aaa; /* Placeholder text color */
+  font-style: italic;
+}
+
+.subscribe-form .form-control:focus {
+  border-color: #4a154b; /* Purple border on focus */
+  outline: none;
+  box-shadow: 0 0 5px rgba(74, 21, 75, 0.5); /* Subtle purple glow */
+}
+
+.subscribe-form .btn {
+  background-color: #471f66; /* Purple background */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.subscribe-form .btn:hover {
+  background-color: #3a0f3b; /* Darker purple on hover */
+}
+
+.subscribe-message {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* ------------ Links ------------ */
+.text-link {
+  color: #c6009b; /* Pink color */
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.text-link:hover {
+  text-decoration: none;
+  color: #6a0dad; /* Purple hover color */
+}
+
+.info-link {
+  display: inline-block;
+  margin-top: 20px;
+}
+
+/* ------------ Miscellaneous ------------ */
+hr {
+  border: none;
+  border-top: 2px solid #c6009b; /* Purple color for the line */
+  margin: 12px auto;
+  width: 80%;
+}
+
+ul li {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+/* ------------ Tooltips ------------ */
+.tooltip-custom {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip-custom .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  top: 125%;
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip-custom:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ------------ Progress Bar ------------ */
+.progress {
+  height: 4px;
+  background: #e8e0ef;
+  margin: 20px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background: var(--primary);
+  transition: width 0.3s;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+/* ------------ Answer Options ------------ */
+.answer-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Add spacing between buttons */
+}
+
+.answer-options button {
+  background-color: #f2ebf9;
+  border: 0.5px solid #c6009b;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 85%;
+  margin: 0 auto;
+  color: black;
+}
+
+.answer-options button:hover {
+  background-color: plum;
+  color: black;
+}
+
+.answer-options button:focus {
+  outline: none;
+  border-color: #c6009b;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  color: black;
+}
