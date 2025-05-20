@@ -2,6 +2,8 @@
 
 Yogi is a web app that helps you find the most suitable yoga class for your needs—quickly, simply, and based on your preferences.  
 
+![Tests](https://github.com/vs3kulic/yogi/actions/workflows/django_test.yml/badge.svg)
+
 ---
 
 ## How It Works  
@@ -30,34 +32,84 @@ Yogi is designed as a **microservice** that integrates seamlessly into the broad
 
 - **Personalized class recommendations** based on your input.  
 - **Preview class content** before joining.  
-- **Automated testing** with Playwright to ensure the app works as expected.  
+- **Comprehensive testing** with unit tests and end-to-end tests.
+- **Continuous Integration** with GitHub Actions to ensure code quality.
 - **Error monitoring** with Honeybadger to track and resolve issues in production.  
 - **User analytics** with Piwik to understand user behavior and improve the app experience. 
 - **Images** delivered through a dedicated CDN to enhance performance and reduce storage requirements.
+- **Environment-specific configurations** for development, testing, and production.
 
 ---
 
-## Testing  
+## Development Setup
 
-We use **Playwright** for end-to-end testing of the Yogi web app. The test suite ensures that critical workflows, such as navigating the homepage and completing the questionnaire, function correctly.  
+### Prerequisites
+- Python 3.11+
+- MySQL (for production/development)
+- Node.js (optional, for frontend enhancements)
 
-### Running the Tests  
+### Installation
 
-1. Install Playwright and its dependencies:  
-   ```bash  
-   pip install playwright  
-   playwright install  
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/vs3kulic/yogi.git
+   cd yogi
    ```
 
-2. Run the Playwright test suite:  
-   ```bash  
-   playwright test  
+2. Create a virtual environment and activate it:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate
    ```
 
-3. To debug tests, run Playwright in non-headless mode:  
-   ```bash  
-   playwright test --headed  
+3. Install the required Python packages:
+   ```bash
+   pip install -r requirements.txt
    ```
+
+4. Set up the database:
+   - For development, use the provided SQLite database.
+   - For production, configure MySQL and import the schema from `db/schema.sql`.
+
+5. Configure environment variables:
+   - Copy the example environment file:  
+     ```bash
+     cp .env.example .env
+     ```
+   - Update the `.env` file with your configuration, including database settings and API keys.
+
+6. (Optional) Install Node.js dependencies for frontend development:
+   ```bash
+   npm install
+   ```
+
+7. Run the development server:
+   ```bash
+   python manage.py runserver
+   ```
+
+8. Access the app at `http://localhost:8000`.
+
+### Testing
+
+To run the test suite, including unit tests and Playwright end-to-end tests:
+
+1. Ensure the development server is running.
+2. In a new terminal, activate the virtual environment and run:
+   ```bash
+   playwright install
+   playwright test
+   ```
+
+### Continuous Integration
+
+This project uses GitHub Actions for continuous integration. The workflow is defined in `.github/workflows/django_test.yml`. It includes steps for:
+
+- Setting up the Python environment.
+- Installing dependencies.
+- Running tests.
+- Linting code with flake8.
+- Building and pushing Docker images (for production).
 
 ---
 
