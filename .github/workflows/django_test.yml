@@ -1,0 +1,36 @@
+# .github/workflows/django_test.yml
+name: Django Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    env:
+      ALLOWED_HOSTS: localhost,127.0.0.1
+      DEBUG: True
+      DATABASE_ENGINE: django.db.backends.sqlite3
+      DATABASE_NAME: :memory:
+      MAILCHIMP_API_KEY: ${{ secrets.MAILCHIMP_API_KEY }}
+      MAILCHIMP_LIST_ID: ${{ secrets.MAILCHIMP_LIST_ID }}
+      MAILCHIMP_DC: ${{ secrets.MAILCHIMP_DC }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run tests
+        run: |
+          python manage.py test

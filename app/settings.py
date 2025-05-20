@@ -91,23 +91,28 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
-    }
-}
+# Check if running in GitHub Actions
+GITHUB_ACTIONS = os.environ.get('GITHUB_WORKFLOW') is not None
 
-# Override for tests
-if 'test' in sys.argv or 'pytest' in sys.modules:
+# Use appropriate settings based on environment
+if TESTING or GITHUB_ACTIONS:
+    # Use test database settings
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': ':memory:',
+            'ENGINE': config('DATABASE_ENGINE', default='django.db.backends.sqlite3'),
+            'NAME': config('DATABASE_NAME', default=':memory:'),
+        }
+    }
+else:
+    # Use production database settings
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': config('DB_NAME'),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASSWORD'),
+            'HOST': config('DB_HOST'),
+            'PORT': config('DB_PORT'),
         }
     }
 
