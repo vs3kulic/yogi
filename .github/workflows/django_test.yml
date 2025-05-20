@@ -15,7 +15,7 @@ jobs:
       ALLOWED_HOSTS: localhost,127.0.0.1
       DEBUG: True
       DATABASE_ENGINE: django.db.backends.sqlite3
-      DATABASE_NAME: :memory:
+      DATABASE_NAME: ":memory:"
       MAILCHIMP_API_KEY: ${{ secrets.MAILCHIMP_API_KEY }}
       MAILCHIMP_LIST_ID: ${{ secrets.MAILCHIMP_LIST_ID }}
       MAILCHIMP_DC: ${{ secrets.MAILCHIMP_DC }}
