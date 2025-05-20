@@ -27,6 +27,8 @@ jobs:
         pip install requests
         pip install mysqlclient django
         pip install -r requirements.txt
+        pip install playwright
+        playwright install --with-deps chromium
     - name: Run Tests
       env: 
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
