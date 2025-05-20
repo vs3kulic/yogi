@@ -4,6 +4,16 @@ from pathlib import Path
 from decouple import config
 
 
+# Check if running tests
+TESTING = 'test' in sys.argv or 'pytest' in sys.modules
+
+# Load the appropriate .env file
+if TESTING:
+    # Load test environment variables
+    import dotenv
+    dotenv.load_dotenv('.env.test')
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -81,29 +91,23 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-if 'test' in sys.argv:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
+    }
+}
+
+# Override for tests
+if 'test' in sys.argv or 'pytest' in sys.modules:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': ':memory:',  # In-memory SQLite database for faster tests
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': config('DB_NAME', default='*****'),
-            'USER': config('DB_USER', default='*****'),
-            'PASSWORD': config('DB_PASSWORD', default='*****'),
-            'HOST': config('DB_HOST', default='*****'),
-            'PORT': config('DB_PORT', default='*****'),
-            'OPTIONS': {
-                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-            },
-            'TEST': {
-                'ENGINE': 'django.db.backends.sqlite3',  # Use SQLite for tests
-                'NAME': ':memory:',  # In-memory SQLite database for faster tests
-            },
+            'NAME': ':memory:',
         }
     }
 

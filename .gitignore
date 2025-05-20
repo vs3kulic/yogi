@@ -1,11 +1,22 @@
-# Ignore .env file
+# Ignore .env files
 .env
+.env.*
+
+# Ignore Python bytecode files
+__pycache__/
+*.py[cod]
 
 # Ignore venv directory
 venv/
 
+# Ignore coverage reports
+.coverage
+
 # Ignore sqlite database file
 db.sqlite3
+
+# Ignore pytest initialization file
+pytest.ini
 
 # Ignore macOS .DS_Store files
 .DS_Store
