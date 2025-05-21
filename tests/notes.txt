@@ -1,0 +1,9 @@
+# Notes about chores
+---
+# commit header format: <type>(<scope>): <description>
+# commit types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
+# commit scope: (views), (logs), (database) etc. 
+
+# Dir size 
+---
+# du -sh * | grep -v venv

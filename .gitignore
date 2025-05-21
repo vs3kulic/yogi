@@ -12,6 +12,9 @@ venv/
 # Ignore coverage reports
 .coverage
 
+# Ignore Notes
+tests/notes.txt 
+
 # Ignore sqlite database file
 db.sqlite3
 
