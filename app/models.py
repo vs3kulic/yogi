@@ -6,7 +6,7 @@ class YogaClass(models.Model):
     TYPE_CHOICES = [
         ('Burnout-Yogini', 'Burnout-Yogini'),
         ('Ashtanga-Warrior', 'Ashtanga-Warrior'),
-        ('Homeoffice-Yogi', 'Homeoffice-Yogi'),
+        ('Homeoffice-Yogini', 'Homeoffice-Yogini'),
         ('Casual-Stretcher', 'Casual-Stretcher')
     ]
 
