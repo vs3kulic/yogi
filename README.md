@@ -9,35 +9,44 @@ Yogi is a web app that helps you find the most suitable yoga class for your need
 ## How It Works  
 
 - We ask you a few questions to get to know your preferences.  
-- Based on your answers, we match you with one of our classes.  
-- Before joining, you can preview some content and information about your matched class.  
+- Based on your answers, we match you with a Yoga type.  
+- You get a recommendation and can view classes or subscribe to our newsletter.  
 
 All of this runs on a subdomain of [bekindstudio.at](https://bekindstudio.at).  
 
 ---
 
-## Microservice Architecture  
+## Architecture  
 
-Yogi is designed as a **microservice** that integrates seamlessly into the broader be kind studio ecosystem. It operates independently while communicating with other services to provide a cohesive user experience.  
+Yogi is designed with a hybrid architecture that combines Django templates with Vue.js components where needed:
 
-### Key Characteristics of the Yogi Microservice:  
+- **Django Backend**: Handles routing, authentication, data processing, and template rendering.
+- **Vue.js Frontend**: Provides interactive elements for features like the class explorer and questionnaire.
+- **JSON Data Store**: Stores yoga class information and quiz questions for easy maintenance.
+
+This hybrid approach leverages Django's robust backend capabilities while enhancing the user experience with Vue.js for interactive components.
+
+### Key Characteristics:  
 - **Independent Deployment**: Yogi can be deployed and scaled independently of other services.  
-- **API-Driven**: Yogi communicates with other services via REST APIs for data exchange.  
-- **Focused Functionality**: Yogi specializes in personalized yoga class recommendations.  
-- **Error Isolation**: Issues in Yogi do not affect other services in the ecosystem.  
+- **API-Driven**: REST API endpoints provide data to Vue.js components.  
+- **Focused Functionality**: Personalized yoga class recommendations with dynamic content.
+- **Progressive Enhancement**: Core functionality works without JavaScript, while Vue.js enhances the experience.  
 
 ---
 
 ## Features  
 
-- **Personalized class recommendations** based on your input.  
+- **Class recommendations** based on user input.  
 - **Preview class content** before joining.  
-- **Comprehensive testing** with unit tests and end-to-end tests.
-- **Continuous Integration** with GitHub Actions to ensure code quality.
+- **Interactive class explorer** powered by Vue.js for filtering and browsing classes.  
+- **Dark mode support** for comfortable viewing in any lighting condition.  
+- **Responsive design** optimized for mobile, tablet, and desktop devices.  
+- **Comprehensive testing** with unit tests and end-to-end tests.  
+- **Continuous Integration** with GitHub Actions to ensure code quality.  
 - **Error monitoring** with Honeybadger to track and resolve issues in production.  
-- **User analytics** with Piwik to understand user behavior and improve the app experience. 
-- **Images** delivered through a dedicated CDN to enhance performance and reduce storage requirements.
-- **Environment-specific configurations** for development, testing, and production.
+- **User analytics** with Piwik (Matomo) to understand user behavior and improve the app experience.  
+- **Images** delivered through a dedicated CDN to enhance performance and reduce storage requirements.  
+- **Environment-specific configurations** for development, testing, and production.  
 
 ---
 
@@ -46,7 +55,8 @@ Yogi is designed as a **microservice** that integrates seamlessly into the broad
 ### Prerequisites
 - Python 3.11+
 - MySQL (for production/development)
-- Node.js (optional, for frontend enhancements)
+- Node.js 18+ (for Vue.js development)
+- npm or yarn
 
 ### Installation
 

@@ -18,4 +18,6 @@ urlpatterns = [
     path('subscribe/', views.subscribe_view, name='subscribe'),
     path('robots.txt', views.robots_txt),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
+    path('result/', views.result, name='result'),
+    path('api/yoga-classes/', views.yoga_classes_api, name='yoga_classes_api'),
 ]

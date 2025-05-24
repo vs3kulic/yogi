@@ -1,28 +1,32 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 
-{% block extra_styles %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="preload" href="https://bekindstudio.at/wp-content/uploads/2025/05/bekind-logo-300x300.png" as="image">
-{% endblock %}
-
-{% block title %}be kind club{% endblock %}
+{% block title %}Be Kind Club - Find Your Perfect Yoga{% endblock %}
 
 {% block content %}
-<div class="container">
-    <header>
-        <h1>Hallo Yogini!</h1>
-    </header>
-    <main>
-        <p>Ich bin dein fresher Yoga-Matcher! </br> 
-            Lass uns die Klasse finden, die zu dir passt!</p>
-        <img src="https://bekindstudio.at/wp-content/uploads/2025/05/bekind-logo-300x300.png" alt="logo" class="index-image" width="250" height="250">
-        <div class="button-group">
-            <a href="{% url 'questionnaire' %}" class="next-button">Klasse suchen</a>
-        </div>
-        <div class="info">
-            <a href="{% url 'info' %}" class="text-link info-link">Mehr Info</a>
-        </div>
-    </main>
+<div class="row">
+    <div class="col-md-8 offset-md-2 text-center">
+        <h1 class="display-4 mb-4">Willkommen beim Be Kind Club</h1>
+        <p class="lead">Finde deine perfekte Yoga-Praxis mit unserem personalisierten Quiz.</p>
+        <p>
+            <img src="{% static 'img/favicon.ico' %}" alt="Be Kind Club Logo" class="img-fluid my-4" style="max-width: 180px;">
+        </p>
+
+        <a href="{% url 'questionnaire' %}" style="background-color: #471f66 !important; 
+            border-color: #471f66 !important;
+            color: white !important;
+            padding: 1rem 3.5rem !important;
+            font-size: 1.25rem !important;
+            font-weight: 600 !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 6px rgba(71, 31, 102, 0.2) !important;
+            transition: all 0.3s ease !important;
+            display: inline-block !important;
+            text-align: center !important;
+            margin: 1rem 0 1rem 0 !important;
+            min-width: 220px !important;
+            letter-spacing: 0.5px !important;
+            text-decoration: none !important;">Starte das Quiz</a>
+    </div>
 </div>
 {% endblock %}

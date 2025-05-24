@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'app',  # Main app
     'imagekit', # Image processing
+    'webpack_loader', # For Webpack integration
 ]
 
 MIDDLEWARE = [
@@ -149,9 +150,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [
+    BASE_DIR / "static/dist",
+]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -195,3 +198,15 @@ SITE_ID = 1
 IMAGEKIT_CACHEFILE_DIR = 'cache/images/'  # Directory for cached images
 IMAGEKIT_CACHEFILE_NAMER = 'imagekit.cachefiles.namers.hash'  # Default namer
 IMAGEKIT_DEFAULT_CACHEFILE_BACKEND = 'imagekit.cachefiles.backends.Simple'  # Default backend
+
+# Add Webpack configuration
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': 'webpack/dist/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'static/webpack/webpack-stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'IGNORE': [r'.+\.hot-update.js', r'.+\.map'],
+    }
+}

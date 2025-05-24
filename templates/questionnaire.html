@@ -1,20 +1,111 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    <h2>Frage {{ question.number }}: {{ question.question }}</h2>
-    <fieldset class="question">
-        <div class="answer-options">
-            {% for key, answer in question.answers.items %}
-            <button type="submit" name="answer" value="{{ key }}">{{ answer }}</button>
-            {% endfor %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10 offset-md-1">
+            <h1 class="text-center mb-4">Finde deinen Yoga-Typ</h1>
+            
+            <div class="questionnaire-wrapper" style="max-width: 800px; margin: 0 auto;">
+                <form method="post" action="{% url 'questionnaire' %}">
+                    {% csrf_token %}
+                    
+                    <div style="background-color: var(--card-bg); 
+                               border-radius: 10px; 
+                               padding: 1rem; 
+                               box-shadow: var(--card-shadow);
+                               margin-bottom: 2rem;">
+                        
+                        <h2 class="text-center mb-4">
+                            Frage {{ current_question }} von {{ total_questions }}
+                        </h2>
+                        
+                        <p class="question-text text-center mb-5">{{ question.text }}</p>
+                        
+                        <!-- Completely redesigned answer options -->
+                        <div class="answers" style="max-width: 700px; margin: 0 auto 2rem auto;">
+                            {% for answer in question.answers %}
+                            <!-- Custom radio button with centered design -->
+                            <div class="custom-radio-container" style="margin-bottom: 1rem; position: relative;">
+                                <input type="radio" name="answer" id="answer{{ forloop.counter }}" value="{{ answer.value }}" required style="position: absolute; opacity: 0;">
+                                <label for="answer{{ forloop.counter }}" style="
+                                    display: flex;
+                                    align-items: center;
+                                    width: 100%;
+                                    padding: 0.5rem 1.5rem;
+                                    border: 2px solid #e0e0e0;
+                                    border-radius: 8px;
+                                    cursor: pointer;
+                                    transition: all 0.2s ease;
+                                    text-align: center;
+                                    justify-content: center;
+                                    margin: 0;
+                                ">
+                                    <span style="color: var(--text-color);">{{ answer.text }}</span>
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="text-center mt-5">
+                            <button type="submit" style="background-color: #471f66 !important; 
+                                border-color: #471f66 !important;
+                                color: white !important;
+                                padding: 1rem 3.5rem !important;
+                                font-size: 1.25rem !important;
+                                font-weight: 600 !important;
+                                border-radius: 8px !important;
+                                box-shadow: 0 4px 6px rgba(71, 31, 102, 0.2) !important;
+                                transition: all 0.3s ease !important;
+                                display: inline-block !important;
+                                text-align: center !important;
+                                margin: 0.5rem 0 1rem 0 !important;
+                                min-width: 220px !important;
+                                letter-spacing: 0.5px !important;">Weiter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-    </fieldset>
-    <div class="navigation">
-        <button type="submit" name="back" class="back-button" {% if current_question_index == 1 %}disabled{% endif %}>
-            Zurück
-        </button>
     </div>
-</form>
+</div>
+
+<style>
+/* Improved custom radio buttons */
+:root {
+    --card-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.dark-theme {
+    --card-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+/* Style for the custom radio buttons */
+input[type="radio"] + label {
+    position: relative;
+}
+
+input[type="radio"]:checked + label {
+    border-color: #471f66 !important;
+    background-color: rgba(71, 31, 102, 0.1);
+}
+
+/* Hide the default radio button */
+input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Add hover effect */
+input[type="radio"] + label:hover {
+    border-color: #471f66;
+    background-color: rgba(71, 31, 102, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+</style>
 {% endblock %}

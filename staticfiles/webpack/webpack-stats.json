@@ -1,0 +1,21 @@
+{
+  "status": "done",
+  "assets": {
+    "main-9fc20d4a515b58a79995.js": {
+      "name": "main-9fc20d4a515b58a79995.js",
+      "path": "/Users/vajosekulic/Documents/Programming/Yogi/static/webpack/dist/main-9fc20d4a515b58a79995.js",
+      "publicPath": "/static/webpack/dist/main-9fc20d4a515b58a79995.js"
+    },
+    "main-9fc20d4a515b58a79995.js.LICENSE.txt": {
+      "name": "main-9fc20d4a515b58a79995.js.LICENSE.txt",
+      "path": "/Users/vajosekulic/Documents/Programming/Yogi/static/webpack/dist/main-9fc20d4a515b58a79995.js.LICENSE.txt",
+      "publicPath": "/static/webpack/dist/main-9fc20d4a515b58a79995.js.LICENSE.txt"
+    }
+  },
+  "chunks": {
+    "main": [
+      "main-9fc20d4a515b58a79995.js"
+    ]
+  },
+  "publicPath": "/static/webpack/dist/"
+}

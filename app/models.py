@@ -16,6 +16,7 @@ class YogaClass(models.Model):
     key_features = models.TextField(null=True, blank=True)
     ideal_for = models.TextField()
     ideal_for_short = models.CharField(max_length=50, null=True, blank=True)  # Add this field
+    description = models.TextField(default="Default description")  # Add this field
 
     def __str__(self):
         return self.name

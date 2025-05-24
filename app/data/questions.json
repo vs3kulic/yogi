@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "text": "Wie fühlt sich dein Körper aktuell an?",
+    "answers": [
+      {
+        "text": "Basically der Typ flexible Brezel – super elastisch in allen Positionen.",
+        "value": "A"
+      },
+      {
+        "text": "Solide, aber manchmal knarre ich beim Aufstehen wie ein Holzstuhl.",
+        "value": "B"
+      },
+      {
+        "text": "Mein Körper ist ein work in progress – ich bin da realistisch.",
+        "value": "C"
+      },
+      {
+        "text": "Bewegung gibt’s nur dann, wenn es unbedingt sein muss.",
+        "value": "D"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "text": "Wie läuft’s bei dir mit Verletzungen oder Einschränkungen?",
+    "answers": [
+      {
+        "text": "Momentan hab ich keine akuten oder chronischen Verletzungen.",
+        "value": "A"
+      },
+      {
+        "text": "Uff – meine Schulter erzählt noch vom Festival ’18.",
+        "value": "B"
+      },
+      {
+        "text": "Mein Körper kommt mir derzeit wie eine chronische Baustelle vor.",
+        "value": "C"
+      },
+      {
+        "text": "Ich bin aktuell völlig out of order — aber ich will zurück ins Game.",
+        "value": "D"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "text": "Dein Commitment-Level zu Yoga?",
+    "answers": [
+      {
+        "text": "Situationship-Yogi. Ich und Yoga waren immer schon on-off.",
+        "value": "A"
+      },
+      {
+        "text": "Yoga war Liebe auf den ersten Blick. Ich bin vollkommen committed!",
+        "value": "B"
+      },
+      {
+        "text": "YouTube-Yoga und ich haben eine intensive Fernbeziehung.",
+        "value": "C"
+      },
+      {
+        "text": "Ich schau mal. Ich hab gehört es gibt Snacks und Tee nach der Klasse.",
+        "value": "D"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "text": "Welche Vibes spürst du, wenn du an Yoga denkst?",
+    "answers": [
+      {
+        "text": "Faszien-Liebe: Entkrampfen, durchatmen, alles loslassen!",
+        "value": "A"
+      },
+      {
+        "text": "Power-Mover: Schwitzen, stretchen, strong AF werden.",
+        "value": "B"
+      },
+      {
+        "text": "Slow-Flow: Ich will flowen und chillen.",
+        "value": "C"
+      },
+      {
+        "text": "Zen-Seeker: Ich brauche mehr im Leben — vielleicht ist es Yoga.",
+        "value": "D"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "text": "Wie willst du dein Yoga erleben?",
+    "answers": [
+      {
+        "text": "Kollektiver Vibe like a Sunday Brunch – nur mit Asanas.",
+        "value": "A"
+      },
+      {
+        "text": "Mat Queen: Ich bleibe auf meiner Matte, alles andere blende ich aus.",
+        "value": "B"
+      },
+      {
+        "text": "Zen-Master: Hauptsache gemütlich, langsamer und tiefer.",
+        "value": "C"
+      },
+      {
+        "text": "Ich brauch klare Ansagen – step by step, sonst verlauf ich mich.",
+        "value": "D"
+      }
+    ]
+  }
+]

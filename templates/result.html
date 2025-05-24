@@ -1,107 +1,98 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<h1>Dein Ergebnis</h1>
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <h1 class="text-center mb-4">Dein Ergebnis</h1>
+        
+        <!-- Image centered on page with larger size -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-5 col-md-6 text-center">
+                <img src="{{ result_data.image }}" alt="{{ result_data.title }}" class="img-fluid rounded shadow-sm" style="max-width: 600px; height: auto;" />
+            </div>
+        </div>
+        
+        <!-- Result content with centered text -->
+        <div class="row mb-5 justify-content-center">
+            <div class="col-lg-8 col-md-7 text-center">
+                <h2>{{ result_data.title }}</h2>
+                <p>{{ result_data.description|safe }}</p>
+                <p>{{ result_data.extended }}</p>
+                <h3 class="mt-4">Dein 100% Match:</h3>
+                <p><strong>{{ result_data.match.title }}</strong> {{ result_data.match.reason }}</p>
+                <h3 class="mt-4">Deine Challenge:</h3>
+                <p><strong>{{ result_data.challenge.title }}:</strong> {{ result_data.challenge.reason }}</p>
+            </div>
+        </div>
 
-<!-- Show the image based on the result type -->
-{% if result_type == "Burnout-Yogini" %}
-<div class="result-image">
-    <img src="https://bekindstudio.at/wp-content/uploads/2025/05/burnout_yogini-200x300.png" alt="Burnout Yogini" />
-</div>
-<div class="result-details">
-    <h2>Burnout-Yogini</h2>
-    <p>Du checkst bei Yoga ein, wenn der Akku blinkt. Regelmäßigkeit wäre dein ultimativer Cheatcode!</p>
-    <p>Yoga kann tatsächlich deine ganze Welt verändern: Schon mit einer Übung täglich wird dein Nervensystem stabil — statt hart zu crashen, wenn es wirklich ernst wird.</p>
-    <h3>Dein 100% Match:</h3>
-    <p><strong>Basic Kindness</strong> passt zu dir, weil du dich hier ohne Druck stabilisieren darfst.</p>
-    <h3>Deine Challenge:</h3>
-    <p><strong>Mond-Workshops:</strong> In einem Mond-Workshop geht es nur um dich und deine Selbstfürsorge. Das ist nicht was du gerade willst — aber das was du brauchst.</p>
-</div>
-{% elif result_type == "Ashtanga-Warrior" %}
-<div class="result-image">
-    <img src="https://bekindstudio.at/wp-content/uploads/2025/05/ashtanga_warrior-200x300.png" alt="Ashtanga Warrior" />
-</div>
-<div class="result-details">
-    <h2>Ashtanga-Warrior</h2>
-    <p>Du brauchst Power, Struktur und klare Ziele. Ashtanga matcht genau deinen Vibe: Kraft, Ausdauer, Fokus.</p>
-    <p>Aber Achtung: Dein Superpower-Upgrade liegt in der bewussten Erholung, nicht nur im immer weiter Pushen. Dein Körper liebt Aktivität – aber Regeneration macht dich langfristig stärker.</p>
-    <h3>Dein 100% Match:</h3>
-    <p><strong>Ashtanga</strong> passt zu dir, weil du körperliche Challenge und fokussierte Energie liebst.</p>
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 text-center">
+                <h3 class="mb-4">Hooked? Hier ist der Stundenplan:</h3>
+                <div data-eversports-widget-id="8f80f6ac-abff-4fde-990f-865a3a7dbe31" style="min-height: 500px; width: 100%;">
+                    <!-- Widget will be loaded here -->
+                </div>
+                <script type="module" src="https://widget-static.eversports.io/loader.js" async defer></script>
+            </div>
+        </div>
 
-    <h3>Deine Challenge:</h3>
-    <p><strong>Yin:</strong> Du bist endlich bereit dich deinem Erzfeind Savasana zu stellen? Yin ist dein Boot Camp in die Entspannung.</p>
-</div>
-{% elif result_type == "Homeoffice-Yogini" %}
-<div class="result-image">
-    <img src="https://bekindstudio.at/wp-content/uploads/2025/05/homeoffice_yogi-200x300.png" alt="Homeoffice Yogi" />
-</div>
-<div class="result-details">
-    <h2>Homeoffice-Yogini</h2>
-    <p>Du bist flexibel im YouTube-Flow in der Homeoffice-Lunch-Session zwischen deinen Calls – love it!</p>
-    <p>Aber Achtung: Ganz ohne echte Guidance gibt es das Risiko von Fehlhaltungen. Regelmäßiges Üben zuhause ist super, aber der Austausch in einer Gruppe gibt dir neue Energie, soziale Verbindung und oft auch ein Upgrade bei Technik und Motivation.</p>
-    <h3>Dein 100% Match:</h3>
-    <p><strong>Vinyasa</strong> passt zu dir, weil du kreative und strukturierte Flows liebst.</p>
-    <h3>Deine Challenge:</h3>
-    <p><strong>Ashtanga Kurse:</strong> Du kennst alle Positionen. Bist du bereit genauer hinzusehen? Im Ashtanga feilst du an deinem Alignment und bügelst damit alle sich einschleichenden Fehlhaltungen aus.</p>
-</div>
-{% elif result_type == "Casual-Stretcher" %}
-<div class="result-image">
-    <img src="https://bekindstudio.at/wp-content/uploads/2025/05/casual_stretcher-200x300.png" alt="Casual Stretcher" />
-</div>
-<div class="result-details">
-    <h2>Casual-Stretcher</h2>
-    <p>Für dich ist Yoga a whole mood und kein Plan. Es ist völlig okay vor sich hin zu yinnen und die Welt draußen zu lassen.</p>
-    <p>Aber: Wenn du langfristig mehr Ausgeglichenheit spüren willst, kann es hilfreich sein, auch mal aktivierendere Einheiten einzubauen.</p>
-    <h3>Dein 100% Match:</h3>
-    <p><strong>Yin</strong> passt zu dir, weil dein Körper nach Ruhe und Loslassen ruft – und Yin dir genau den Raum gibt.</p>
-    <h3>Deine Challenge:</h3>
-    <p><strong>Basic Kindness:</strong> Du willst entspannen. Plot Twist: Entspannung wirkt auch durch Aktivität! Mit einer regelmäßigen leichten Praxis kannst du die nötige Kraft und Kondition dafür aufbauen.</p>
-</div>
-{% endif %}
-
-<h3>Hooked? Hier ist der Stundenplan:</h3>
-<!-- Add the Eversports widget snippet here -->
-<div data-eversports-widget-id="8f80f6ac-abff-4fde-990f-865a3a7dbe31">
-    <!-- Füge das Skript nur einmal pro Seite ein. -->
-</div>
-<script type="module" src="https://widget-static.eversports.io/loader.js" async defer></script>
-<p> </p>
-<p> </p>
-<h3>Na, immer noch nicht genug von uns?</h3>
-<!-- Add the subscription form -->
-<div class="subscribe-container">
-    <form id="subscribe-form" method="POST" action="{% url 'subscribe' %}" class="subscribe-form">
-        {% csrf_token %}
-        <p>Mit unserem Newsletter bleibst du stabil in jedem Asana. Keine Sorge – wir spammen dich nicht, echt nicht!</p>
-        <input type="email" id="email" name="email" class="form-control" placeholder="Deine echte E-Mail Adresse" required>
-        <button type="submit" class="btn btn-primary mt-3">Meldet mich an!</button>
-    </form>
-    <div id="subscribe-message" class="subscribe-message mt-2"></div>
+        <div class="row justify-content-center mt-5">
+            <!-- Changed from col-lg-8 to col-lg-10 to make it wider -->
+            <div class="col-lg-10 col-md-12">
+                <h3 class="text-center mb-4">Na, immer noch nicht genug von uns?</h3>
+                <div class="card shadow-sm">
+                    <div class="card-body p-4">
+                        <form id="subscribe-form" method="POST" action="{% url 'subscribe' %}" class="subscribe-form">
+                            {% csrf_token %}
+                            <p class="text-center">Mit unserem Newsletter bleibst du stabil in jedem Asana. Keine Sorge – wir spammen dich nicht, echt nicht!</p>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 mb-3">
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="Deine echte E-Mail Adresse" required>
+                                </div>
+                                <div class="col-lg-4 mb-3">
+                                    <button type="submit" class="btn btn-primary w-100" style="height: 50px; padding-top: 6px; padding-bottom: 6px; font-size: 1rem;">Anmelden</button>
+                                </div>
+                            </div>
+                            <div id="subscribe-message" class="text-center mt-3"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
-    // Handle form submission with AJAX
-    const form = document.getElementById("subscribe-form");
-    const messageDiv = document.getElementById("subscribe-message");
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById("subscribe-form");
+        const messageDiv = document.getElementById("subscribe-message");
 
-    form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const formData = new FormData(form);
-        const response = await fetch(form.action, {
-            method: "POST",
-            body: formData,
-            headers: {
-                "X-CSRFToken": form.querySelector("[name=csrfmiddlewaretoken]").value,
-            },
-        });
+        if (form) {
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                const formData = new FormData(form);
+                try {
+                    const response = await fetch(form.action, {
+                        method: "POST",
+                        body: formData,
+                        headers: {
+                            "X-CSRFToken": form.querySelector("[name=csrfmiddlewaretoken]").value,
+                        },
+                    });
 
-        const result = await response.json();
-        if (response.ok) {
-            messageDiv.textContent = result.message;
-            messageDiv.style.color = "green";
-        } else {
-            messageDiv.textContent = result.error || "An error occurred.";
-            messageDiv.style.color = "red";
+                    const result = await response.json();
+                    if (response.ok) {
+                        messageDiv.textContent = result.message;
+                        messageDiv.style.color = "green";
+                    } else {
+                        messageDiv.textContent = result.error || "An error occurred.";
+                        messageDiv.style.color = "red";
+                    }
+                } catch (error) {
+                    messageDiv.textContent = "Es ist ein Fehler aufgetreten. Bitte versuche es später erneut.";
+                    messageDiv.style.color = "red";
+                }
+            });
         }
     });
 </script>

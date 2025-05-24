@@ -1,0 +1,276 @@
+/**
+ * Vue Components CSS
+ * -----------------
+ * Custom styling for Vue.js components that integrates with the main site design
+ */
+
+:root {
+  /* Main theme colors - can be overridden for dark mode */
+  --vue-primary: #8c61b0;
+  --vue-secondary: #5e4a8b;
+  --vue-success: #28a745;
+  --vue-danger: #dc3545;
+  --vue-warning: #ffc107;
+  --vue-info: #17a2b8;
+  
+  /* Background colors */
+  --vue-bg-primary: #fff;
+  --vue-bg-secondary: #f8f9fa;
+  --vue-bg-accent: #f1e7fe;
+  
+  /* Text colors */
+  --vue-text-primary: #333;
+  --vue-text-secondary: #6c757d;
+  --vue-text-light: #f8f9fa;
+  
+  /* Border and shadow */
+  --vue-border-color: #dee2e6;
+  --vue-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --vue-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --vue-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  
+  /* Animation speeds */
+  --vue-animation-speed-fast: 150ms;
+  --vue-animation-speed-normal: 300ms;
+  --vue-animation-speed-slow: 500ms;
+  
+  /* Spacing variables */
+  --vue-spacing-xs: 0.25rem;
+  --vue-spacing-sm: 0.5rem;
+  --vue-spacing-md: 1rem;
+  --vue-spacing-lg: 1.5rem;
+  --vue-spacing-xl: 3rem;
+  
+  /* Border radius */
+  --vue-border-radius-sm: 0.25rem;
+  --vue-border-radius: 0.5rem;
+  --vue-border-radius-lg: 1rem;
+  --vue-border-radius-xl: 1.5rem;
+}
+
+/* Dark theme variables - applied when .dark-theme class is on body or a parent */
+.dark-theme {
+  --vue-primary: #9d7bbd;
+  --vue-secondary: #7a68a3;
+  --vue-bg-primary: #121212;
+  --vue-bg-secondary: #1e1e1e;
+  --vue-bg-accent: #2d2d3a;
+  --vue-text-primary: #f8f9fa;
+  --vue-text-secondary: #adb5bd;
+  --vue-border-color: #343a40;
+}
+
+/* Component containers */
+.vue-component {
+  background-color: var(--vue-bg-primary);
+  color: var(--vue-text-primary);
+  border-radius: var(--vue-border-radius);
+  box-shadow: var(--vue-shadow-sm);
+  transition: box-shadow var(--vue-animation-speed-normal) ease,
+              transform var(--vue-animation-speed-normal) ease;
+  margin-bottom: var(--vue-spacing-lg);
+  overflow: hidden;
+}
+
+.vue-component:hover {
+  box-shadow: var(--vue-shadow-md);
+  transform: translateY(-2px);
+}
+
+.vue-component-header {
+  padding: var(--vue-spacing-md);
+  border-bottom: 1px solid var(--vue-border-color);
+}
+
+.vue-component-body {
+  padding: var(--vue-spacing-md);
+}
+
+.vue-component-footer {
+  padding: var(--vue-spacing-md);
+  border-top: 1px solid var(--vue-border-color);
+  background-color: var(--vue-bg-secondary);
+}
+
+/* Typography */
+.vue-title {
+  color: var(--vue-primary);
+  margin-bottom: var(--vue-spacing-md);
+  font-weight: 700;
+}
+
+.vue-subtitle {
+  color: var(--vue-secondary);
+  margin-bottom: var(--vue-spacing-sm);
+  font-weight: 600;
+}
+
+/* Buttons */
+.vue-btn {
+  display: inline-block;
+  font-weight: 500;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: var(--vue-border-radius);
+  transition: all var(--vue-animation-speed-normal) ease;
+  border: 2px solid transparent;
+  user-select: none;
+}
+
+.vue-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--vue-shadow-sm);
+}
+
+.vue-btn-primary {
+  background-color: var(--vue-primary);
+  color: var(--vue-text-light);
+}
+
+.vue-btn-secondary {
+  background-color: var(--vue-secondary);
+  color: var(--vue-text-light);
+}
+
+.vue-btn-outline-primary {
+  border-color: var(--vue-primary);
+  color: var(--vue-primary);
+}
+
+.vue-btn-outline-primary:hover {
+  background-color: var(--vue-primary);
+  color: var(--vue-text-light);
+}
+
+/* Cards */
+.vue-card {
+  border-radius: var(--vue-border-radius);
+  box-shadow: var(--vue-shadow-sm);
+  background-color: var(--vue-bg-primary);
+  border: 1px solid var(--vue-border-color);
+  transition: transform var(--vue-animation-speed-normal) ease,
+              box-shadow var(--vue-animation-speed-normal) ease;
+}
+
+.vue-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--vue-shadow-md);
+}
+
+.vue-card-header {
+  padding: var(--vue-spacing-md);
+  border-bottom: 1px solid var(--vue-border-color);
+}
+
+.vue-card-body {
+  padding: var(--vue-spacing-md);
+}
+
+.vue-card-footer {
+  padding: var(--vue-spacing-md);
+  border-top: 1px solid var(--vue-border-color);
+  background-color: var(--vue-bg-secondary);
+}
+
+/* Form elements */
+.vue-form-group {
+  margin-bottom: var(--vue-spacing-md);
+}
+
+.vue-form-control {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--vue-text-primary);
+  background-color: var(--vue-bg-primary);
+  border: 1px solid var(--vue-border-color);
+  border-radius: var(--vue-border-radius);
+  transition: border-color var(--vue-animation-speed-normal) ease-in-out,
+              box-shadow var(--vue-animation-speed-normal) ease-in-out;
+}
+
+.vue-form-control:focus {
+  border-color: var(--vue-primary);
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(140, 97, 176, 0.25);
+}
+
+/* Animations and transitions */
+.vue-fade-enter-active,
+.vue-fade-leave-active {
+  transition: opacity var(--vue-animation-speed-normal) ease;
+}
+
+.vue-fade-enter-from,
+.vue-fade-leave-to {
+  opacity: 0;
+}
+
+.vue-slide-enter-active,
+.vue-slide-leave-active {
+  transition: transform var(--vue-animation-speed-normal) ease,
+              opacity var(--vue-animation-speed-normal) ease;
+}
+
+.vue-slide-enter-from {
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.vue-slide-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+/* Loading indicators */
+.vue-loading-spinner {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  border: 0.25rem solid var(--vue-border-color);
+  border-radius: 50%;
+  border-top-color: var(--vue-primary);
+  animation: vue-spin 1s ease-in-out infinite;
+}
+
+@keyframes vue-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Utility classes */
+.vue-mt-1 { margin-top: var(--vue-spacing-sm); }
+.vue-mt-2 { margin-top: var(--vue-spacing-md); }
+.vue-mt-3 { margin-top: var(--vue-spacing-lg); }
+.vue-mb-1 { margin-bottom: var(--vue-spacing-sm); }
+.vue-mb-2 { margin-bottom: var(--vue-spacing-md); }
+.vue-mb-3 { margin-bottom: var(--vue-spacing-lg); }
+.vue-ml-1 { margin-left: var(--vue-spacing-sm); }
+.vue-ml-2 { margin-left: var(--vue-spacing-md); }
+.vue-mr-1 { margin-right: var(--vue-spacing-sm); }
+.vue-mr-2 { margin-right: var(--vue-spacing-md); }
+
+/* Theme toggle button */
+.vue-theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: var(--vue-primary);
+  color: var(--vue-text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--vue-shadow-md);
+  transition: all var(--vue-animation-speed-normal) ease;
+}
+
+.vue-theme-toggle:hover {
+  transform: scale(1.1);
+}

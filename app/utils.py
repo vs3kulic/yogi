@@ -3,6 +3,10 @@ Module for utility functions and classes used in the questionnaire application.
 This module includes a session manager class to handle session-related operations,
 """
 
+import os
+import json
+from django.conf import settings
+
 
 class SessionManager:
     """
@@ -53,4 +57,15 @@ class SessionManager:
         responses = self.get_responses()
         responses[index] = answer
         self.session['responses'] = responses
+
+
+def load_questions():
+    file_path = os.path.join(settings.BASE_DIR, 'app', 'data', 'questions.json')
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            questions = json.load(file)
+        return questions
+    except Exception as e:
+        print(f"Error loading questions: {e}")
+        return []
 
