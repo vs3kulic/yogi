@@ -12,7 +12,7 @@ Yogi is a web app that helps you find the most suitable yoga class for your need
 - Based on your answers, we match you with a Yoga type.  
 - You get a recommendation and can view classes or subscribe to our newsletter.  
 
-All of this runs on a subdomain of [bekindstudio.at](https://bekindstudio.at)!  
+All of this runs on a subdomain of [bekindstudio.at](https://bekindstudio.at).
 
 ---
 
