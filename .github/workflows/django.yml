@@ -52,9 +52,9 @@ jobs:
     # Collect Django static files
     - name: Collect Static Files
       env:
-        DJANGO_SETTINGS_MODULE: yogi.settings
+        DJANGO_SETTINGS_MODULE: app.settings
       run: |
-        python3 manage.py collectstatic --noinput
+        python manage.py collectstatic --noinput
 
     # Run Django tests
     - name: Run Tests

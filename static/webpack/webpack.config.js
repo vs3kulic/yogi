@@ -9,8 +9,8 @@ module.exports = {
     main: path.resolve(__dirname, './src/main.ts'),
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name]-[contenthash].js',
+    path: path.resolve(__dirname, '../dist'), // Ensure this matches the Django static directory
+    filename: 'bundle.js',
     publicPath: '/static/webpack/dist/',
     clean: true, // Clean the output directory before emit
   },
