@@ -56,4 +56,4 @@ whitenoise==6.9.0
 yarl==1.18.3
 honeybadger==0.11.0
 django-imagekit==5.0.0
-djagno-webpack-loader==1.6.0
+django-webpack-loader==1.6.0
