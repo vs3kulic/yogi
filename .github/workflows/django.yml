@@ -53,12 +53,14 @@ jobs:
     - name: Collect Static Files
       env:
         DJANGO_SETTINGS_MODULE: app.settings
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
       run: |
         python manage.py collectstatic --noinput
 
     # Run Django tests
     - name: Run Tests
       env: 
+        DJANGO_SETTINGS_MODULE: app.settings
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
         MAILCHIMP_API_KEY: ${{ secrets.MAILCHIMP_API_KEY }}
         MAILCHIMP_LIST_ID: ${{ secrets.MAILCHIMP_LIST_ID }}
