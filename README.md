@@ -160,7 +160,7 @@ We use **Piwik** (Matomo) for tracking user behavior and analytics, without capt
 
 ## Pre-Commit Hook  
 
-To maintain code quality and ensure tests are run before committing, we use a pre-commit hook. This hook automatically runs the Playwright test suite before each commit.  
+To maintain code quality and ensure tests are run before committing, we use a pre-commit hook. This hook automatically runs the Playwright test suite before each commit 
 
 ### Setting Up the Pre-Commit Hook  
 
