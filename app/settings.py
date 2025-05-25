@@ -145,10 +145,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -200,7 +201,7 @@ WEBPACK_LOADER = {
     'DEFAULT': {
         'CACHE': not DEBUG,
         'BUNDLE_DIR_NAME': 'webpack/dist/',  # Directory where Webpack outputs files
-        'STATS_FILE': os.path.join(BASE_DIR, 'static/webpack/dist/manifest.json'),  # Full path to manifest.json
+        'STATS_FILE': os.path.join(BASE_DIR, 'static/webpack/webpack-stats.json'),
     }
 }
 
