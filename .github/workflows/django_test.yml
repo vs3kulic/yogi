@@ -10,7 +10,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     env:
       ALLOWED_HOSTS: localhost,127.0.0.1
       DEBUG: True
@@ -20,36 +20,46 @@ jobs:
       MAILCHIMP_LIST_ID: ${{ secrets.MAILCHIMP_LIST_ID }}
       MAILCHIMP_DC: ${{ secrets.MAILCHIMP_DC }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
-    
+
     steps:
-      # Checkout the repository
-      - uses: actions/checkout@v3
-      
-      # Set up Python environment
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-      
-      # Install dependencies
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          # Install Playwright and its dependencies
-          pip install playwright
-          playwright install --with-deps chromium
-      
-      # Collect static files
-      - name: Collect Static Files
-        env:
-          DJANGO_SETTINGS_MODULE: app.settings
-        run: |
-          python manage.py collectstatic --noinput
-      
-      # Run Django tests
-      - name: Run tests
-        env:
-          DJANGO_SETTINGS_MODULE: app.settings
-        run: |
-          python manage.py test
+    # Checkout the repository
+    - uses: actions/checkout@v4
+
+    # Install system dependencies
+    - name: Install System Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libasound2t64 libnss3 libxcomposite1 libxrandr2 libxdamage1 libxi6 libxtst6 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libgbm1 libxkbcommon0 libxshmfence1
+
+    # Set up Python environment
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    # Install dependencies
+    - name: Install Python Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install playwright
+        playwright install chromium
+
+    # Collect static files
+    - name: Collect Static Files
+      env:
+        DJANGO_SETTINGS_MODULE: app.settings
+      run: |
+        python manage.py collectstatic --noinput
+
+    # Run Django tests
+    - name: Run Django Tests
+      env:
+        DJANGO_SETTINGS_MODULE: app.settings
+      run: |
+        python manage.py test
+
+    # Run Playwright Tests
+    - name: Run Playwright Tests
+      run: |
+        python -m unittest discover -s tests/playwright
