@@ -22,13 +22,16 @@ jobs:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
     
     steps:
+      # Checkout the repository
       - uses: actions/checkout@v3
       
+      # Set up Python environment
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
       
+      # Install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -37,6 +40,16 @@ jobs:
           pip install playwright
           playwright install --with-deps chromium
       
+      # Collect static files
+      - name: Collect Static Files
+        env:
+          DJANGO_SETTINGS_MODULE: app.settings
+        run: |
+          python manage.py collectstatic --noinput
+      
+      # Run Django tests
       - name: Run tests
+        env:
+          DJANGO_SETTINGS_MODULE: app.settings
         run: |
           python manage.py test
