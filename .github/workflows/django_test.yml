@@ -1,3 +1,5 @@
+name: Django Test
+
 on:
   push:
     branches: [ "main" ]
