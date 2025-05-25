@@ -129,7 +129,7 @@ We use **Honeybadger** to monitor errors and exceptions in the Yogi app. Honeyba
 
 ### Setting Up Honeybadger  
 
-1. Install the Honeybadger Python library:  
+1. Install the Honeybadger Python library:
    ```bash  
    pip install honeybadger  
    ```
@@ -145,7 +145,7 @@ We use **Honeybadger** to monitor errors and exceptions in the Yogi app. Honeyba
 
 ## User Analytics with Piwik  
 
-We use **Piwik** (Matomo) for tracking user behavior and analytics, without capturing personal data. Piwik helps us understand how users interact with the app, enabling us to make data-driven improvements.  
+We use **Piwik** (Matomo) for tracking user behavior and analytics, without capturing personal data. Piwik helps us understand how users interact with the app, enabling us to make data-driven improvements!  
 
 ### How Piwik is Integrated  
 
