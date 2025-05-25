@@ -154,7 +154,7 @@ We use **Piwik** (Matomo) for tracking user behavior and analytics, without capt
 3. Analytics data is available in the Piwik dashboard for analysis.  
 
 ### Notes on Piwik  
-- To modify the Piwik integration, update the tracking code in `base.html`.  
+- To modify the Piwik integration, update the tracking code in `base.html`!  
 
 ---
 
@@ -180,4 +180,4 @@ git commit --no-verify
 
 ## Get Involved  
 
-Stay tuned for setup instructions and contribution guidelines as the project evolves.
+Stay tuned for setup instructions and contribution guidelines as the project evolves!
