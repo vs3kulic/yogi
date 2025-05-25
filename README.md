@@ -169,7 +169,7 @@ To maintain code quality and ensure tests are run before committing, we use a pr
    playwright install  
    ```
 
-Now, every time you commit, the Playwright tests will run automatically. If the tests fail, the commit will be aborted.  
+Now, every time you commit, the Playwright tests will run automatically. If the tests fail, the commit will be aborted...  
 
 To skip the pre-commit hook for a specific commit, use:  
 ```bash  

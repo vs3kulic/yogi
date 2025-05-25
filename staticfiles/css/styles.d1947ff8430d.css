@@ -1,0 +1,718 @@
+/*
+ * Be Kind Club Yoga - Main Stylesheet
+ * A clean, modern design for yoga questionnaires and results
+ */
+
+/* ======================================
+ * VARIABLES & ROOT SETTINGS
+ * ====================================== */
+:root {
+  /* Brand Colors */
+  --primary: #471f66;      /* Main purple */
+  --primary-dark: #3a0f3b; /* Darker purple for hover states */
+  --secondary: #c6009b;    /* Pink accent */
+  --light-purple: #f8f2ff; /* Light purple for backgrounds */
+  --dark-text: #333333;    /* Dark text color */
+  --light-text: #ffffff;   /* Light text color */
+  
+  /* UI Colors */
+  --background: #ffffff;
+  --card-bg: #ffffff;
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  
+  /* Typography */
+  --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-size-base: 1rem;
+  --line-height-base: 1.5;
+}
+
+/* ======================================
+ * RESET & BASE STYLES
+ * ====================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--dark-text);
+  background-color: var(--background);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ======================================
+ * LAYOUT & CONTAINERS
+ * ====================================== */
+.container {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+.col {
+  flex: 1;
+  padding: 0 15px;
+}
+
+/* Custom spacing utilities */
+.my-1 { margin-top: var(--spacing-xs); margin-bottom: var(--spacing-xs); }
+.my-2 { margin-top: var(--spacing-sm); margin-bottom: var(--spacing-sm); }
+.my-3 { margin-top: var(--spacing-md); margin-bottom: var(--spacing-md); }
+.my-4 { margin-top: var(--spacing-lg); margin-bottom: var(--spacing-lg); }
+.my-5 { margin-top: var(--spacing-xl); margin-bottom: var(--spacing-xl); }
+
+.text-center { text-align: center; }
+
+/* ======================================
+ * COMPONENTS - HEADER & NAVIGATION
+ * ====================================== */
+header {
+  background-color: var(--background);
+  box-shadow: 0 2px 10px var(--shadow-color);
+  padding: var(--spacing-sm) 0;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff !important; /* Pure white in light mode */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03); /* Subtle shadow */
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Dark mode navbar */
+.dark-theme .navbar {
+    background-color: #121212 !important; /* Dark background in dark mode */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow in dark mode */
+}
+
+/* Make sure navbar brand is properly styled */
+.navbar-brand {
+    color: var(--primary) !important; /* Use your brand purple */
+    font-weight: 600;
+}
+
+/* Dark theme adjustments */
+.dark-theme .navbar-brand {
+    color: #e0e0e0 !important;
+}
+
+/* ======================================
+ * COMPONENTS - BUTTONS
+ * ====================================== */
+.btn {
+  display: inline-block;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(71, 31, 102, 0.25);
+}
+
+/* Main button style - use this for all primary actions */
+.btn-primary {
+  background-color: #471f66 !important;
+  border-color: #471f66 !important;
+  color: white !important;
+}
+
+.btn-primary:hover, 
+.btn-primary:focus {
+  background-color: #3a0f3b !important;
+  border-color: #3a0f3b !important;
+  color: white !important;
+}
+
+/* Button sizes */
+.btn-lg {
+  font-size: 1.25rem;
+  padding: 0.75rem 2rem;
+}
+
+/* FIXED: Yoga Button - this is our core button style */
+.yoga-button {
+  background-color: #471f66 !important; /* Purple color forced */
+  border-color: #471f66 !important;
+  color: white !important;
+  padding: 0.5rem 2rem !important; 
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 6px rgba(71, 31, 102, 0.2) !important;
+  transition: all 0.3s ease !important;
+  display: inline-block !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  margin: var(--spacing-md) 0 !important;
+}
+
+.yoga-button:hover,
+.yoga-button:focus {
+  background-color: #3a0f3b !important;
+  border-color: #3a0f3b !important;
+  color: white !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 10px rgba(71, 31, 102, 0.3) !important;
+  text-decoration: none !important;
+}
+
+.yoga-button:active {
+  transform: translateY(1px) !important;
+  box-shadow: 0 2px 3px rgba(71, 31, 102, 0.2) !important;
+}
+
+/* Start quiz button - special styling */
+.quiz-start-button {
+  display: inline-block;
+  background-color: var(--primary);
+  border: 2px solid var(--primary);
+  color: var(--light-text);
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 0.75rem 2.5rem;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: var(--spacing-lg) auto;
+  box-shadow: 0 4px 6px rgba(71, 31, 102, 0.2);
+}
+
+.quiz-start-button:hover, 
+.quiz-start-button:focus {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  box-shadow: 0 6px 10px rgba(71, 31, 102, 0.3);
+  transform: translateY(-2px);
+  color: var(--light-text);
+  text-decoration: none;
+}
+
+.quiz-start-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 3px rgba(71, 31, 102, 0.2);
+}
+
+/* ======================================
+ * COMPONENTS - CARDS
+ * ====================================== */
+.card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px var(--shadow-color);
+  margin-bottom: var(--spacing-md);
+}
+
+.card-body {
+  padding: var(--spacing-lg);
+}
+
+.card-title {
+  font-size: 1.75rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.card-text {
+  color: var(--dark-text);
+}
+
+/* ======================================
+ * COMPONENTS - FORMS & INPUTS
+ * ====================================== */
+form {
+  max-width: 100%;
+}
+
+.form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 500;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--dark-text);
+  background-color: var(--background);
+  background-clip: padding-box;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(71, 31, 102, 0.25);
+}
+
+/* Default state for answer options */
+.quiz-option, .option {
+    border: 0.5px solid #ccc; /* Subtle border for unselected options */
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #fff; /* Ensure a clean white background */
+    box-shadow: none; /* Remove any shadow for unselected options */
+}
+
+/* Highlight only the selected option */
+.quiz-option.selected, .option.selected {
+    border: 2px solid var(--primary); /* Stronger border for selected option */
+    background-color: rgba(71, 31, 102, 0.1); /* Subtle purple background */
+    box-shadow: 0 0 10px rgba(71, 31, 102, 0.3); /* Add a soft shadow */
+    transform: scale(1.02); /* Slightly enlarge the selected option */
+    transition: all 0.3s ease;
+}
+
+/* Remove outline on focus */
+.quiz-option:focus, .option:focus {
+    outline: none;
+}
+
+/* Progress bar styling */
+.progress {
+  height: 12px;
+  background-color: #f3f3f3;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: var(--spacing-md) 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  transition: width 0.5s ease;
+}
+
+/* ======================================
+ * COMPONENTS - QUESTIONNAIRE
+ * ====================================== */
+.questionnaire-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-lg) 0;
+}
+
+.question-number {
+  color: var(--primary);
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.question-text {
+  color: var(--secondary);
+  font-size: 1.5rem;
+  margin-top: 1rem !important; /* Add some space above the question text */
+  margin-bottom: 1.5rem !important; /* Add some space below the question text */
+}
+
+/* Navigation buttons */
+.navigation-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-lg);
+}
+
+/* ======================================
+ * COMPONENTS - RESULTS PAGE
+ * ====================================== */
+.result-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.result-image img {
+  border-radius: 8px;
+  box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+.result-details h2 {
+  color: var(--primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.result-details h3 {
+  color: var(--secondary);
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-xs);
+  font-size: 1.25rem;
+}
+
+.result-details p {
+    white-space: normal; /* Allow normal word wrapping */
+    word-break: break-word; /* Break long words if necessary */
+    line-height: 1.6; /* Improve readability */
+    margin-bottom: 1rem; /* Add spacing between paragraphs */
+}
+
+/* ======================================
+ * DARK THEME
+ * ====================================== */
+.dark-theme {
+  --dark-bg: #121212;
+  --dark-card-bg: #1e1e1e;
+  --dark-text: #e0e0e0;
+  --dark-border: #333;
+  --dark-input-bg: #2d2d2d;
+  --dark-accent: #471f66;
+}
+
+/* Basic dark theming */
+.dark-theme,
+.dark-theme body {
+    background-color: var(--dark-bg) !important;
+    color: var(--dark-text) !important;
+}
+
+/* Navbar */
+.dark-theme .navbar {
+    background-color: #121212 !important; /* Dark background in dark mode */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow in dark mode */
+}
+
+.dark-theme .navbar-brand,
+.dark-theme .nav-link {
+    color: var(--dark-text) !important;
+}
+
+/* Cards and containers */
+.dark-theme .card,
+.dark-theme .container .card,
+.dark-theme .modal-content {
+    background-color: var(--dark-card-bg) !important;
+    border-color: var(--dark-border) !important;
+    color: var(--dark-text) !important;
+}
+
+/* Forms */
+.dark-theme .form-control,
+.dark-theme .form-select,
+.dark-theme input,
+.dark-theme textarea,
+.dark-theme select {
+    background-color: var(--dark-input-bg) !important;
+    border-color: var(--dark-border) !important;
+    color: var(--dark-text) !important;
+}
+
+/* Buttons */
+.dark-theme .btn-primary {
+    background-color: var(--dark-accent) !important;
+    border-color: var(--dark-accent) !important;
+}
+
+/* Fix white background issues */
+.dark-theme main,
+.dark-theme .container,
+.dark-theme .row,
+.dark-theme [class*="col-"] {
+    background-color: var(--dark-bg) !important;
+}
+
+/* Make sure text in dark mode is visible */
+.dark-theme h1, 
+.dark-theme h2, 
+.dark-theme h3, 
+.dark-theme h4, 
+.dark-theme h5, 
+.dark-theme h6, 
+.dark-theme p, 
+.dark-theme div,
+.dark-theme span,
+.dark-theme label {
+    color: var(--dark-text) !important;
+}
+
+/* Questionnaire page specific */
+.dark-theme .quiz-option {
+    background-color: var(--dark-card-bg) !important;
+    border-color: var(--dark-border) !important;
+}
+
+.dark-theme .quiz-option:hover,
+.dark-theme .quiz-option.selected {
+    background-color: var(--dark-accent) !important;
+}
+
+/* Make sure toggle is visible */
+.form-check-input {
+    background-color: #fff;
+    border-color: #adb5bd;
+}
+
+.dark-theme .form-switch .form-check-input {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.dark-theme .form-switch .form-check-input:checked {
+    background-color: var(--dark-accent);
+    border-color: var(--dark-accent);
+}
+
+/* Footer */
+.dark-theme footer {
+    background-color: var(--dark-card-bg) !important;
+    color: var(--dark-text) !important;
+}
+
+/* Additional Dark Mode Styles to fix white quiz card */
+
+/* Target the quiz container specifically */
+.dark-theme .quiz-container,
+.dark-theme .questionnaire-container,
+.dark-theme .card,
+.dark-theme div[role="dialog"],
+.dark-theme div[role="document"] {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+    border-color: #333 !important;
+}
+
+/* Target inner elements of the form */
+.dark-theme .quiz-container *,
+.dark-theme .questionnaire-container * {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+}
+
+/* Override the white background for quiz options */
+.dark-theme .quiz-option,
+.dark-theme [type="button"],
+.dark-theme button.option,
+.dark-theme label.option {
+    background-color: #2d2d2d !important;
+    color: #e0e0e0 !important;
+    border: 1px solid #444 !important;
+}
+
+.dark-theme .quiz-option:hover,
+.dark-theme [type="button"]:hover {
+    background-color: #3d3d3d !important;
+}
+
+.dark-theme .quiz-option.selected,
+.dark-theme [type="button"].selected,
+.dark-theme .option.selected {
+    background-color: #471f66 !important;
+    border-color: #5d2a85 !important;
+}
+
+/* Target specifically that white card in the questionnaire */
+.dark-theme main > div > div {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+}
+
+/* Force dark mode on all direct children of body */
+body.dark-theme > * {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+}
+
+/* Super aggressive targeting */
+.dark-theme [class*="card"],
+.dark-theme [class*="container"],
+.dark-theme [class*="wrapper"],
+.dark-theme [class*="panel"],
+.dark-theme [class*="box"] {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+}
+
+/* Remove any white background from any element in dark mode */
+.dark-theme * {
+    background-color: inherit;
+}
+
+/* Reset specific elements that should have different colors */
+.dark-theme .quiz-option,
+.dark-theme button,
+.dark-theme .btn,
+.dark-theme input,
+.dark-theme select,
+.dark-theme textarea {
+    background-color: #2d2d2d !important;
+}
+
+/* Fix the white box in questionnaire */
+.dark-theme .frage-container,
+.dark-theme .question-card,
+.dark-theme .white-card {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+    border-color: #333 !important;
+}
+
+/* Eversports Widget - Clean Display in Dark Mode */
+.dark-theme [data-eversports-widget-id] {
+    position: relative;
+    /* No background color override */
+}
+
+.dark-theme [data-eversports-widget-id] iframe {
+    /* No filter or opacity */
+    background-color: transparent !important;
+}
+
+/* Remove all overlay styling */
+.dark-theme [data-eversports-widget-id]::before {
+    display: none !important;
+    content: none !important;
+}
+
+/* Ensure no dark-mode-overlay is applied */
+.dark-mode-overlay {
+    display: none !important;
+}
+
+/* Clean approach for Eversports widget in dark mode */
+.dark-theme [data-eversports-widget-id],
+.dark-theme [data-eversports-widget-id] * {
+    /* Remove ALL filters and opacity settings */
+    filter: none !important;
+    opacity: 1 !important;
+    /* Allow background colors to show through */
+    background-color: initial;
+}
+
+/* Ensure no pseudo-elements are adding overlays */
+.dark-theme [data-eversports-widget-id]::before,
+.dark-theme [data-eversports-widget-id]::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Ensure any overlay class is not displayed */
+.dark-mode-overlay {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* Prevent any JavaScript from modifying these properties */
+.dark-theme [data-eversports-widget-id] {
+    position: relative !important;
+}
+
+/* Questionnaire error message */
+.option-error-message {
+    margin: 1rem 0;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.25rem;
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-3px, 0, 0); }
+    40%, 60% { transform: translate3d(3px, 0, 0); }
+}
+
+/* Selected option styling */
+.quiz-option.selected,
+.option.selected {
+    background-color: var(--primary) !important;
+    color: white !important;
+    border-color: var(--primary) !important;
+    transform: translateY(-2px);
+    transition: all 0.2s ease;
+}
+
+/* Dark theme selected option */
+.dark-theme .quiz-option.selected,
+.dark-theme .option.selected {
+    background-color: var(--primary) !important;
+    border-color: var(--primary-dark) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Adjust spacing between the heading and the question text */
+h1, h2, h3 {
+    margin-bottom: 1.5rem !important; /* Slightly increase bottom margin */
+}
+
+/* Optional: Adjust padding inside the container */
+.card {
+    padding-top: 1.5rem !important; /* Slightly increase padding at the top */
+    padding-bottom: 1.5rem !important; /* Slightly increase padding at the bottom */
+}

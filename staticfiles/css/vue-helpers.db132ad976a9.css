@@ -1,0 +1,12 @@
+[v-cloak] {
+  display: none;
+}
+
+/* Helper class to indicate when Vue is loaded */
+.vue-loaded .vue-only {
+  display: block;
+}
+
+.vue-only {
+  display: none;
+}
