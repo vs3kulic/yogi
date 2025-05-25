@@ -70,15 +70,15 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'honeybadger.contrib.DjangoHoneybadgerMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # For serving static files
-    'django.contrib.sessions.middleware.SessionMiddleware',  # Required for sessions
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',  # Required for authentication
-    'django.contrib.messages.middleware.MessageMiddleware',  # Required for messages
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'honeybadger.contrib.DjangoHoneybadgerMiddleware',  # Optional, for Honeybadger
 ]
 
 ROOT_URLCONF = 'app.urls'
