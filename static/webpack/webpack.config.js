@@ -2,6 +2,7 @@ const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const BundleTracker = require('webpack-bundle-tracker');
 const webpack = require('webpack');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
@@ -9,10 +10,9 @@ module.exports = {
     main: path.resolve(__dirname, './src/main.ts'),
   },
   output: {
-    path: path.resolve(__dirname, '../dist'), // Ensure this matches the Django static directory
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[contenthash].js',
     publicPath: '/static/webpack/dist/',
-    clean: true, // Clean the output directory before emit
   },
   module: {
     rules: [
@@ -48,7 +48,11 @@ module.exports = {
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
       __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
-    })
+    }),
+    new WebpackManifestPlugin({
+      fileName: 'manifest.json',
+      publicPath: '/static/webpack/dist/',
+    }),
   ],
   resolve: {
     extensions: ['.ts', '.js', '.vue', '.json'],
