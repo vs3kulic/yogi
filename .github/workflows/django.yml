@@ -10,6 +10,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      DB_NAME: ${{ secrets.DB_NAME }}
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      DB_HOST: ${{ secrets.DB_HOST }}
+      DB_PORT: ${{ secrets.DB_PORT }}
+      MAILCHIMP_API_KEY: ${{ secrets.MAILCHIMP_API_KEY }}
+      MAILCHIMP_LIST_ID: ${{ secrets.MAILCHIMP_LIST_ID }}
+      MAILCHIMP_DC: ${{ secrets.MAILCHIMP_DC }}
+      HONEYBADGER_API_KEY: ${{ secrets.HONEYBADGER_API_KEY }}
+
     steps:
     # Checkout the repository
     - uses: actions/checkout@v4
@@ -56,16 +68,6 @@ jobs:
         : "${MAILCHIMP_LIST_ID:?Environment variable MAILCHIMP_LIST_ID is not set}"
         : "${MAILCHIMP_DC:?Environment variable MAILCHIMP_DC is not set}"
         : "${HONEYBADGER_API_KEY:?Environment variable HONEYBADGER_API_KEY is not set}"
-      env:
-        DB_NAME: ${{ secrets.DB_NAME }}
-        DB_USER: ${{ secrets.DB_USER }}
-        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-        DB_HOST: ${{ secrets.DB_HOST }}
-        DB_PORT: ${{ secrets.DB_PORT }}
-        MAILCHIMP_API_KEY: ${{ secrets.MAILCHIMP_API_KEY }}
-        MAILCHIMP_LIST_ID: ${{ secrets.MAILCHIMP_LIST_ID }}
-        MAILCHIMP_DC: ${{ secrets.MAILCHIMP_DC }}
-        HONEYBADGER_API_KEY: ${{ secrets.HONEYBADGER_API_KEY }}
 
     # Clear static files cache
     - name: Clear Static Files Cache
@@ -74,24 +76,10 @@ jobs:
 
     # Collect Django static files
     - name: Collect Static Files
-      env:
-        DJANGO_SETTINGS_MODULE: app.settings
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        DB_NAME: ${{ secrets.DB_NAME }}
-        DB_USER: ${{ secrets.DB_USER }}
-        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-        DB_HOST: ${{ secrets.DB_HOST }}
-        DB_PORT: ${{ secrets.DB_PORT }}
-        MAILCHIMP_API_KEY: ${{ secrets.MAILCHIMP_API_KEY }}
-        MAILCHIMP_LIST_ID: ${{ secrets.MAILCHIMP_LIST_ID }}
-        MAILCHIMP_DC: ${{ secrets.MAILCHIMP_DC }}
       run: |
         python manage.py collectstatic --noinput
 
     # Run Django tests
     - name: Run Tests
-      env:
-        DJANGO_SETTINGS_MODULE: app.settings
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
       run: |
         python manage.py test
