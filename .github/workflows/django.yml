@@ -44,6 +44,29 @@ jobs:
       run: |
         npm run build
 
+    # Validate Environment Variables
+    - name: Validate Environment Variables
+      run: |
+        : "${DB_NAME:?Environment variable DB_NAME is not set}"
+        : "${DB_USER:?Environment variable DB_USER is not set}"
+        : "${DB_PASSWORD:?Environment variable DB_PASSWORD is not set}"
+        : "${DB_HOST:?Environment variable DB_HOST is not set}"
+        : "${DB_PORT:?Environment variable DB_PORT is not set}"
+        : "${MAILCHIMP_API_KEY:?Environment variable MAILCHIMP_API_KEY is not set}"
+        : "${MAILCHIMP_LIST_ID:?Environment variable MAILCHIMP_LIST_ID is not set}"
+        : "${MAILCHIMP_DC:?Environment variable MAILCHIMP_DC is not set}"
+        : "${HONEYBADGER_API_KEY:?Environment variable HONEYBADGER_API_KEY is not set}"
+      env:
+        DB_NAME: ${{ secrets.DB_NAME }}
+        DB_USER: ${{ secrets.DB_USER }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        DB_HOST: ${{ secrets.DB_HOST }}
+        DB_PORT: ${{ secrets.DB_PORT }}
+        MAILCHIMP_API_KEY: ${{ secrets.MAILCHIMP_API_KEY }}
+        MAILCHIMP_LIST_ID: ${{ secrets.MAILCHIMP_LIST_ID }}
+        MAILCHIMP_DC: ${{ secrets.MAILCHIMP_DC }}
+        HONEYBADGER_API_KEY: ${{ secrets.HONEYBADGER_API_KEY }}
+
     # Clear static files cache
     - name: Clear Static Files Cache
       run: |
