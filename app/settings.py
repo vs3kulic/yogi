@@ -199,8 +199,8 @@ IMAGEKIT_DEFAULT_CACHEFILE_BACKEND = 'imagekit.cachefiles.backends.Simple'  # De
 WEBPACK_LOADER = {
     'DEFAULT': {
         'CACHE': not DEBUG,
-        'BUNDLE_DIR_NAME': 'webpack/dist/',
-        'STATS_FILE': os.path.join(BASE_DIR, 'static/webpack/dist/manifest.json'),
+        'BUNDLE_DIR_NAME': 'webpack/dist/',  # Directory where Webpack outputs files
+        'STATS_FILE': os.path.join(BASE_DIR, 'static/webpack/dist/manifest.json'),  # Full path to manifest.json
     }
 }
 

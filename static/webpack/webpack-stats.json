@@ -1,20 +1,20 @@
 {
   "status": "done",
   "assets": {
-    "bundle.js": {
-      "name": "bundle.js",
-      "path": "/Users/vajosekulic/Documents/Programming/Yogi/static/dist/bundle.js",
-      "publicPath": "/static/webpack/dist/bundle.js"
+    "main.823847b896ef7b7dc9c5.js": {
+      "name": "main.823847b896ef7b7dc9c5.js",
+      "path": "/Users/vajosekulic/Documents/Programming/Yogi/static/webpack/dist/main.823847b896ef7b7dc9c5.js",
+      "publicPath": "/static/webpack/dist/main.823847b896ef7b7dc9c5.js"
     },
-    "bundle.js.LICENSE.txt": {
-      "name": "bundle.js.LICENSE.txt",
-      "path": "/Users/vajosekulic/Documents/Programming/Yogi/static/dist/bundle.js.LICENSE.txt",
-      "publicPath": "/static/webpack/dist/bundle.js.LICENSE.txt"
+    "manifest.json": {
+      "name": "manifest.json",
+      "path": "/Users/vajosekulic/Documents/Programming/Yogi/static/webpack/dist/manifest.json",
+      "publicPath": "/static/webpack/dist/manifest.json"
     }
   },
   "chunks": {
     "main": [
-      "bundle.js"
+      "main.823847b896ef7b7dc9c5.js"
     ]
   },
   "publicPath": "/static/webpack/dist/"

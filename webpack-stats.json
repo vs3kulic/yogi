@@ -1,0 +1,8 @@
+{
+  "status": "error",
+  "assets": {},
+  "chunks": {},
+  "publicPath": "/static/webpack/dist/",
+  "error": "ModuleNotFoundError",
+  "message": "Module not found: Error: Can't resolve 'ts-loader' in '/Users/vajosekulic/Documents/Programming/Yogi'"
+}
