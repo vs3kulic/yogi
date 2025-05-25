@@ -66,17 +66,18 @@ jobs:
         pip install playwright
         playwright install chromium
 
-    # Collect static files
+    # Clear static files cache
+    - name: Clear Static Files Cache
+      run: |
+        rm -f staticfiles/staticfiles.json || true
+
+    # Collect Django static files
     - name: Collect Static Files
-      env:
-        DJANGO_SETTINGS_MODULE: app.settings
       run: |
         python manage.py collectstatic --noinput
 
     # Run Django tests
     - name: Run Django Tests
-      env:
-        DJANGO_SETTINGS_MODULE: app.settings
       run: |
         python manage.py test
 
