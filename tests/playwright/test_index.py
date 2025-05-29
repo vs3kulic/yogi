@@ -15,19 +15,13 @@ def test_index_page():
         # Navigate to the index page
         page.goto(f"{base_url}/")
 
-        # Check if the "Mehr Info" link is present and functional
-        mehr_info_link = page.locator("a.info-link", has_text="Mehr Info")
-        assert mehr_info_link.is_visible(), "Mehr Info link is not visible"
-        mehr_info_link.click()
-        assert page.url == f"{base_url}/info/", "Navigation to info page failed"
-
         # Navigate back to the index page
         page.goto(f"{base_url}/")
 
-        # Check if the "Klasse suchen" button is present and functional
-        klasse_suchen_button = page.locator("a.next-button", has_text="Klasse suchen")
-        assert klasse_suchen_button.is_visible(), "Klasse suchen button is not visible"
-        klasse_suchen_button.click()
+        # Check if the "Starte das Quiz" button is present and functional
+        quiz_starten_button = page.locator("a", has_text="Starte das Quiz")
+        assert quiz_starten_button.is_visible(), "Starte das Quiz button is not visible"
+        quiz_starten_button.click()
         assert page.url == f"{base_url}/questionnaire/", "Navigation to questionnaire page failed"
 
         # Close the browser

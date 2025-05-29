@@ -339,38 +339,6 @@ def yoga_classes_api(request):
         import logging
         logger = logging.getLogger(__name__)
         logger.error(f"Error in yoga_classes_api: {str(e)}")
-        
-        # Return fallback data
-        return JsonResponse(get_fallback_classes(), safe=False)
-
-def get_fallback_classes():
-    """Return some fallback yoga classes"""
-    return [
-        {
-            "id": 1,
-            "name": "Vinyasa Flow",
-            "description": "Ein dynamischer Yoga-Stil, der Atmung und Bewegung verbindet.",
-            "yoga_type": "vinyasa",
-            "intensity": "mittel",
-            "duration": 60
-        },
-        {
-            "id": 2,
-            "name": "Yin Yoga",
-            "description": "Eine ruhige Praxis mit längeren Haltungen für tiefe Entspannung.",
-            "yoga_type": "yin",
-            "intensity": "niedrig",
-            "duration": 75
-        },
-        {
-            "id": 3,
-            "name": "Power Yoga",
-            "description": "Eine kraftvolle und herausfordernde Yoga-Praxis.",
-            "yoga_type": "power",
-            "intensity": "hoch",
-            "duration": 60
-        }
-    ]
 
 def test_questions(request):
     """Test endpoint to verify questions.json is loading correctly"""
