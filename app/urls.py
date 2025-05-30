@@ -20,4 +20,5 @@ urlpatterns = [
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
     path('result/', views.result, name='result'),
     path('api/yoga-classes/', views.yoga_classes_api, name='yoga_classes_api'),
+    path("ollama-test/", views.ollama_test_view, name="ollama_test"),
 ]
