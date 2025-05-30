@@ -16,7 +16,8 @@ from django.conf import settings
 from django.views.decorators.http import require_GET, require_POST, require_http_methods
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
-from .models import YogaClass
+from django.core.cache import cache
+from .models import YogaClass, QuestionnaireResult
 from .utils import SessionManager
 from .constants import ANSWER_TO_TYPE, YOGA_RESULT_TYPES, QUESTIONS
 from .services.ollama_service import call_ollama
@@ -167,6 +168,11 @@ def result(request):
     # Get result type from session or default to "Casual-Stretcher"
     result_type = request.session.get('questionnaire', {}).get('result', 'Casual-Stretcher')
 
+    # Fetch a cached response
+    cached_response = cache.get(f"ollama_response_{result_type}")
+    if not cached_response:
+        cached_response = "No personalized tip available."
+
     # Get the detailed result information from the constants
     result_data = YOGA_RESULT_TYPES.get(result_type, {
         'title': 'Unknown',
@@ -179,13 +185,10 @@ def result(request):
     if isinstance(result_data['description'], list):
         result_data['description'] = ' '.join(result_data['description'])
 
-    # Fetch the Ollama API response from the session
-    ollama_response = request.session.get('ollama_response', "No response available.")
-
     return render(request, 'result.html', {
         'result_type': result_type,
         'result_data': result_data,
-        'ollama_response': ollama_response
+        'ollama_response': cached_response
     })
 
 @require_GET
@@ -337,7 +340,13 @@ def ollama_view(request):
     """
     Django view to interact with the Ollama API and return its response.
     """
-    prompt = "Give me a yoga pro-tip for beginners in Markdown format. Do not reference any resources. Limit the response to 20 words."
+    # Fetch a random result from the database
+    random_result = QuestionnaireResult.objects.order_by('?').first()
+    if not random_result:
+        return JsonResponse({"error": "No results found in the database."}, status=404)
+
+    # Inject the result into the prompt
+    prompt = f"Based on the yoga type '{random_result.result_type}', provide a personalized yoga tip in Markdown format. Limit to 20 words."
     ollama_response = call_ollama(prompt)
 
     if "error" in ollama_response:
@@ -347,10 +356,10 @@ def ollama_view(request):
         cleaned_text = clean_text(raw_text)
         response_text = markdown.markdown(cleaned_text)
 
-    # Save the response to the session
-    request.session['ollama_response'] = response_text
+        # Save the response to the database
+        OllamaResponse.objects.create(prompt=prompt, response=cleaned_text)
 
-    return render(request, "ollama_test.html", {"ollama_response": response_text})
+    return JsonResponse({"response": response_text})
 
 # ---------------------------
 # Ollama Test Views

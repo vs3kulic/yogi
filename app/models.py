@@ -29,3 +29,14 @@ class MyImageModel(models.Model):
         format='PNG',
         options={'quality': 80}
     )
+
+class QuestionnaireResult(models.Model):
+    user_id = models.CharField(max_length=255, null=True, blank=True)  # Optional user identifier
+    result_type = models.CharField(max_length=255)  # e.g., "Ashtanga-Warrior"
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class OllamaResponse(models.Model):
+    prompt = models.TextField()
+    response = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+

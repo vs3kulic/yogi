@@ -59,3 +59,5 @@ honeybadger==0.11.0
 django-imagekit==5.0.0
 django-webpack-loader==1.6.0
 markdown==3.8
+django-redis==5.4.0
+redis==6.2.0
