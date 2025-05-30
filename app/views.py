@@ -9,6 +9,7 @@ import os
 import markdown
 import unicodedata
 import re
+import random
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from django.conf import settings
@@ -17,7 +18,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from .models import YogaClass
 from .utils import SessionManager
-from .constants import ANSWER_TO_TYPE, YOGA_RESULT_TYPES
+from .constants import ANSWER_TO_TYPE, YOGA_RESULT_TYPES, QUESTIONS
 from .services.ollama_service import call_ollama
 
 logger = logging.getLogger(__name__)
@@ -33,7 +34,7 @@ def load_questions():
             questions = json.load(file)
         return questions
     except Exception as e:
-        logger.error(f"Error loading questions from JSON: {e}")
+        logger.error("Error loading questions from JSON: %s", e)
         logger.info("Using questions from constants.py as fallback")
         
         # Convert constants format to JSON format for template consistency
@@ -329,7 +330,7 @@ def yoga_classes_api(request):
     except Exception as e:
         # Log the error
         logger = logging.getLogger(__name__)
-        logger.error(f"Error in yoga_classes_api: {str(e)}")
+        logger.error("Error in yoga_classes_api: %s", str(e))
         return JsonResponse({"error": "An error occurred while processing the request."}, status=500)
 
 def ollama_view(request):
@@ -359,8 +360,16 @@ def ollama_test_view(request):
     """
     Test view to call the Ollama API and return its response.
     """
-    # Updated prompt to restrict references and word count
-    prompt = "Give me a yoga pro-tip for beginners in Markdown format. Do not reference any resources. Minimum 10 words, limit the response to 20 words."
+    # Pool of prompts for variation
+    prompts = [
+        "Give me a yoga pro-tip for intermediates in Markdown format. Do not reference any resources. Minimum 10 words, limit the response to 20 words.",
+        "Share a funny yoga tip for beginners in Markdown format. Avoid external references and keep it under 20 words.",
+        "Provide a short yoga pro-tip for advanced practitioners in Markdown format. Keep it simple and under 20 words.",
+        "Suggest a yoga tip for children in Markdown format. Avoid references and limit it to 20 words.",
+    ]
+
+    # Select a random prompt
+    prompt = random.choice(prompts)
 
     # Call the Ollama API
     ollama_response = call_ollama(prompt)
@@ -393,15 +402,14 @@ def clean_text(text):
     text = re.sub(r"\s+", " ", text)
 
     # Remove unnecessary spaces around punctuation
-    text = re.sub(r"\s([?.!,;](?:\s|$))", r"\1", text)
+    text = re.sub(r"\s([?.!’,;](?:\s|$))", r"\1", text)
 
     # Remove stars (*)
     text = text.replace("*", "")
 
     # Fix broken words (e.g., "cal ms" -> "calms")
-    text = re.sub(r"\b(\w+)\s(\w+)\b", lambda m: m.group(1) + m.group(2) if m.group(1) + m.group(2) in ["calms", "anchors"] else m.group(0), text)
-
     # Fix broken words (e.g., "Pra na ya ma" -> "Pranayama")
+    text = re.sub(r"\b(\w+)\s(\w+)\b", lambda m: m.group(1) + m.group(2) if m.group(1) + m.group(2) in ["calms", "anchors"] else m.group(0), text)
     text = re.sub(r"\b(Pra)\s(na)\s(ya)\s(ma)\b", r"\1\2\3\4", text, flags=re.IGNORECASE)
 
     # Remove space before a period
