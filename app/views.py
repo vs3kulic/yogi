@@ -1,6 +1,7 @@
 """
 views.py module contains the logic for handling user requests and rendering appropriate responses.
 """
+
 import logging
 import json
 import requests
@@ -402,6 +403,9 @@ def clean_text(text):
 
     # Fix broken words (e.g., "Pra na ya ma" -> "Pranayama")
     text = re.sub(r"\b(Pra)\s(na)\s(ya)\s(ma)\b", r"\1\2\3\4", text, flags=re.IGNORECASE)
+
+    # Remove space before a period
+    text = re.sub(r"\s+\.", ".", text)
 
     # Strip leading and trailing spaces
     return text.strip()
