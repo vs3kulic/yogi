@@ -18,7 +18,6 @@ urlpatterns = [
     path('subscribe/', views.subscribe_view, name='subscribe'),
     path('robots.txt', views.robots_txt),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
-    path('result/', views.result, name='result'),
+    path('result/', views.ollama_view, name='result'),  # Map /result/ to ollama_view
     path('api/yoga-classes/', views.yoga_classes_api, name='yoga_classes_api'),
-    path("ollama-test/", views.ollama_test_view, name="ollama_test"),
 ]

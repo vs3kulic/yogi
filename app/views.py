@@ -10,6 +10,7 @@ import markdown
 import unicodedata
 import re
 import random
+import uuid  # For generating unique session IDs
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from django.conf import settings
@@ -17,10 +18,11 @@ from django.views.decorators.http import require_GET, require_POST, require_http
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.core.cache import cache
-from .models import YogaClass, QuestionnaireResult
+from django.db import IntegrityError
+from django.db import models
+from .models import YogaClass, QuestionnaireResult, OllamaResponse
 from .utils import SessionManager
 from .constants import ANSWER_TO_TYPE, YOGA_RESULT_TYPES, QUESTIONS
-from .services.ollama_service import call_ollama
 
 logger = logging.getLogger(__name__)
 
@@ -95,27 +97,28 @@ def questionnaire(request):
     """
     Handles the questionnaire flow: displaying questions, saving answers, and navigation.
     """
-    # Get the session or create a new one
+    # Generate a unique session ID if not already set
+    session_id = request.session.get('session_id')
+    if not session_id:
+        session_id = str(uuid.uuid4())
+        request.session['session_id'] = session_id
+
     session_data = request.session.get('questionnaire', {})
     answers = session_data.get('answers', [])
     current_question_index = session_data.get('current_question', 1)
 
-    # Load questions from JSON file or fall back to constants
     questions = load_questions()
     total_questions = len(questions)
 
-    # Check if we're submitting an answer
     if request.method == 'POST':
         answer = request.POST.get('answer')
         
         if answer:
-            # Update answers list
             if len(answers) >= current_question_index:
                 answers[current_question_index - 1] = answer
             else:
                 answers.append(answer)
                 
-            # Move to next question or show results
             if current_question_index < total_questions:
                 current_question_index += 1
                 request.session['questionnaire'] = {
@@ -123,19 +126,35 @@ def questionnaire(request):
                     'current_question': current_question_index
                 }
             else:
-                # Use the correct function to calculate the result
+                # Calculate the result
                 result = calculate_result_from_answers(answers)
+
+                # Save the result to the database
+                try:
+                    QuestionnaireResult.objects.create(
+                        session_id=session_id,
+                        answers=answers,
+                        result_type=result
+                    )
+                except IntegrityError:
+                    # Handle duplicate session_id by generating a new one
+                    session_id = str(uuid.uuid4())
+                    request.session['session_id'] = session_id
+                    QuestionnaireResult.objects.create(
+                        session_id=session_id,
+                        answers=answers,
+                        result_type=result
+                    )
+
                 request.session['questionnaire'] = {
                     'answers': answers,
                     'result': result
                 }
                 return redirect('result')
 
-    # Get the current question
     question_index = current_question_index - 1
     question = questions[question_index] if question_index < len(questions) else None
 
-    # Calculate progress percentage
     progress = (current_question_index - 1) / (total_questions - 1) * 100 if total_questions > 1 else 100
 
     context = {
@@ -156,40 +175,9 @@ def reset_questionnaire(request):
     session_manager.reset_questionnaire()
     return redirect('index')
 
-
 # ---------------------------
 # Result Views
 # ---------------------------
-
-def result(request):
-    """
-    Renders the result page with the calculated yoga type and its details.
-    """
-    # Get result type from session or default to "Casual-Stretcher"
-    result_type = request.session.get('questionnaire', {}).get('result', 'Casual-Stretcher')
-
-    # Fetch a cached response
-    cached_response = cache.get(f"ollama_response_{result_type}")
-    if not cached_response:
-        cached_response = "No personalized tip available."
-
-    # Get the detailed result information from the constants
-    result_data = YOGA_RESULT_TYPES.get(result_type, {
-        'title': 'Unknown',
-        'description': ['No description available.'],
-        'match': {'title': 'None', 'reason': 'No match found.'},
-        'challenge': {'title': 'None', 'reason': 'No challenge found.'}
-    })
-
-    # Ensure description is a single string with proper spacing
-    if isinstance(result_data['description'], list):
-        result_data['description'] = ' '.join(result_data['description'])
-
-    return render(request, 'result.html', {
-        'result_type': result_type,
-        'result_data': result_data,
-        'ollama_response': cached_response
-    })
 
 @require_GET
 def recommended_classes(request):
@@ -302,9 +290,6 @@ def subscribe_email(email):
         # Handle request-related exceptions (e.g., connection errors, timeouts)
         return 503, {"detail": str(e)}
 
-# ---------------------------
-# Debug and Test Views
-# ---------------------------
 def yoga_classes_api(request):
     """API endpoint for yoga classes using JSON data"""
     try:
@@ -336,68 +321,73 @@ def yoga_classes_api(request):
         logger.error("Error in yoga_classes_api: %s", str(e))
         return JsonResponse({"error": "An error occurred while processing the request."}, status=500)
 
+# ---------------------------
+# Ollama API View
+# ---------------------------
+
 def ollama_view(request):
     """
-    Django view to interact with the Ollama API and return its response.
+    Renders the result page with the calculated yoga type and its details.
     """
-    # Fetch a random result from the database
-    random_result = QuestionnaireResult.objects.order_by('?').first()
-    if not random_result:
-        return JsonResponse({"error": "No results found in the database."}, status=404)
+    logger = logging.getLogger(__name__)
 
-    # Inject the result into the prompt
-    prompt = f"Based on the yoga type '{random_result.result_type}', provide a personalized yoga tip in Markdown format. Limit to 20 words."
-    ollama_response = call_ollama(prompt)
+    # Get result type from session or default to "Casual-Stretcher"
+    result_type = request.session.get('questionnaire', {}).get('result', 'Casual-Stretcher')
+    logger.info(f"Result type: {result_type}")
 
-    if "error" in ollama_response:
-        response_text = f"Error: {ollama_response['error']}"
+    # Get the detailed result information from the constants
+    result_data = YOGA_RESULT_TYPES.get(result_type, {
+        'title': 'Unknown',
+        'description': ['No description available.'],
+        'match': {'title': 'None', 'reason': 'No match found.'},
+        'challenge': {'title': 'None', 'reason': 'No challenge found.'}
+    })
+
+    # Ensure description is a single string with proper spacing
+    if isinstance(result_data['description'], list):
+        result_data['description'] = ' '.join(result_data['description'])
+    
+    # Get the session ID from the request
+    session_id = request.session.get('session_id', None)
+    if not session_id:
+        logger.error("Session ID not found.")
+        return JsonResponse({"error": "Session ID not found. Please start the questionnaire."}, status=400)
+
+    logger.info(f"Session ID: {session_id}")
+
+    # Fetch the Result from the QuestionnaireResult table
+    try:
+        questionnaire_result = QuestionnaireResult.objects.get(session_id=session_id)
+        logger.info(f"Fetched QuestionnaireResult: {questionnaire_result}")
+    except QuestionnaireResult.DoesNotExist:
+        logger.error(f"No QuestionnaireResult found for session_id: {session_id}")
+        return JsonResponse({"error": "Questionnaire result not found."}, status=404)
+    
+    # Get the user's answers from the QuestionnaireResult table
+    user_answers = questionnaire_result.answers  # Example: ["A", "C", "B", "A", "C"]
+    logger.info(f"User answers: {user_answers}")
+
+    # Fetch the matching OllamaResponse based on the combinations field
+    ollama_response = OllamaResponse.objects.filter(combinations=user_answers).first()
+    if not ollama_response:
+        logger.warning(f"No OllamaResponse found for answers: {user_answers}")
+        pro_tip = "No response found."
+        pro_tip_de = "Keine Antwort gefunden."  # Default German message
     else:
-        raw_text = ollama_response.get("response", "No response received.")
-        cleaned_text = clean_text(raw_text)
-        response_text = markdown.markdown(cleaned_text)
+        ollama_response_text = ollama_response.response
+        pro_tip = clean_text(ollama_response_text)
+        pro_tip_de = ollama_response.response_de or "Keine Antwort gefunden."  # Use response_de if available
+        logger.info(f"Fetched OllamaResponse: {ollama_response_text}")
+        logger.info(f"Fetched German OllamaResponse: {pro_tip_de}")
 
-        # Save the response to the database
-        OllamaResponse.objects.create(prompt=prompt, response=cleaned_text)
-
-    return JsonResponse({"response": response_text})
-
-# ---------------------------
-# Ollama Test Views
-# ---------------------------
-@require_GET
-def ollama_test_view(request):
-    """
-    Test view to call the Ollama API and return its response.
-    """
-    # Pool of prompts for variation
-    prompts = [
-        "Give me a yoga pro-tip for intermediates in Markdown format. Do not reference any resources. Minimum 10 words, limit the response to 20 words.",
-        "Share a funny yoga tip for beginners in Markdown format. Avoid external references and keep it under 20 words.",
-        "Provide a short yoga pro-tip for advanced practitioners in Markdown format. Keep it simple and under 20 words.",
-        "Suggest a yoga tip for children in Markdown format. Avoid references and limit it to 20 words.",
-    ]
-
-    # Select a random prompt
-    prompt = random.choice(prompts)
-
-    # Call the Ollama API
-    ollama_response = call_ollama(prompt)
-
-    # Check if the response contains an error
-    if "error" in ollama_response:
-        response_text = f"Error: {ollama_response['error']}"
-    else:
-        # Extract the "response" field from the JSON
-        raw_text = ollama_response.get("response", "No response received.")
-
-        # Clean the text first
-        cleaned_text = clean_text(raw_text)
-
-        # Convert Markdown to HTML
-        response_text = markdown.markdown(cleaned_text)
-
-    # Pass the cleaned and formatted text to the template
-    return render(request, "ollama_test.html", {"ollama_response": response_text})
+    # Pass pro_tip and pro_tip_de to the result template
+    return render(request, 'result.html', {
+        'pro_tip': pro_tip,
+        'pro_tip_de': pro_tip_de,
+        'result_type': result_type,
+        'result_data': result_data,
+        'session_id': session_id
+    })
 
 def clean_text(text):
     """

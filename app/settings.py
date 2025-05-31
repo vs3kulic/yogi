@@ -55,6 +55,8 @@ HONEYBADGER = {
     'API_KEY': config("HONEYBADGER_API_KEY", default=None)
 }
 
+DEEPL_API_KEY = config("DEEPL_API_KEY")
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
