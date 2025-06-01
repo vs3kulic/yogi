@@ -48,7 +48,7 @@ This hybrid approach leverages Django's robust backend capabilities while enhanc
 - **Images** delivered through a dedicated CDN to enhance performance and reduce storage requirements.  
 - **Environment-specific configurations** for development, testing, and production.  
 - **Pro-Tips with OLLAMA and DEEPL**:  
-  Yogi uses **Ollama** (gemma3:1b) to generate personalized pro-tips based on user questionnaire answers. These pro-tips are dynamically created using advanced AI models to provide actionable and insightful yoga advice tailored to each user's preferences. Additionally, **DeepL** is used to translate these pro-tips into German, ensuring accessibility for a broader audience. This integration enhances the user experience by delivering localized and meaningful recommendations.
+  Yogi uses **Ollama** (gemma3:1b) to generate personalized pro-tips based on user questionnaire answers. Additionally, **DeepL** is used to translate these pro-tips into German, ensuring accessibility for a broader audience. This integration enhances the user experience by delivering localized and meaningful recommendations.
 
 ---
 
