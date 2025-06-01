@@ -1,3 +1,8 @@
+"""
+This is a Django management command to translate OllamaResponse entries to German using the DeepL API.
+# app/management/commands/translate_deepl.py
+"""
+
 from django.core.management.base import BaseCommand
 from app.models import OllamaResponse
 from django.conf import settings
@@ -13,7 +18,7 @@ class Command(BaseCommand):
         """
         Translates the given text to German using DeepL API.
         """
-        api_url = "https://api-free.deepl.com/v2/translate"
+        api_url = "https://api-free.deepl.com/v2/translate"  # Use the correct endpoint
         api_key = settings.DEEPL_API_KEY  # Load the API key from settings
         data = {
             "auth_key": api_key,
@@ -21,7 +26,11 @@ class Command(BaseCommand):
             "target_lang": "DE"
         }
         try:
+            logger.info(f"Sending request to DeepL API: {api_url}")
             response = requests.post(api_url, data=data)
+            logger.info(f"Response status code: {response.status_code}")
+            logger.info(f"Response text: {response.text}")
+
             if response.status_code == 200:
                 return response.json().get("translations", [{}])[0].get("text", "")
             else:

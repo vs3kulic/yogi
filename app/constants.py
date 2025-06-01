@@ -126,3 +126,30 @@ YOGA_RESULT_TYPES = {
         }
     }
 }
+
+# Add these to your ollama_dictionary_enhanced:
+ollama_dictionary_enhanced = {
+    # Multiple space patterns (exactly as they appear)
+    "At me  tief  durch": "Atme tief durch",
+    "At me  tief  ein": "Atme tief ein", 
+    "ents pan ne": "entspanne",
+    "At  me": "Atme",
+    "at  me": "atme",
+    "tief  durch": "tief durch",
+    "tief  ein": "tief ein",
+    "lass  los": "lass los",
+    "genie ße": "genieße",
+    "Best es": "Bestes",
+    "inn ere": "innere",
+    "konzent riere": "konzentriere",
+    "Ent spann": "Entspann",
+    "deinen  Körper": "deinen Körper",
+    "die  Ruhe": "die Ruhe",
+    "und  lass": "und lass",
+    "du  bist": "du bist",
+    "ganz  frei": "ganz frei",
+    "ihren  Frieden": "ihren Frieden",
+    "jeden  Schritt": "jeden Schritt",
+    "dich  leicht": "dich leicht",
+    "dein  Best es": "dein Bestes",
+}

@@ -371,19 +371,15 @@ def ollama_view(request):
     ollama_response = OllamaResponse.objects.filter(combinations=user_answers).first()
     if not ollama_response:
         logger.warning(f"No OllamaResponse found for answers: {user_answers}")
-        pro_tip = "No response found."
-        pro_tip_de = "Keine Antwort gefunden."  # Default German message
+        pro_tip = "Oje, ich konnte keinen Tipp für dich erstellen :/"
     else:
         ollama_response_text = ollama_response.response
-        pro_tip = clean_text(ollama_response_text)
-        pro_tip_de = ollama_response.response_de or "Keine Antwort gefunden."  # Use response_de if available
+        pro_tip = clean_text(ollama_response_text)  # Use response_de if available
         logger.info(f"Fetched OllamaResponse: {ollama_response_text}")
-        logger.info(f"Fetched German OllamaResponse: {pro_tip_de}")
 
-    # Pass pro_tip and pro_tip_de to the result template
+    # Pass pro_tip to the result template
     return render(request, 'result.html', {
         'pro_tip': pro_tip,
-        'pro_tip_de': pro_tip_de,
         'result_type': result_type,
         'result_data': result_data,
         'session_id': session_id
