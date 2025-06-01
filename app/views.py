@@ -373,8 +373,9 @@ def ollama_view(request):
         logger.warning(f"No OllamaResponse found for answers: {user_answers}")
         pro_tip = "Oje, ich konnte keinen Tipp für dich erstellen :/"
     else:
-        ollama_response_text = ollama_response.response
-        pro_tip = clean_text(ollama_response_text)  # Use response_de if available
+        # Use response_de if available, otherwise fallback to response
+        ollama_response_text = ollama_response.response_de or ollama_response.response
+        pro_tip = clean_text(ollama_response_text)
         logger.info(f"Fetched OllamaResponse: {ollama_response_text}")
 
     # Pass pro_tip to the result template

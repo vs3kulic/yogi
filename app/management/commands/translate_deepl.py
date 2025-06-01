@@ -2,43 +2,15 @@
 This is a Django management command to translate OllamaResponse entries to German using the DeepL API.
 # app/management/commands/translate_deepl.py
 """
-
 from django.core.management.base import BaseCommand
 from app.models import OllamaResponse
-from django.conf import settings
-import requests
+from app.services.deepl_service import translate_to_german
 import logging
 
 logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
     help = "Translate OllamaResponse entries to German using DeepL API."
-
-    def translate_to_german(self, text):
-        """
-        Translates the given text to German using DeepL API.
-        """
-        api_url = "https://api-free.deepl.com/v2/translate"  # Use the correct endpoint
-        api_key = settings.DEEPL_API_KEY  # Load the API key from settings
-        data = {
-            "auth_key": api_key,
-            "text": text,
-            "target_lang": "DE"
-        }
-        try:
-            logger.info(f"Sending request to DeepL API: {api_url}")
-            response = requests.post(api_url, data=data)
-            logger.info(f"Response status code: {response.status_code}")
-            logger.info(f"Response text: {response.text}")
-
-            if response.status_code == 200:
-                return response.json().get("translations", [{}])[0].get("text", "")
-            else:
-                logger.error(f"DeepL API error: {response.status_code} - {response.text}")
-                return None
-        except requests.RequestException as e:
-            logger.error(f"Error connecting to DeepL API: {str(e)}")
-            return None
 
     def handle(self, *args, **kwargs):
         """
@@ -53,12 +25,24 @@ class Command(BaseCommand):
 
         self.stdout.write(self.style.SUCCESS(f"Found {responses.count()} entries to translate."))
 
-        for response in responses:
-            self.stdout.write(f"Translating response ID {response.id}...")
-            translated_text = self.translate_to_german(response.response)
-            if translated_text:
-                response.response_de = translated_text
+        success_count = 0
+        error_count = 0
+
+        for i, response in enumerate(responses, 1):
+            self.stdout.write(f"Processing {i}/{responses.count()}: ID {response.id}")
+            self.stdout.write(f"Original: {response.response[:100]}...")
+
+            # Call the service to translate the text
+            result = translate_to_german(response.response)
+
+            if result["success"]:
+                response.response_de = result["corrected_german"]
                 response.save()
-                self.stdout.write(self.style.SUCCESS(f"Translated and saved response ID {response.id}."))
+                self.stdout.write(self.style.SUCCESS(f"✓ Saved: {result['corrected_german'][:100]}..."))
+                success_count += 1
             else:
-                self.stdout.write(self.style.ERROR(f"Failed to translate response ID {response.id}."))
+                self.stdout.write(self.style.ERROR(f"✗ Failed to translate response ID {response.id}: {result['error']}"))
+                error_count += 1
+
+        self.stdout.write(self.style.SUCCESS(f"Translation complete!"))
+        self.stdout.write(self.style.SUCCESS(f"Success: {success_count}, Errors: {error_count}"))

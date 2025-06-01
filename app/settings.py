@@ -13,7 +13,6 @@ if TESTING:
     import dotenv
     dotenv.load_dotenv('.env.test')
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -55,9 +54,7 @@ HONEYBADGER = {
     'API_KEY': config("HONEYBADGER_API_KEY", default=None)
 }
 
-DEEPL_API_KEY = {
-    'API_KEY': config("DEEPL_API_KEY", default=None)
-}
+DEEPL_API_KEY = config("DEEPL_API_KEY", default=None)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
