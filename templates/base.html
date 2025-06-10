@@ -64,6 +64,23 @@
         text-decoration: underline; /* Add underline on hover for better UX */
     }
     </style>
+    <!-- Matomo/Piwik Tracking Code -->
+    <script>
+    var _paq = window._paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//bekindstudio.piwik.pro/"; // Matomo server URL
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', '1']); // Site ID for Matomo instance
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+
+    <noscript>
+        <img src="//bekindstudio.piwik.pro/matomo.php?idsite=1" style="border:0;" alt="" />
+    </noscript>
 </head>
 
 <body class="d-flex flex-column min-vh-100">

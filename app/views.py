@@ -24,6 +24,7 @@ from .models import YogaClass, QuestionnaireResult, OllamaResponse
 from .utils import SessionManager
 from .constants import ANSWER_TO_TYPE, YOGA_RESULT_TYPES, QUESTIONS
 
+
 logger = logging.getLogger(__name__)
 
 # ---------------------------
@@ -413,3 +414,14 @@ def clean_text(text):
 
     # Strip leading and trailing spaces
     return text.strip()
+
+def example_view(request):
+    """
+    Example view to demonstrate the usage of the square function.
+    """
+    number = 5
+    squared_value = square(number)  # Call the square function
+    return render(request, 'info.html', {
+        'number': number,
+        'squared_value': squared_value
+    })
