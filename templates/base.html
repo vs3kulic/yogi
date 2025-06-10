@@ -16,54 +16,6 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% block extra_css %}{% endblock %}
 
-    <style>
-    .yoga-type-filter, 
-    [class*="yoga-type-filter"], 
-    div[data-v-*="yoga-type-filter"] {
-        display: none !important;
-        visibility: hidden !important;
-        height: 0 !important;
-        overflow: hidden !important;
-        opacity: 0 !important;
-    }
-
-    /* Make the toggle switch larger */
-    .form-check-input {
-        width: 3.5rem;
-        height: 1.3rem;
-    }
-
-    .form-check-input:checked {
-        background-color: #471f66; /* Your brand purple */
-        border-color: #471f66;
-    }
-
-    .form-check-input:focus {
-        box-shadow: 0 0 0 0.2rem rgba(71, 31, 102, 0.25);
-    }
-
-    .form-check-label {
-        font-size: 1.1rem; /* Slightly larger label text */
-        margin-left: 0.5rem;
-    }
-
-    footer {
-        color: #c6009b !important; /* Your brand pink */
-        font-size: 1.2rem; /* Optional: Adjust font size */
-        text-align: center; /* Align the footer text to the right */
-        margin-top: 0.5rem; /* Add spacing above the footer */
-        
-    }
-
-    footer a {
-        color: #c6009b !important; /* Ensure links in the footer also use the pink color */
-        text-decoration: none; /* Remove underline from links */
-    }
-
-    footer a:hover {
-        text-decoration: underline; /* Add underline on hover for better UX */
-    }
-    </style>
     <!-- Matomo/Piwik Tracking Code -->
     <script>
         var _paq = window._paq || [];
