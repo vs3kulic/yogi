@@ -5,11 +5,6 @@
       "name": "main.b1bb75dc098f4d6228b9.js",
       "path": "/Users/vajosekulic/Documents/Programming/Yogi/static/webpack/dist/main.b1bb75dc098f4d6228b9.js",
       "publicPath": "/static/webpack/dist/main.b1bb75dc098f4d6228b9.js"
-    },
-    "manifest.json": {
-      "name": "manifest.json",
-      "path": "/Users/vajosekulic/Documents/Programming/Yogi/static/webpack/dist/manifest.json",
-      "publicPath": "/static/webpack/dist/manifest.json"
     }
   },
   "chunks": {
