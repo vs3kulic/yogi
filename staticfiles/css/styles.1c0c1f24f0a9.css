@@ -59,19 +59,6 @@ body {
   box-sizing: border-box; /* Include padding in width calculation */
 }
 
-/* Main Container */
-main.container {
-    padding: 1rem 2rem; /* Keep padding for spacing */
-    margin: 0 auto; /* Center the container horizontally */
-    box-sizing: border-box; /* Include padding in width calculation */
-}
-
-/* Questionnaire Section */
-.questionnaire {
-    padding: 0.5rem 2rem; /* Keep padding for spacing */
-    margin: 0 auto; /* Center the questionnaire horizontally */
-}
-
 /* ======================================
  * COMPONENTS - BUTTONS
  * ====================================== */
@@ -101,10 +88,6 @@ header {
   padding: 0.5rem 1rem; /* Reduce padding inside the header */
   width: 100%; /* Ensure the header spans the full width */
   border-bottom: none; /* Remove the bottom border */
-}
-
-header {
-    margin-bottom: 0.5rem; /* Reduce spacing below the header */
 }
 
 .navbar {
@@ -263,12 +246,21 @@ form {
 .questionnaire-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 1.5rem 0; /* Reduce vertical padding */
+  padding: 1rem 0; /* Reduce vertical padding */
 }
 
-.questionnaire {
-    padding: 0.5rem 2rem; /* Keep padding for spacing */
-    margin: 0 auto; /* Center the questionnaire horizontally */
+.question-number {
+  color: var(--primary);
+  font-size: 1.5rem; /* Slightly smaller font size */
+  font-weight: 600;
+  margin-bottom: 0.5rem; /* Reduce bottom margin */
+}
+
+.question-text {
+  color: var(--secondary);
+  font-size: 1.25rem; /* Slightly smaller font size */
+  margin-top: 0.5rem; /* Reduce top margin */
+  margin-bottom: 1rem; /* Reduce bottom margin */
 }
 
 /* Navigation buttons */

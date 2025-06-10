@@ -55,21 +55,8 @@ body {
 .container {
   max-width: 1200px; /* Ensure consistent width with the navbar */
   margin: 0 auto; /* Center the container */
-  padding: 0.5rem 1rem; /* Reduce padding inside the main container */
+  padding: 1rem 2rem; /* Match padding with the navbar */
   box-sizing: border-box; /* Include padding in width calculation */
-}
-
-/* Main Container */
-main.container {
-    padding: 1rem 2rem; /* Keep padding for spacing */
-    margin: 0 auto; /* Center the container horizontally */
-    box-sizing: border-box; /* Include padding in width calculation */
-}
-
-/* Questionnaire Section */
-.questionnaire {
-    padding: 0.5rem 2rem; /* Keep padding for spacing */
-    margin: 0 auto; /* Center the questionnaire horizontally */
 }
 
 /* ======================================
@@ -79,7 +66,7 @@ main.container {
   background-color: var(--primary);
   color: #fff;
   border: none;
-  padding: 0.5rem 1rem; /* Reduce padding inside the button */
+  padding: 0.75rem 1.5rem;
   border-radius: 6px;
   transition: background-color 0.3s ease;
 }
@@ -97,14 +84,10 @@ header {
   align-items: center; /* Vertically center items */
   background-color: var(--background);
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Slightly smaller shadow */
-  padding: 0.5rem 1rem; /* Reduce padding inside the header */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+  padding: 1rem 2rem; /* Add spacing inside the header */
   width: 100%; /* Ensure the header spans the full width */
   border-bottom: none; /* Remove the bottom border */
-}
-
-header {
-    margin-bottom: 0.5rem; /* Reduce spacing below the header */
 }
 
 .navbar {
@@ -113,7 +96,7 @@ header {
     justify-content: space-between;
     background-color: #ffffff !important; /* Pure white in light mode */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03); /* Subtle shadow */
-    padding: 0.5rem 1rem; /* Match reduced padding with the header */
+    padding: 1rem 2rem; /* Match padding with the main container */
     width: 100%; /* Ensure the navbar spans the full width */
     box-sizing: border-box; /* Include padding in width calculation */
 }
@@ -220,8 +203,8 @@ form {
 .quiz-option, .option {
     border: 0.5px solid #ccc; /* Subtle border for unselected options */
     border-radius: 8px;
-    padding: 0.5rem 1rem; /* Reduce padding inside options */
-    margin-bottom: 0.75rem; /* Reduce spacing between options */
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
     background-color: #fff; /* Ensure a clean white background */
@@ -263,19 +246,27 @@ form {
 .questionnaire-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 1.5rem 0; /* Reduce vertical padding */
+  padding: var(--spacing-lg) 0;
 }
 
-.questionnaire {
-    padding: 0.5rem 2rem; /* Keep padding for spacing */
-    margin: 0 auto; /* Center the questionnaire horizontally */
+.question-number {
+  color: var(--primary);
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.question-text {
+  color: var(--secondary);
+  font-size: 1.5rem;
+  margin-top: 1rem !important; /* Add some space above the question text */
+  margin-bottom: 1.5rem !important; /* Add some space below the question text */
 }
 
 /* Navigation buttons */
 .navigation-buttons {
   display: flex;
   justify-content: center;
-  margin-top: 1rem; /* Reduce spacing above navigation buttons */
+  margin-top: var(--spacing-lg);
 }
 
 /* ======================================
@@ -653,7 +644,7 @@ div[data-v-*="yoga-type-filter"] {
 footer {
     background-color: var(--background);
     color: var(--secondary);
-    font-size: 1rem;
+    font-size: 2rem;
     text-align: center; /* Align the footer text to the right */
     margin-top: 0.5rem; /* Add spacing above the footer */
 }

@@ -24,7 +24,7 @@
   /* Spacing */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
-  --spacing-md: 1.5rem;
+  --spacing-md: 1rem;
   --spacing-lg: 2rem;
   --spacing-xl: 3rem;
   
@@ -59,19 +59,6 @@ body {
   box-sizing: border-box; /* Include padding in width calculation */
 }
 
-/* Main Container */
-main.container {
-    padding: 1rem 2rem; /* Keep padding for spacing */
-    margin: 0 auto; /* Center the container horizontally */
-    box-sizing: border-box; /* Include padding in width calculation */
-}
-
-/* Questionnaire Section */
-.questionnaire {
-    padding: 0.5rem 2rem; /* Keep padding for spacing */
-    margin: 0 auto; /* Center the questionnaire horizontally */
-}
-
 /* ======================================
  * COMPONENTS - BUTTONS
  * ====================================== */
@@ -101,10 +88,7 @@ header {
   padding: 0.5rem 1rem; /* Reduce padding inside the header */
   width: 100%; /* Ensure the header spans the full width */
   border-bottom: none; /* Remove the bottom border */
-}
-
-header {
-    margin-bottom: 0.5rem; /* Reduce spacing below the header */
+  margin-bottom: 0.5rem; /* Reduce spacing below the header */
 }
 
 .navbar {
@@ -167,7 +151,7 @@ main {
 }
 
 .card-body {
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md);
 }
 
 .card-title {
@@ -263,12 +247,27 @@ form {
 .questionnaire-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 1.5rem 0; /* Reduce vertical padding */
+  padding: 1rem 0; /* Reduce vertical padding */
 }
 
 .questionnaire {
-    padding: 0.5rem 2rem; /* Keep padding for spacing */
-    margin: 0 auto; /* Center the questionnaire horizontally */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0.5rem; /* Reduce padding inside the questionnaire */
+}
+
+.question-number {
+  color: var(--primary);
+  font-size: 1.5rem; /* Slightly smaller font size */
+  font-weight: 600;
+  margin-bottom: 0.5rem; /* Reduce bottom margin */
+}
+
+.question-text {
+  color: var(--secondary);
+  font-size: 1.25rem; /* Slightly smaller font size */
+  margin-top: 0.5rem; /* Reduce top margin */
+  margin-bottom: 0.75rem; /* Reduce bottom margin */
 }
 
 /* Navigation buttons */
@@ -284,8 +283,8 @@ form {
 .result-container {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
-  margin-bottom: var(--spacing-lg);
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
 }
 
 .result-image img {

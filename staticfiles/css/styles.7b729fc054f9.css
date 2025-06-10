@@ -61,15 +61,15 @@ body {
 
 /* Main Container */
 main.container {
-    padding: 1rem 2rem; /* Keep padding for spacing */
-    margin: 0 auto; /* Center the container horizontally */
-    box-sizing: border-box; /* Include padding in width calculation */
+    padding: 1rem 3rem; /* Increase right padding */
+    margin-right: 3rem; /* Add margin to the right */
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
 }
 
 /* Questionnaire Section */
 .questionnaire {
-    padding: 0.5rem 2rem; /* Keep padding for spacing */
-    margin: 0 auto; /* Center the questionnaire horizontally */
+    padding: 0.5rem 3rem; /* Increase right padding */
+    margin-right: 3rem; /* Add margin to the right */
 }
 
 /* ======================================
@@ -267,8 +267,8 @@ form {
 }
 
 .questionnaire {
-    padding: 0.5rem 2rem; /* Keep padding for spacing */
-    margin: 0 auto; /* Center the questionnaire horizontally */
+    padding: 0.5rem 2rem; /* Increase right padding */
+    margin-right: 2rem; /* Add margin to the right */
 }
 
 /* Navigation buttons */

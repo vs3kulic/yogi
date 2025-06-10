@@ -53,12 +53,23 @@ body {
  * LAYOUT & CONTAINERS
  * ====================================== */
 .container {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background: var(--background);
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 1200px; /* Ensure consistent width with the navbar */
+  margin: 0 auto; /* Center the container */
+  padding: 0.5rem 1rem; /* Reduce padding inside the main container */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Main Container */
+main.container {
+    padding: 1rem 2rem; /* Keep padding for spacing */
+    margin: 0 auto; /* Center the container horizontally */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Questionnaire Section */
+.questionnaire {
+    padding: 0.5rem 2rem; /* Keep padding for spacing */
+    margin: 0 auto; /* Center the questionnaire horizontally */
 }
 
 /* ======================================
@@ -68,7 +79,7 @@ body {
   background-color: var(--primary);
   color: #fff;
   border: none;
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1rem; /* Reduce padding inside the button */
   border-radius: 6px;
   transition: background-color 0.3s ease;
 }
@@ -81,25 +92,50 @@ body {
  * COMPONENTS - HEADER & NAVIGATION
  * ====================================== */
 header {
+  display: flex;
+  justify-content: space-between; /* Align items to opposite sides */
+  align-items: center; /* Vertically center items */
   background-color: var(--background);
-  box-shadow: 0 2px 10px var(--shadow-color);
-  padding: var(--spacing-sm) 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Slightly smaller shadow */
+  padding: 0.5rem 1rem; /* Reduce padding inside the header */
+  width: 100%; /* Ensure the header spans the full width */
+  border-bottom: none; /* Remove the bottom border */
+}
+
+header {
+    margin-bottom: 0.5rem; /* Reduce spacing below the header */
 }
 
 .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #ffffff !important; /* Pure white in light mode */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03); /* Subtle shadow */
-    padding: 1rem;
-    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff !important; /* Pure white in light mode */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03); /* Subtle shadow */
+    padding: 0.5rem 1rem; /* Match reduced padding with the header */
+    width: 100%; /* Ensure the navbar spans the full width */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Remove border from header */
+header {
+    border-bottom: none; /* Remove the bottom border */
+    box-shadow: none; /* Remove any shadow */
+}
+
+/* Remove border from main container */
+main {
+    border-top: none; /* Remove the top border */
+    box-shadow: none; /* Remove any shadow */
 }
 
 .navbar-brand {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--primary);
+    padding: 0.5rem 1rem; /* Top/Bottom: 0.5rem, Left/Right: 1rem */
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none; /* Ensure the link doesn't have an underline */
 }
 
 /* Dark mode navbar */
@@ -184,8 +220,8 @@ form {
 .quiz-option, .option {
     border: 0.5px solid #ccc; /* Subtle border for unselected options */
     border-radius: 8px;
-    padding: 0.75rem 1rem;
-    margin-bottom: 1rem;
+    padding: 0.5rem 1rem; /* Reduce padding inside options */
+    margin-bottom: 0.75rem; /* Reduce spacing between options */
     cursor: pointer;
     transition: all 0.3s ease;
     background-color: #fff; /* Ensure a clean white background */
@@ -227,27 +263,19 @@ form {
 .questionnaire-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: var(--spacing-lg) 0;
+  padding: 1.5rem 0; /* Reduce vertical padding */
 }
 
-.question-number {
-  color: var(--primary);
-  font-size: 1.75rem;
-  font-weight: 600;
-}
-
-.question-text {
-  color: var(--secondary);
-  font-size: 1.5rem;
-  margin-top: 1rem !important; /* Add some space above the question text */
-  margin-bottom: 1.5rem !important; /* Add some space below the question text */
+.questionnaire {
+    padding: 0.5rem 2rem; /* Keep padding for spacing */
+    margin: 0 auto; /* Center the questionnaire horizontally */
 }
 
 /* Navigation buttons */
 .navigation-buttons {
   display: flex;
   justify-content: center;
-  margin-top: var(--spacing-lg);
+  margin-top: 1rem; /* Reduce spacing above navigation buttons */
 }
 
 /* ======================================
@@ -625,7 +653,7 @@ div[data-v-*="yoga-type-filter"] {
 footer {
     background-color: var(--background);
     color: var(--secondary);
-    font-size: 0.9rem;
+    font-size: 1rem;
     text-align: center; /* Align the footer text to the right */
     margin-top: 0.5rem; /* Add spacing above the footer */
 }

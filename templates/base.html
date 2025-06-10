@@ -36,19 +36,15 @@
 
 <body class="d-flex flex-column min-vh-100">
     <!-- Simple, reliable navbar structure -->
-    <header>
-        <nav class="navbar navbar-light bg-white"> <!-- Changed from bg-light to bg-white -->
-            <div class="container">
-                <a class="navbar-brand" href="{% url 'index' %}">Be Kind Club</a>
-                <!-- Toggle switch in a simple structure -->
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="theme-checkbox">
-                    <label class="form-check-label" for="theme-checkbox">
-                        Dark Mode<sup style="font-size: 0.6rem; margin-left: 2px; color: #c6009b;">experimental</sup>
-                    </label>
-                </div>
-            </div>
-        </nav>
+    <header class="d-flex justify-content-between align-items-center py-3 px-4 shadow-sm">
+        <a href="/" class="navbar-brand mb-0 h1">Be Kind Club</a>
+        <!-- Toggle switch in a simple structure -->
+        <form class="form-check form-switch d-flex align-items-center">
+            <input class="form-check-input" type="checkbox" id="theme-checkbox">
+            <label class="form-check-label ms-2" for="theme-checkbox">
+                Dark Mode<sup style="font-size: 0.6rem; margin-left: 2px; color: #c6009b;">experimental</sup>
+            </label>
+        </form>
     </header>
 
     <main class="container flex-grow-1 py-4">
