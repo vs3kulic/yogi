@@ -44,128 +44,38 @@
 }
 
 body {
-  font-family: 'Roboto', Arial, sans-serif;
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
-  color: var(--dark-text);
-  background-color: #f9f9fb;
-  overflow-x: hidden;
-}
-
-/* Ollama Test Page Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  margin-bottom: var(--spacing-sm);
-  line-height: 1.2;
-  font-weight: 600;
-  color: var(--primary);
-}
-
-p {
-  margin-bottom: var(--spacing-md);
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-.response {
-    margin-top: 20px;
-    padding: 20px;
-    background: #e8f5e9;
-    border-left: 5px solid #4caf50;
-    border-radius: 5px;
-    font-size: 1rem;
-    color: #2e7d32;
-    line-height: 1.5;
-}
-
-.response div {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #333;
-    white-space: pre-wrap; /* Preserves formatting but wraps text */
-    word-wrap: break-word; /* Prevents overflow */
-}
-
-.response strong {
-    font-weight: bold;
-    color: #1b5e20;
-}
-
-.response div strong {
-    font-weight: bold;
-    color: #1b5e20;
-}
-
-.response div em {
-    font-style: italic;
-    color: #555;
-}
-
-.response div a {
-    color: #4caf50;
-    text-decoration: none;
-}
-
-.response div a:hover {
-    text-decoration: underline;
-}
-
-a {
-  color: var(--primary);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-a:hover {
-  color: var(--primary-dark);
-  text-decoration: underline;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
+  font-family: var(--font-family);
+  background-color: var(--background);
+  color: #333;
 }
 
 /* ======================================
  * LAYOUT & CONTAINERS
  * ====================================== */
 .container {
-  width: 100%;
   max-width: 800px;
-  margin: 50px auto;
-  padding: 30px;
-  background: #ffffff;
-  border-radius: 10px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: var(--background);
+  border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e0e0e0;
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 -15px;
+/* ======================================
+ * COMPONENTS - BUTTONS
+ * ====================================== */
+.btn-primary {
+  background-color: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
 }
 
-.col {
-  flex: 1;
-  padding: 0 15px;
+.btn-primary:hover {
+  background-color: #3a0f3b;
 }
-
-/* Custom spacing utilities */
-.my-1 { margin-top: var(--spacing-xs); margin-bottom: var(--spacing-xs); }
-.my-2 { margin-top: var(--spacing-sm); margin-bottom: var(--spacing-sm); }
-.my-3 { margin-top: var(--spacing-md); margin-bottom: var(--spacing-md); }
-.my-4 { margin-top: var(--spacing-lg); margin-bottom: var(--spacing-lg); }
-.my-5 { margin-top: var(--spacing-xl); margin-bottom: var(--spacing-xl); }
-
-.text-center { text-align: center; }
 
 /* ======================================
  * COMPONENTS - HEADER & NAVIGATION
@@ -182,6 +92,8 @@ header {
   justify-content: space-between;
   background-color: #ffffff !important; /* Pure white in light mode */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03); /* Subtle shadow */
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
 }
 
 .navbar-brand {
@@ -205,115 +117,6 @@ header {
 /* Dark theme adjustments */
 .dark-theme .navbar-brand {
     color: #e0e0e0 !important;
-}
-
-/* ======================================
- * COMPONENTS - BUTTONS
- * ====================================== */
-.btn {
-  display: inline-block;
-  font-weight: 500;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  user-select: none;
-  border: 1px solid transparent;
-  padding: 0.7rem 1.5rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.btn:focus {
-  outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(71, 31, 102, 0.25);
-}
-
-/* Main button style - use this for all primary actions */
-.btn-primary {
-  background-color: #471f66 !important;
-  border-color: #471f66 !important;
-  color: white !important;
-}
-
-.btn-primary:hover, 
-.btn-primary:focus {
-  background-color: #3a0f3b !important;
-  border-color: #3a0f3b !important;
-  color: white !important;
-}
-
-/* Button sizes */
-.btn-lg {
-  font-size: 1.25rem;
-  padding: 0.75rem 2rem;
-}
-
-/* FIXED: Yoga Button - this is our core button style */
-.yoga-button {
-  background-color: #471f66 !important; /* Purple color forced */
-  border-color: #471f66 !important;
-  color: white !important;
-  padding: 0.5rem 2rem !important; 
-  font-size: 1.25rem !important;
-  font-weight: 600 !important;
-  border-radius: 8px !important;
-  box-shadow: 0 4px 6px rgba(71, 31, 102, 0.2) !important;
-  transition: all 0.3s ease !important;
-  display: inline-block !important;
-  text-align: center !important;
-  text-decoration: none !important;
-  margin: var(--spacing-md) 0 !important;
-}
-
-.yoga-button:hover,
-.yoga-button:focus {
-  background-color: #3a0f3b !important;
-  border-color: #3a0f3b !important;
-  color: white !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 6px 10px rgba(71, 31, 102, 0.3) !important;
-  text-decoration: none !important;
-}
-
-.yoga-button:active {
-  transform: translateY(1px) !important;
-  box-shadow: 0 2px 3px rgba(71, 31, 102, 0.2) !important;
-}
-
-/* Start quiz button - special styling */
-.quiz-start-button {
-  display: inline-block;
-  background-color: var(--primary);
-  border: 2px solid var(--primary);
-  color: var(--light-text);
-  font-size: 1.25rem;
-  font-weight: 600;
-  padding: 0.75rem 2.5rem;
-  border-radius: 8px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin: var(--spacing-lg) auto;
-  box-shadow: 0 4px 6px rgba(71, 31, 102, 0.2);
-}
-
-.quiz-start-button:hover, 
-.quiz-start-button:focus {
-  background-color: var(--primary-dark);
-  border-color: var(--primary-dark);
-  box-shadow: 0 6px 10px rgba(71, 31, 102, 0.3);
-  transform: translateY(-2px);
-  color: var(--light-text);
-  text-decoration: none;
-}
-
-.quiz-start-button:active {
-  transform: translateY(1px);
-  box-shadow: 0 2px 3px rgba(71, 31, 102, 0.2);
 }
 
 /* ======================================
@@ -820,8 +623,9 @@ div[data-v-*="yoga-type-filter"] {
 
 /* Footer styles */
 footer {
-    color: #c6009b !important; /* Your brand pink */
-    font-size: 1.2rem; /* Optional: Adjust font size */
+    background-color: var(--background);
+    color: var(--secondary);
+    font-size: 1.2rem;
     text-align: center; /* Align the footer text to the right */
     margin-top: 0.5rem; /* Add spacing above the footer */
 }
