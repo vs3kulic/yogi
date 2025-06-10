@@ -21,11 +21,9 @@ module.exports = {
         loader: 'vue-loader'
       },
       {
-        test: /\.ts$/,
-        loader: 'ts-loader',
-        options: {
-          appendTsSuffixTo: [/\.vue$/]
-        }
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.js$/,
@@ -54,7 +52,7 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['.ts', '.js', '.vue', '.json'],
+    extensions: ['.tsx', '.ts', '.js', '.vue', '.json'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
       'vue': '@vue/runtime-dom'
