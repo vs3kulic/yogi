@@ -1886,3 +1886,24 @@ Registering plugin Django
 Registering plugin Django
 Registering plugin Django
 Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+[<FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/core/handlers/base.py, line 181 in _get_response>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/views/decorators/http.py, line 40 in inner>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/app/views/result_views.py, line 31 in calculate_result>]
+Returning payload from plugin Django
+No active plugin to generate payload
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django

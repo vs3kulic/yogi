@@ -10,8 +10,8 @@ def subscribe_view(request):
     Handles email subscription.
     """
     email = request.POST.get("email")
-    if not email:
-        return JsonResponse({"error": "Email is required."}, status=400)
+    if not email or "@" not in email:
+        return JsonResponse({"error": "Invalid email"}, status=400)
 
     # Example subscription logic
     return JsonResponse({"message": "Successfully subscribed!"}, status=200)

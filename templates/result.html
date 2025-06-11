@@ -17,7 +17,9 @@
         <div class="row mb-5 justify-content-center">
             <div class="col-lg-8 col-md-7 text-center">
                 <h2>{{ result_data.title }}</h2>
-                <p>{{ result_data.description|safe }}</p>
+                {% for desc in result_data.description %}
+                  <p>{{ desc }}</p>
+                {% endfor %}
                 <h3 class="mt-4">Dein 100% Match:</h3>
                 <p><strong>{{ result_data.match.title }}</strong> {{ result_data.match.reason }}</p>
                 <h3 class="mt-4">Deine Challenge:</h3>
