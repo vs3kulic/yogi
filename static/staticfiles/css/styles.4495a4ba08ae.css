@@ -37,10 +37,10 @@
 /* ======================================
  * RESET & BASE STYLES
  * ====================================== */
+/* Reset all margins globally */
 * {
+    margin: 0 !important;
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body {
@@ -68,8 +68,27 @@ main.container {
 
 /* Questionnaire Section */
 .questionnaire {
-    padding: 0.5rem 2rem; /* Keep padding for spacing */
+    padding: 0.5rem 1rem; /* Reduce padding inside the questionnaire */
     margin: 0 auto; /* Center the questionnaire horizontally */
+    max-height: 100vh; /* Ensure it fits within the viewport */
+    overflow-y: auto; /* Add scroll if necessary */
+}
+
+/* Question Text */
+.question-text {
+    font-size: 1.25rem; /* Slightly smaller font size */
+    margin-top: 0.25rem; /* Reduce top margin */
+    margin-bottom: 0.5rem; /* Reduce bottom margin */
+}
+
+/* Options */
+.custom-radio {
+    margin-bottom: 0.25rem; /* Reduce spacing between options */
+}
+
+input[type="radio"] + label {
+    padding: 0.5rem 1rem; /* Reduce padding inside options */
+    font-size: 1rem; /* Slightly smaller font size */
 }
 
 /* ======================================
@@ -86,6 +105,7 @@ main.container {
 
 .btn-primary:hover {
   background-color: #3a0f3b;
+  margin-top: 0.5rem; /* Reduce spacing above the button */
 }
 
 /* ======================================
@@ -104,7 +124,7 @@ header {
 }
 
 header {
-    margin-bottom: 0.5rem; /* Reduce spacing below the header */
+    margin-bottom: 0.25rem; /* Reduce spacing below the header */
 }
 
 .navbar {
@@ -655,7 +675,7 @@ footer {
     color: var(--secondary);
     font-size: 1rem;
     text-align: center; /* Align the footer text to the right */
-    margin-top: 0.5rem; /* Add spacing above the footer */
+    margin-top: 0.25rem; /* Reduce spacing above the footer */
 }
 
 footer a {

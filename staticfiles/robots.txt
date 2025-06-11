@@ -1,9 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /admin/
-
-# Example: Block specific crawlers
-# User-agent: BadBot
-# Disallow: /
-
-Sitemap: https://club.bekindstudio.at/sitemap.xml
