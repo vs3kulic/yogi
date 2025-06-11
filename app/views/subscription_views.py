@@ -10,8 +10,10 @@ def subscribe_view(request):
     Handles email subscription.
     """
     email = request.POST.get("email")
-    if not email or "@" not in email:
-        return JsonResponse({"error": "Invalid email"}, status=400)
+    if not email:
+        return JsonResponse({"error": "Email is required."}, status=400)
+    if "@" not in email:
+        return JsonResponse({"error": "Invalid email format."}, status=400)
 
     # Example subscription logic
     return JsonResponse({"message": "Successfully subscribed!"}, status=200)
@@ -36,10 +38,11 @@ def subscribe_email(email):
         try:
             resp_json = req.json()  # Attempt to decode JSON response
         except ValueError:
-            resp_json = {}  # Fallback to empty dict if JSON decoding fails
-        
+            return 200, {}
+
         return req.status_code, resp_json
 
-    except requests.RequestException as e:
-        # Handle request-related exceptions (e.g., connection errors, timeouts)
-        return 503, {"detail": str(e)}
+    except requests.ConnectionError:
+        return 503, {"detail": "Connection error"}
+    except requests.RequestException:
+        return 503, {"detail": "Service unavailable."}
