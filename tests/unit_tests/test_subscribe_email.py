@@ -26,42 +26,45 @@ class SubscribeEmailTests(TestCase):
         self.assertEqual(status_code, 200)
         self.assertEqual(resp_json, {"id": "abc123"})
 
-    @patch('app.views.subscription_views.subscribe_email')
-    def test_subscribe_email_failure(self, mock_subscribe):
+    @patch('app.views.subscription_views.requests.post')
+    def test_subscribe_email_failure(self, mock_post):
         """
         Test subscribe_email with a Mailchimp API failure (503 Service Unavailable).
         """
-        # Mock the API response
-        mock_subscribe.return_value = (503, {"detail": "Service unavailable."})
+        mock_response = Mock()
+        mock_response.status_code = 503
+        mock_response.json.return_value = {"detail": "Service unavailable."}
+        mock_post.return_value = mock_response
 
-        # Call the function
         status_code, response = subscribe_email("test@example.com")
 
         # Assertions
         self.assertEqual(status_code, 503)
         self.assertEqual(response, {"detail": "Service unavailable."})
 
-    @patch('app.views.subscription_views.subscribe_email')
-    def test_subscribe_email_invalid_json(self, mock_subscribe):
+    @patch('app.views.subscription_views.requests.post')
+    def test_subscribe_email_invalid_json(self, mock_post):
         """
         Test subscribe_email when the Mailchimp API returns invalid JSON.
         """
-        # Mock the API response
-        mock_subscribe.return_value = (200, {})  # Simulate invalid JSON response
+        mock_response = Mock()
+        mock_response.status_code = 200
+        mock_response.json.side_effect = ValueError("Invalid JSON")  # Simulate JSON decode error
+        mock_post.return_value = mock_response
 
-        # Call the function
         status_code, response = subscribe_email("test@example.com")
 
         # Assertions
         self.assertEqual(status_code, 200)
         self.assertEqual(response, {})  # Fallback to an empty dictionary
 
-    @patch('app.views.subscription_views.subscribe_email', side_effect=requests.exceptions.ConnectionError("Connection error"))
-    def test_subscribe_email_exception(self, mock_subscribe):
+    @patch('app.views.subscription_views.requests.post')
+    def test_subscribe_email_exception(self, mock_post):
         """
         Test subscribe_email when a ConnectionError is raised during the API call.
         """
-        # Call the function
+        mock_post.side_effect = requests.exceptions.ConnectionError("Connection error")
+
         status_code, response = subscribe_email("test@example.com")
 
         # Assertions
