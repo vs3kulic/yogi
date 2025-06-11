@@ -19,15 +19,11 @@ def subscribe_view(request):
     return JsonResponse({"message": "Successfully subscribed!"}, status=200)
 
 def subscribe_email(email):
-    """
-    Helper function to subscribe an email address to Mailchimp.
-    """
     data = {
         "email_address": email,
         "status": "subscribed"
     }
     try:
-        # Send a POST request to Mailchimp API
         req = requests.post(
             settings.MAILCHIMP_MEMBERS_ENDPOINT,
             auth=("", settings.MAILCHIMP_API_KEY),
@@ -36,10 +32,9 @@ def subscribe_email(email):
             timeout=5
         )
         try:
-            resp_json = req.json()  # Attempt to decode JSON response
+            resp_json = req.json()
         except ValueError:
             return 200, {}
-
         return req.status_code, resp_json
 
     except requests.ConnectionError:

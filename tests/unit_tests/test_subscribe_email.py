@@ -1,4 +1,4 @@
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 import requests
 from django.test import TestCase
 from app.views.subscription_views import subscribe_email
@@ -10,20 +10,21 @@ class SubscribeEmailTests(TestCase):
     and exceptions during the API call.
     """
 
-    @patch('app.views.subscription_views.subscribe_email')  # Mock the subscribe_email function
-    def test_subscribe_email_success(self, mock_subscribe):
+    @patch('app.views.subscription_views.requests.post')
+    def test_subscribe_email_success(self, mock_post):
         """
         Test subscribe_email with a successful Mailchimp API response.
         """
-        # Mock the API response
-        mock_subscribe.return_value = (200, {"message": "Successfully subscribed!"})
+        mock_response = Mock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {"id": "abc123"}
+        mock_post.return_value = mock_response
 
-        # Call the function
-        status_code, response = subscribe_email("test@example.com")
+        status_code, resp_json = subscribe_email("test@example.com")
 
         # Assertions
         self.assertEqual(status_code, 200)
-        self.assertEqual(response, {"message": "Successfully subscribed!"})
+        self.assertEqual(resp_json, {"id": "abc123"})
 
     @patch('app.views.subscription_views.subscribe_email')
     def test_subscribe_email_failure(self, mock_subscribe):
