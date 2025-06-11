@@ -160,8 +160,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Session settings
-SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Default session engine
-SESSION_COOKIE_AGE = 1209600  # Two weeks (default)
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Use database-backed sessions
+SESSION_COOKIE_AGE = 3600  # 1 hour
 SESSION_SAVE_EVERY_REQUEST = True  # Save session on every request
 
 # Logging configuration

@@ -18,16 +18,16 @@
             <div class="col-lg-8 col-md-7 text-center">
                 <h2>{{ result_data.title }}</h2>
                 <p>{{ result_data.description|safe }}</p>
-                <p>{{ result_data.extended }}</p>
                 <h3 class="mt-4">Dein 100% Match:</h3>
                 <p><strong>{{ result_data.match.title }}</strong> {{ result_data.match.reason }}</p>
                 <h3 class="mt-4">Deine Challenge:</h3>
-                <p><strong>{{ result_data.challenge.title }}:</strong> {{ result_data.challenge.reason }}</p>
+                <p><strong>{{ result_data.challenge.title }}</strong> {{ result_data.challenge.reason }}</p>
                 <h3 class="mt-4">Dein Pro-Tip:</h3>
                 <p>{{ pro_tip }}</p>
             </div>
         </div>
-
+        
+        <!-- Eversports itinerary -->
         <div class="row justify-content-center mb-5">
             <div class="col-lg-10 text-center">
                 <h3 class="mb-4">Hooked? Hier ist der Stundenplan:</h3>
@@ -37,7 +37,8 @@
                 <script type="module" src="https://widget-static.eversports.io/loader.js" async defer></script>
             </div>
         </div>
-
+        
+        <!-- Mailchimp newsletter integration -->
         <div class="row justify-content-center mt-5">
             <!-- Changed from col-lg-8 to col-lg-10 to make it wider -->
             <div class="col-lg-10 col-md-12">

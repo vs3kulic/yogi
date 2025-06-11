@@ -237,10 +237,10 @@ form {
 
 /* Default state for answer options */
 .quiz-option, .option {
-    border: 1px solid #ccc; /* Slimmer border */
-    border-radius: 8px; /* Keep rounded corners */
-    padding: 0.5rem 1rem; /* Adjust padding if needed */
-    margin-bottom: 0.75rem; /* Keep spacing between options */
+    border: 0.5px solid #ccc; /* Subtle border for unselected options */
+    border-radius: 8px;
+    padding: 0.5rem 1rem; /* Reduce padding inside options */
+    margin-bottom: 0.75rem; /* Reduce spacing between options */
     cursor: pointer;
     transition: all 0.3s ease;
     background-color: #fff; /* Ensure a clean white background */
@@ -249,7 +249,7 @@ form {
 
 /* Highlight only the selected option */
 .quiz-option.selected, .option.selected {
-    border: 1px solid var(--primary); /* Slimmer border for selected option */
+    border: 2px solid var(--primary); /* Stronger border for selected option */
     background-color: rgba(71, 31, 102, 0.1); /* Subtle purple background */
     box-shadow: 0 0 10px rgba(71, 31, 102, 0.3); /* Add a soft shadow */
     transform: scale(1.02); /* Slightly enlarge the selected option */

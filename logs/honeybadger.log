@@ -1627,3 +1627,262 @@ Returning payload from plugin Django
 No active plugin to generate payload
 Registering plugin Django
 Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+[<FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/core/handlers/base.py, line 181 in _get_response>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/views/decorators/http.py, line 40 in inner>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/app/views/questionnaire_views.py, line 46 in questionnaire>]
+Returning payload from plugin Django
+No active plugin to generate payload
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+[<FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/core/handlers/base.py, line 181 in _get_response>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/views/decorators/http.py, line 40 in inner>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/app/views/questionnaire_views.py, line 46 in questionnaire>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/app/utils.py, line 79 in calculate_result_from_answers>]
+Returning payload from plugin Django
+No active plugin to generate payload
+[<FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/core/handlers/base.py, line 181 in _get_response>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/views/decorators/http.py, line 40 in inner>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/app/views/questionnaire_views.py, line 46 in questionnaire>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/app/utils.py, line 79 in calculate_result_from_answers>]
+Returning payload from plugin Django
+No active plugin to generate payload
+Registering plugin Django
+[<FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/core/handlers/base.py, line 181 in _get_response>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/views/decorators/http.py, line 40 in inner>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/app/views/questionnaire_views.py, line 69 in questionnaire>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/shortcuts.py, line 41 in redirect>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/shortcuts.py, line 130 in resolve_url>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/urls/base.py, line 86 in reverse>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/urls/resolvers.py, line 698 in _reverse_with_prefix>]
+Returning payload from plugin Django
+No active plugin to generate payload
+Registering plugin Django
+Registering plugin Django
+[<FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/core/handlers/base.py, line 181 in _get_response>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/views/decorators/http.py, line 40 in inner>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/app/views/result_views.py, line 16 in calculate_result>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/shortcuts.py, line 19 in render>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/template/loader.py, line 62 in render_to_string>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/template/backends/django.py, line 61 in render>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/template/base.py, line 170 in render>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/template/base.py, line 162 in _render>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/template/base.py, line 938 in render>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/template/base.py, line 905 in render_annotated>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/template/loader_tags.py, line 150 in render>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/template/base.py, line 162 in _render>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/template/base.py, line 938 in render>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/template/base.py, line 905 in render_annotated>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/template/loader_tags.py, line 62 in render>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/template/base.py, line 938 in render>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/template/base.py, line 905 in render_annotated>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/template/defaulttags.py, line 449 in render>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/urls/base.py, line 86 in reverse>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/urls/resolvers.py, line 698 in _reverse_with_prefix>]
+Returning payload from plugin Django
+No active plugin to generate payload
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+[<FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/core/handlers/base.py, line 181 in _get_response>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/views/decorators/http.py, line 40 in inner>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/app/views/result_views.py, line 27 in recommended_classes>]
+Returning payload from plugin Django
+No active plugin to generate payload
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+[<FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/core/handlers/base.py, line 181 in _get_response>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/views/decorators/http.py, line 40 in inner>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/app/views/result_views.py, line 23 in calculate_result>]
+Returning payload from plugin Django
+No active plugin to generate payload
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+[<FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/core/handlers/base.py, line 181 in _get_response>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/venv/lib/python3.11/site-packages/django/views/decorators/http.py, line 40 in inner>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/app/views/questionnaire_views.py, line 78 in questionnaire>, <FrameSummary file /Users/vajosekulic/Documents/Programming/Yogi/app/utils.py, line 30 in calculate_result_from_answers>]
+Returning payload from plugin Django
+No active plugin to generate payload
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django
+Registering plugin Django

@@ -1,3 +1,6 @@
+# Default yoga type
+DEFAULT_YOGA_TYPE = "Homeoffice-Yogini"
+
 # Mapping of answer types to yoga types
 QUESTIONS = [
     {
