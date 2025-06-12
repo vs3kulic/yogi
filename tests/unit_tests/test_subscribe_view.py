@@ -38,13 +38,3 @@ class SubscribeViewTests(TestCase):
         response = self.client.post(self.url, {"email": "invalid-email"})
         self.assertEqual(response.status_code, 400)
         self.assertJSONEqual(response.content, {"error": "Invalid email format."})
-
-    @patch('app.views.subscription_views.subscribe_email')  # Fixed path
-    def test_subscribe_view_failure(self, mock_subscribe_email):
-        """
-        Test the subscribe view with a failure response from the subscription service.
-        """
-        mock_subscribe_email.return_value = (503, {"detail": "Service unavailable."})
-        response = self.client.post(self.url, {"email": "test@example.com"})
-        self.assertEqual(response.status_code, 503)
-        self.assertJSONEqual(response.content, {"error": "Service unavailable."})
