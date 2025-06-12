@@ -22,23 +22,18 @@ Yogi is designed with a hybrid architecture that combines Django templates with 
 
 - **Django Backend**: Handles routing, authentication, data processing, and template rendering.
 - **Vue.js Frontend**: Provides interactive elements for features like the class explorer and questionnaire.
-- **JSON Data Store**: Stores yoga class information and quiz questions for easy maintenance.
 
 This hybrid approach leverages Django's robust backend capabilities while enhancing the user experience with Vue.js for interactive components.
 
 ### Key Characteristics:  
 - **Independent Deployment**: Yogi can be deployed and scaled independently of other services.  
-- **API-Driven**: REST API endpoints provide data to Vue.js components.  
-- **Focused Functionality**: Personalized yoga class recommendations with dynamic content.
-- **Progressive Enhancement**: Core functionality works without JavaScript, while Vue.js enhances the experience.  
+- **Focused Functionality**: Personalised yoga class recommendations with dynamic content.
 
 ---
 
 ## Features  
 
 - **Class recommendations** based on user input.  
-- **Preview class content** before joining.  
-- **Interactive class explorer** powered by Vue.js for filtering and browsing classes.  
 - **Dark mode support** for comfortable viewing in any lighting condition.  
 - **Responsive design** optimized for mobile, tablet, and desktop devices.  
 - **Comprehensive testing** with unit tests and end-to-end tests.  
@@ -47,8 +42,7 @@ This hybrid approach leverages Django's robust backend capabilities while enhanc
 - **User analytics** with Piwik (Matomo) to understand user behavior and improve the app experience.  
 - **Images** delivered through a dedicated CDN to enhance performance and reduce storage requirements.  
 - **Environment-specific configurations** for development, testing, and production.  
-- **Pro-Tips with OLLAMA and DEEPL**:  
-  Yogi uses **Ollama** (gemma3:1b) to generate personalized pro-tips based on user questionnaire answers. Additionally, **DeepL** is used to translate these pro-tips into German, ensuring accessibility for a broader audience. This integration enhances the user experience by delivering localized and meaningful recommendations.
+- **Pro-Tips with OLLAMA and DEEPL**: Yogi uses **Ollama** (gemma3:1b) to generate pro-tips based on user questionnaire answers and **DeepL** to translate these pro-tips into German
 
 ---
 
@@ -122,43 +116,6 @@ This project uses GitHub Actions for continuous integration. The workflow is def
 - Running tests.
 - Linting code with flake8.
 - Building and pushing Docker images (for production).
-
----
-
-## Error Monitoring with Honeybadger  
-
-We use **Honeybadger** to monitor errors and exceptions in the Yogi app. Honeybadger helps us identify and resolve issues in real-time, ensuring a smooth user experience.  
-
-### Setting Up Honeybadger  
-
-1. Install the Honeybadger Python library:
-   ```bash  
-   pip install honeybadger  
-   ```
-
-2. Add your Honeybadger API key to the environment variables:  
-   ```bash  
-   export HONEYBADGER_API_KEY=<your-api-key>  
-   ```
-
-3. Honeybadger is already integrated into the app. Errors will automatically be logged and reported to the Honeybadger dashboard.  
-
----
-
-## User Analytics with Piwik  
-
-We use **Piwik** (Matomo) for tracking user behavior and analytics, without capturing personal data. Piwik helps us understand how users interact with the app, enabling us to make data-driven improvements!  
-
-### How Piwik is Integrated  
-
-1. The Piwik tracking code is included in the `base.html` template.  
-2. It tracks page views, user interactions, and other key metrics.  
-3. Analytics data is available in the Piwik dashboard for analysis.  
-
-### Notes on Piwik  
-- To modify the Piwik integration, update the tracking code in `base.html`!
-
----
 
 ## Pre-Commit Hook  
 
