@@ -13,7 +13,7 @@ class SubscribeViewTests(TestCase):
         self.client = Client()
         self.url = reverse('subscribe')  # Replace 'subscribe' with the actual name of your URL pattern
 
-    @patch('app.views.subscribe_email')  # Mock the subscribe_email function
+    @patch('app.views.subscription_views.subscribe_email')  # Fixed path
     def test_subscribe_view_success(self, mock_subscribe_email):
         """
         Test the subscribe view with a valid email address.
@@ -39,7 +39,7 @@ class SubscribeViewTests(TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertJSONEqual(response.content, {"error": "Invalid email format."})
 
-    @patch('app.views.subscribe_email')  # Mock the subscribe_email function
+    @patch('app.views.subscription_views.subscribe_email')  # Fixed path
     def test_subscribe_view_failure(self, mock_subscribe_email):
         """
         Test the subscribe view with a failure response from the subscription service.
